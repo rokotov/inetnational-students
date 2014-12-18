@@ -5,14 +5,13 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>kotov</groupId>
+        <groupId>kotov.interstudents</groupId>
         <artifactId>interstudents</artifactId>
         <version>1.0.0</version>
     </parent>
 
-    <groupId>kotov</groupId>
     <artifactId>web</artifactId>
-    <version>1.0.0</version>
+
 
     
 </project>

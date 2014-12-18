@@ -5,14 +5,18 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>kotov</groupId>
+        <groupId>kotov.interstudents</groupId>
         <artifactId>interstudents</artifactId>
         <version>1.0.0</version>
     </parent>
 
-    <groupId>kotov</groupId>
-    <artifactId>base</artifactId>
-    <version>1.0.0</version>
 
-    
+    <artifactId>base</artifactId>
+    <packaging>pom</packaging>
+
+    <modules>
+        <!--<module>authentication</module>-->
+        <module>common</module>
+        <module>util</module>
+    </modules>
 </project>
