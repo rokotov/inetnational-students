@@ -2,6 +2,7 @@ package kotov.interstudents.common.dao;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
@@ -12,6 +13,7 @@ import java.lang.reflect.TypeVariable;
  */
 public class HibernateDao <T> {
 
+    @Autowired
     private SessionFactory sessionFactory;
 
     private Class<T> persistentClass;
