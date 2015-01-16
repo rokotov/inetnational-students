@@ -3,12 +3,15 @@ package kotov.interstudents.common.model.entity;
 import kotov.interstudents.common.model.AbstractEntity;
 
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
 
 /**
  * Created by vkotov on 16.01.2015.
  */
 @Entity(name = "speciality")
 @Table(name = "speciality")
+@XmlAccessorType(value = XmlAccessType.FIELD)
 public class Speciality extends AbstractEntity{
 
     @Id

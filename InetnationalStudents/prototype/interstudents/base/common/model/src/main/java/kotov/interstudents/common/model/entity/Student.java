@@ -19,7 +19,7 @@ public class Student extends AbstractEntity{
 
     @ManyToOne
     @JoinColumn(name = "group_id")
-    Groups group;
+    Group group;
 
     @ManyToOne
     @JoinColumn(name = "country_id")
@@ -77,11 +77,11 @@ public class Student extends AbstractEntity{
         this.id = id;
     }
 
-    public Groups getGroup() {
+    public Group getGroup() {
         return group;
     }
 
-    public void setGroup(Groups group) {
+    public void setGroup(Group group) {
         this.group = group;
     }
 

@@ -9,7 +9,7 @@ import javax.persistence.*;
  */
 @Entity(name = "groups")
 @Table(name = "groups")
-public class Groups extends AbstractEntity{
+public class Group extends AbstractEntity{
 
     @Id
     @GeneratedValue
