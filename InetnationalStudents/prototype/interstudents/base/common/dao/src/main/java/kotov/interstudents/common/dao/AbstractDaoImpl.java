@@ -30,7 +30,7 @@ public abstract class AbstractDaoImpl <T extends AbstractEntity> extends Hiberna
     }
 
     @Override
-    public void saveOrUpateEntity(T entity) {
+    public void saveOrUpdateEntity(T entity) {
         getSession().saveOrUpdate(entity);
     }
 }

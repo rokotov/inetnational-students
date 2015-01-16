@@ -1,7 +1,7 @@
 package kotov.interstudents.common.service;
 
-import com.artezio.artvacation.common.AbstractDao;
-import com.artezio.artvacation.common.model.AbstractEntity;
+import kotov.interstudents.common.AbstractDao;
+import kotov.interstudents.common.model.AbstractEntity;
 import kotov.interstudents.common.AbstractService;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -54,6 +54,6 @@ public abstract class AbstractServiceImpl <T extends AbstractEntity, D extends A
     @Override
     @Transactional
     public void saveOrUpdateEntity(T entity) {
-        dao.saveOrUpateEntity(entity);
+        dao.saveOrUpdateEntity(entity);
     }
 }

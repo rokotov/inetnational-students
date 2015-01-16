@@ -17,5 +17,5 @@ public interface AbstractDao <T extends AbstractEntity> {
 
     void deleteEntity(T entity);
 
-    void saveOrUpateEntity(T entity);
+    void saveOrUpdateEntity(T entity);
 }

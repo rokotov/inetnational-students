@@ -13,7 +13,7 @@
 
     <dependencies>
         <dependency>
-            <groupId>com.artezio.artvacation</groupId>
+            <groupId>kotov.interstudents</groupId>
             <artifactId>dao</artifactId>
             <version>${project.version}</version>
         </dependency>

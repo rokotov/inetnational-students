@@ -1,17 +1,24 @@
 package kotov.interstudents.common;
 
-import com.artezio.artvacation.common.model.AbstractEntity;
-
-import java.util.List;
+import kotov.interstudents.common.model.AbstractEntity;
+import javax.ws.rs.core.Response;
 
 /**
  * Created by vkotov on 18.12.2014.
  */
 
-public interface AbstractRestService {
+public interface AbstractRestService<T extends AbstractEntity> {
 
-        AbstractEntity getEntityById(Integer id);
+        Response addEntity(T entity);
 
-        List<? extends AbstractEntity> getAllEntities();
+        Response getEntityById(Integer id);
+
+        Response getAllEntities();
+
+        Response saveOrUpdateEntity(T entity);
+
+        Response deleteEntity(Integer id);
+
+        Response deleteEntity(T entity);
 }
 

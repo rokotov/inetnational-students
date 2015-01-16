@@ -8,11 +8,11 @@
     <!-- Activates scanning of @Autowired -->
     <context:annotation-config/>
 
-    <context:component-scan base-package="com.artezio.artvacation.common.dao"/>
+    <context:component-scan base-package="kotov.interstudents.common.dao"/>
 
     <bean id="commonHibernateSessionFactory" abstract="true" autowire-candidate="true" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
         <property name="configLocation" value="classpath:/hibernate/hibernate.cfg.xml"/>
-        <property name="packagesToScan" value="com.artezio.artvacation.common.model"/>
+        <property name="packagesToScan" value="kotov.interstudents.common.model"/>
     </bean>
 
 </beans>
