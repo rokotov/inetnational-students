@@ -1,8 +1,7 @@
 package kotov.interstudents.web;
 
-import kotov.interstudents.common.AbstractRestService;
-import kotov.interstudents.common.model.entity.Speciality;
-import kotov.interstudents.service.SpecialityService;
+import kotov.interstudents.common.model.entity.Group;
+import kotov.interstudents.service.GroupService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.CannotCreateTransactionException;
@@ -16,17 +15,17 @@ import java.util.List;
  * Created by vkotov on 16.01.2015.
  */
 @Component
-@Path("/speciality")
-public class SpecialityRestService implements AbstractRestService<Speciality>{
+@Path("/group")
+public class GroupRestService {
     @Autowired
-    private SpecialityService specialityService;
+    private GroupService groupService;
 
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response addEntity(Speciality entity) {
+    public Response addEntity(Group entity) {
         try {
-            Integer addEntityId = specialityService.addEntity(entity);
+            Integer addEntityId = groupService.addEntity(entity);
             return Response.status(Response.Status.CREATED).entity(addEntityId).build();
         }
         catch (CannotCreateTransactionException e){
@@ -40,7 +39,7 @@ public class SpecialityRestService implements AbstractRestService<Speciality>{
     @Consumes(MediaType.APPLICATION_JSON)
     public Response getEntityById(@PathParam("id") Integer id) {
         try {
-            Speciality entityById = specialityService.findEntityById(id);
+            Group entityById = groupService.findEntityById(id);
 
             if (entityById != null){
                 return Response.status(Response.Status.OK).entity(entityById).build();
@@ -58,7 +57,7 @@ public class SpecialityRestService implements AbstractRestService<Speciality>{
     @Produces(MediaType.APPLICATION_JSON)
     public Response getAllEntities() {
         try {
-            List<Speciality> allEntities = specialityService.getAllEntities();
+            List<Group> allEntities = groupService.getAllEntities();
             if (allEntities != null) {
                 return Response.status(Response.Status.OK).entity(allEntities).build();
             }else {
@@ -72,9 +71,9 @@ public class SpecialityRestService implements AbstractRestService<Speciality>{
 
     @PUT
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response saveOrUpdateEntity(Speciality entity) {
+    public Response saveOrUpdateEntity(Group entity) {
         try {
-            specialityService.saveOrUpdateEntity(entity);
+            groupService.saveOrUpdateEntity(entity);
             return Response.status(Response.Status.OK).build();
         }
         catch (CannotCreateTransactionException e){
@@ -87,7 +86,7 @@ public class SpecialityRestService implements AbstractRestService<Speciality>{
     @Consumes(MediaType.APPLICATION_JSON)
     public Response deleteEntity(@PathParam("id") Integer id) {
         try {
-            specialityService.deleteEntity(id);
+            groupService.deleteEntity(id);
             return Response.status(Response.Status.OK).build();
         }
         catch (CannotCreateTransactionException e){
@@ -97,9 +96,9 @@ public class SpecialityRestService implements AbstractRestService<Speciality>{
 
     @DELETE
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response deleteEntity(Speciality entity) {
+    public Response deleteEntity(Group entity) {
         try {
-            specialityService.deleteEntity(entity);
+            groupService.deleteEntity(entity);
             return Response.status(Response.Status.OK).build();
         }
         catch (CannotCreateTransactionException e){

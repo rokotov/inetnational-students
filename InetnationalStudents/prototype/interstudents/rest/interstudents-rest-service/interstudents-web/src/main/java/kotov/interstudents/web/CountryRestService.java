@@ -1,8 +1,7 @@
 package kotov.interstudents.web;
 
-import kotov.interstudents.common.AbstractRestService;
-import kotov.interstudents.common.model.entity.Speciality;
-import kotov.interstudents.service.SpecialityService;
+import kotov.interstudents.common.model.entity.Country;
+import kotov.interstudents.service.CountryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.CannotCreateTransactionException;
@@ -16,17 +15,17 @@ import java.util.List;
  * Created by vkotov on 16.01.2015.
  */
 @Component
-@Path("/speciality")
-public class SpecialityRestService implements AbstractRestService<Speciality>{
+@Path("/country")
+public class CountryRestService {
     @Autowired
-    private SpecialityService specialityService;
+    private CountryService countryService;
 
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response addEntity(Speciality entity) {
+    public Response addEntity(Country entity) {
         try {
-            Integer addEntityId = specialityService.addEntity(entity);
+            Integer addEntityId = countryService.addEntity(entity);
             return Response.status(Response.Status.CREATED).entity(addEntityId).build();
         }
         catch (CannotCreateTransactionException e){
@@ -40,7 +39,7 @@ public class SpecialityRestService implements AbstractRestService<Speciality>{
     @Consumes(MediaType.APPLICATION_JSON)
     public Response getEntityById(@PathParam("id") Integer id) {
         try {
-            Speciality entityById = specialityService.findEntityById(id);
+            Country entityById = countryService.findEntityById(id);
 
             if (entityById != null){
                 return Response.status(Response.Status.OK).entity(entityById).build();
@@ -58,7 +57,7 @@ public class SpecialityRestService implements AbstractRestService<Speciality>{
     @Produces(MediaType.APPLICATION_JSON)
     public Response getAllEntities() {
         try {
-            List<Speciality> allEntities = specialityService.getAllEntities();
+            List<Country> allEntities = countryService.getAllEntities();
             if (allEntities != null) {
                 return Response.status(Response.Status.OK).entity(allEntities).build();
             }else {
@@ -72,9 +71,9 @@ public class SpecialityRestService implements AbstractRestService<Speciality>{
 
     @PUT
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response saveOrUpdateEntity(Speciality entity) {
+    public Response saveOrUpdateEntity(Country entity) {
         try {
-            specialityService.saveOrUpdateEntity(entity);
+            countryService.saveOrUpdateEntity(entity);
             return Response.status(Response.Status.OK).build();
         }
         catch (CannotCreateTransactionException e){
@@ -87,7 +86,7 @@ public class SpecialityRestService implements AbstractRestService<Speciality>{
     @Consumes(MediaType.APPLICATION_JSON)
     public Response deleteEntity(@PathParam("id") Integer id) {
         try {
-            specialityService.deleteEntity(id);
+            countryService.deleteEntity(id);
             return Response.status(Response.Status.OK).build();
         }
         catch (CannotCreateTransactionException e){
@@ -97,9 +96,9 @@ public class SpecialityRestService implements AbstractRestService<Speciality>{
 
     @DELETE
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response deleteEntity(Speciality entity) {
+    public Response deleteEntity(Country entity) {
         try {
-            specialityService.deleteEntity(entity);
+            countryService.deleteEntity(entity);
             return Response.status(Response.Status.OK).build();
         }
         catch (CannotCreateTransactionException e){

@@ -3,6 +3,8 @@ package kotov.interstudents.common.model.entity;
 import kotov.interstudents.common.model.AbstractEntity;
 
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
 import java.util.Date;
 
 /**
@@ -10,10 +12,11 @@ import java.util.Date;
  */
 @Entity(name = "student")
 @Table(name = "student")
+@XmlAccessorType(value = XmlAccessType.FIELD)
 public class Student extends AbstractEntity{
 
     @Id
-    @GeneratedValue
+    @GeneratedValue()
     @Column(name = "student_id")
     Integer id;
 
@@ -59,7 +62,7 @@ public class Student extends AbstractEntity{
     @Column(name = "birth_place")
     String birthPlace;
 
-    @Column(name = "passport number")
+    @Column(name = "passport_number")
     String passportNumber;
 
     @Column(name = "passport_validity")
