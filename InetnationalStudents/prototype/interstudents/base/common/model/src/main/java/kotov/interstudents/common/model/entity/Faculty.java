@@ -5,6 +5,9 @@ package kotov.interstudents.common.model.entity;
 import kotov.interstudents.common.model.AbstractEntity;
 
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlTransient;
 import java.util.List;
 
 /**
@@ -12,6 +15,7 @@ import java.util.List;
  */
 @Entity(name = "faculty")
 @Table(name = "faculty")
+@XmlAccessorType(value = XmlAccessType.FIELD)
 public class Faculty extends AbstractEntity{
 
     @Id
@@ -23,6 +27,7 @@ public class Faculty extends AbstractEntity{
     String facultyName;
 
     @OneToMany
+    @XmlTransient
     List<Speciality> specialityList;
 
     @Override

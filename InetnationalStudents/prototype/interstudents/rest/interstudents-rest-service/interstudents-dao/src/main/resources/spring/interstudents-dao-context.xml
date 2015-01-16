@@ -19,7 +19,7 @@
     </bean>
 
     <bean id="kotov.interstudents.dataSource" class="org.springframework.jndi.JndiObjectFactoryBean">
-        <property name="jndiName" value="java:comp/env/jdbc/artvacationInterstudentsDataSource"/>
+        <property name="jndiName" value="java:comp/env/jdbc/interstudentsDataSource"/>
         <property name="lookupOnStartup" value="false"/>
         <property name="cache" value="true"/>
         <property name="proxyInterface" value="javax.sql.DataSource"/>
