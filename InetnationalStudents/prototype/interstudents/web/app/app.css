@@ -3,6 +3,9 @@ body {
   height: none; 
   background-color: #E7E7E7;
 }
+button, select, html, textarea, input {
+font-family: RobotoDraft, Roboto, 'Helvetica Neue', sans-serif;
+}
 
 .box {
   width: 200px;
@@ -197,3 +200,54 @@ md-whiteframe {
   padding:0; 
   margin-right: 10px;
 }
+
+.tabsStaticTabs {
+  /*
+ * Animation styles
+ */ }
+  .tabsStaticTabs .tabpanel-container {
+    display: block;
+    position: relative;
+    background: white;
+    border: 0px solid black;
+    height: 500px;
+    overflow: hidden; 
+  }
+  .tabsStaticTabs [role="tabpanel"] {
+    color: black;
+    width: 100%;
+    height: 100%;
+    -webkit-transition: all cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.5s;
+    transition: all cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.5s;
+    position: absolute; 
+  }
+  .tabsStaticTabs [role="tabpanel"].ng-leave.ng-leave-active, .tabsStaticTabs [role="tabpanel"].ng-enter {
+    top: -300px; 
+  }
+  .tabsStaticTabs [role="tabpanel"].ng-leave, .tabsStaticTabs [role="tabpanel"].ng-enter.ng-enter-active {
+    top: 0; 
+  }
+  .tabsStaticTabs [role="tabpanel"].ng-leave {
+    z-index: 100; 
+  }
+  .tabsStaticTabs .tabpanel-container [role="tabpanel"] {
+    padding: 20px; 
+  }
+  .tabsStaticTabs .md-header {
+    background-color: #5C6BC0 !important; 
+  }
+  .tabsStaticTabs md-tab {
+    color: #90caf9 !important; 
+  }
+  .tabsStaticTabs md-tab.active, .tabsStaticTabs md-tab:focus {
+    color: white !important; 
+  }
+  .tabsStaticTabs md-tab[disabled] {
+    opacity: 0.5; 
+  }
+  .tabsStaticTabs .md-header .md-ripple {
+    border-color: #FFFF8D !important; 
+  }
+  .tabsStaticTabs md-tabs-ink-bar {
+    background-color: #FFFF8D !important; 
+  }

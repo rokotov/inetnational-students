@@ -1,7 +1,7 @@
 /**
  * Created by vkotov on 21.01.2015.
  */
-angular.module('myApp.students', ['ngRoute','ngMaterial'])
+angular.module('myApp.login', ['ngRoute','ngMaterial'])
 
     .config(['$routeProvider', function($routeProvider) {
         $routeProvider.when('/login',{

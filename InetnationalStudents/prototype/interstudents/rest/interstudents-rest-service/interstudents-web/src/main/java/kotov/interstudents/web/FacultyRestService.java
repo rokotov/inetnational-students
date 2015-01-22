@@ -64,13 +64,13 @@ public class FacultyRestService implements AbstractRestService<Faculty> {
         try {
             List<Faculty> allEntities = facultyService.getAllEntities();
             if (allEntities != null) {
-                return Response.status(Response.Status.OK).entity(allEntities).build();
+                return Response.status(Response.Status.OK).header("Access-Control-Allow-Origin", "http://localhost:8000").entity(allEntities).build();
             }else {
-                return Response.status(Response.Status.NO_CONTENT).build();
+                return Response.status(Response.Status.NO_CONTENT).header("Access-Control-Allow-Origin", "http://localhost:8000").build();
             }
         }
         catch (CannotCreateTransactionException e){
-            return  Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(e.getMessage()).build();
+            return  Response.status(Response.Status.INTERNAL_SERVER_ERROR).header("Access-Control-Allow-Origin", "http://localhost:8000").entity(e.getMessage()).build();
         }
     }
 

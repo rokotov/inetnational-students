@@ -1,19 +1,17 @@
-<div class="" ng-controller="LoginCtrl" layout="column" layout-align="center center">
-  <md-content >
-    <label>Войдите в систему</label>
-  </md-content>
-
+<div class="doc-content md-whiteframe-z4" ng-controller="LoginCtrl" layout="column" layout-align="center center">
   <md-content >
     <md-input-container >
       <label >Логин</label>
       <input ng-model="credentials.login" >
     </md-input-container>
-
+    
     <md-input-container >
       <label>Пароль</label>
       <input type="password" ng-model="credentials.password">
     </md-input-container>
 
-  </md-content>
+    <div  style="padding-bottom: 20px;">
       <md-button ng-click="login()" class="md-raised">Button</md-button>
+    </div>
+  </md-content>
 </div>
