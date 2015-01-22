@@ -210,7 +210,7 @@ md-whiteframe {
     position: relative;
     background: white;
     border: 0px solid black;
-    height: 500px;
+    height: 600px;
     overflow: hidden; 
   }
   .tabsStaticTabs [role="tabpanel"] {

@@ -31,8 +31,8 @@
    			<tr>
     			<th>ФИО</th>
     			<th>Курс</th>
-    		<!-- 	<th>Факультет</th>
-    			<th>Специальность</th> -->
+    			<th>Факультет</th>
+    			<th>Специальность</th>
    				<th>Форма обучения</th>
    				<th>Номер приказа</th>
    				<th>Страна</th>
@@ -42,8 +42,8 @@
    			<tr ng-repeat="student in students|filter:querySpeciality">
    				<td>{{student.lastName}} {{student.firstName}} {{student.middleName}}</td>
    				<td>{{student.course.courseName}}</td>
-   				<!-- <td>{{faculty.facultyName}}</td>
-   				<td>{{speciality.specialityName}}</td> -->
+   				<td>{{student.group.speciality.faculty.facultyName}}</td>
+   				<td>{{student.group.speciality.specialityName}}</td>
    				<td>{{student.studyForm}}</td>
    				<td>{{student.orderNumber}}</td>
    				<td>{{student.country.countryName}}</td>
@@ -60,16 +60,24 @@
 			<table border="1">
    			<caption>студенты</caption>
    			<tr>
-    			<th>id</th>
-    			<th>имя</th>
-   				<th>фамилия</th>
-   				<th>страна</th>
+    			<th>ФИО</th>
+    			<th>Курс</th>
+    			<th>Специальность</th>
+   				<th>Номер приказа</th>
+   				<th>Страна</th>
+   				<th>Паспортные данные</th>
+   				<th>Адресс регистрации</th>
+   				<th>Место рождения</th>
    			</tr>
    			<tr ng-repeat="student in students|filter:queryCountry">
-   				<td>{{student.id}}</td>
-   				<td>{{student.firstName}}</td>
-   				<td>{{student.lastName}}</td>
+   				<td>{{student.lastName}} {{student.firstName}} {{student.middleName}}</td>
+   				<td>{{student.course.courseName}}</td>
+   				<td>{{student.group.speciality.specialityName}}</td> -->
+   				<td>{{student.orderNumber}}</td>
    				<td>{{student.country.countryName}}</td>
+   				<td>{{student.passportNumber}}</td>
+   				<td>{{student.registrationAddress}}</td>
+   				<td>{{student.birthPlace}}</td>
    			</tr>
   			</table>
         </div>
