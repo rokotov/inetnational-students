@@ -20,7 +20,6 @@
         	<select ng-model="queryFaculty">
   				<option ng-repeat="faculty in faculties" >{{faculty.facultyName}}</option>
 			</select>
-
 			специальность
         	<select ng-model="querySpeciality">
   				<option ng-repeat="speciality in specialities |filter:queryFaculty">{{speciality.specialityName}}</option>

@@ -7,8 +7,8 @@ import javax.persistence.*;
 /**
  * Created by vkotov on 16.01.2015.
  */
-@Entity(name = "groups")
-@Table(name = "groups")
+@Entity(name = "group")
+@Table(name = "group")
 public class Group extends AbstractEntity{
 
     @Id

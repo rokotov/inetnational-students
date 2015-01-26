@@ -15,8 +15,8 @@ CREATE TABLE `speciality` (
   CONSTRAINT `speciality_faculty_fk` FOREIGN KEY (`faculty_id`) REFERENCES `faculty` (`faculty_id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
-CREATE TABLE `groups` (
-  `group_id` int(11) NOT NULL,
+CREATE TABLE `group` (
+  `group_id` int(11) NOT NULL AUTO_INCREMENT,
   `group_name` varchar(30) NOT NULL,
   `speciality_id` int(11) NOT NULL,
   PRIMARY KEY (`group_id`),
@@ -25,18 +25,18 @@ CREATE TABLE `groups` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE `country` (
-  `country_id` int(11) NOT NULL,
+  `country_id` int(11) NOT NULL AUTO_INCREMENT,
   `country_name` varchar(45) NOT NULL,
   PRIMARY KEY (`country_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 CREATE TABLE `course` (
-  `course_id` int(11) NOT NULL,
+  `course_id` int(11) NOT NULL AUTO_INCREMENT,
   `course_name` varchar(45) NOT NULL,
   PRIMARY KEY (`course_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE `student` (
-  `student_id` int(11) NOT NULL,
+  `student_id` int(11) NOT NULL AUTO_INCREMENT,
   `group_id` int(11) NOT NULL,
   `country_id` int(11) NOT NULL,
   `course_id` int(11) NOT NULL,
@@ -63,7 +63,7 @@ CREATE TABLE `student` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE `student_add_info` (
-  `student_add_info_id` int(11) NOT NULL,
+  `student_add_info_id` int(11) NOT NULL AUTO_INCREMENT,
   `student_id` int(11) NOT NULL,
   PRIMARY KEY (`student_add_info_id`),
   KEY `student_add_info_student_fk_idx` (`student_id`),
