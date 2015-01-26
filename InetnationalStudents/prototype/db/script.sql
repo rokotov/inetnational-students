@@ -50,7 +50,7 @@ CREATE TABLE `student` (
   `order_number` int(11) NOT NULL,
   `birth_date` date NOT NULL,
   `birth_place` varchar(45) NOT NULL,
-  `passport number` varchar(10) NOT NULL,
+  `passport_number` varchar(10) NOT NULL,
   `passport_validity` date NOT NULL,
   `graduated` varchar(45) NOT NULL,
   PRIMARY KEY (`student_id`),

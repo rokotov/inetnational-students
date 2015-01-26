@@ -36,8 +36,8 @@
 
     <link rel="stylesheet" href="app.css"/>
     <link rel="stylesheet" href="docs.css">
-    <script src="app.js"></script>
-    <script src="docs.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/docs.js"></script>
 </head>
 
 <body  ng-controller="MainCtrl">
@@ -55,7 +55,7 @@
 </md-toolbar>
 
 <!--Сюда будут вставляться views-->
-<div style="padding-top: 100px;"  flex ng-view></div>
+<div class="main-context"  flex ng-view></div>
 
 <!-- Боковая панель -->
 <md-sidenav class="md-sidenav-left md-whiteframe-z3" md-component-id="left">

@@ -201,10 +201,26 @@ md-whiteframe {
   margin-right: 10px;
 }
 
-.tabsStaticTabs {
-  /*
- * Animation styles
- */ }
+
+.app-context{
+   /* max-width: 80%;*/
+    min-width: 350px;
+    margin:10px 10px 10px 10px;
+    height: 100%;
+    /*align-content: center;*/
+    /*align-items: center;*/
+    overflow: hidden;
+}
+.main-context{
+    align-content: center;
+    align-items: center;
+    padding-top: 100px;
+}
+
+.app-context .tabpanel-container{
+    padding: 10px;
+    overflow: auto;
+}
   .tabsStaticTabs .tabpanel-container {
     display: block;
     position: relative;
@@ -212,6 +228,8 @@ md-whiteframe {
     border: 0px solid black;
     height: 600px;
     overflow: hidden; 
+    min-width: 320px;
+    width: 900px;
   }
   .tabsStaticTabs [role="tabpanel"] {
     color: black;

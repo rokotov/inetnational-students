@@ -1,84 +1,174 @@
+<div ng-controller="StudentsCtrl" class="app-context md-whiteframe-z4">
+    <md-tabs md-theme="indigo" role="tablist" style="overflow: hidden;">
+        <md-tab class="md-transition-left">
+            <md-tab-label>
+                <h3>  По специальностям</h3>
+            </md-tab-label>
+            <div role="tabpanel" class="tabpanel-container">
+                <p>
+                    Факультет
+                    <select ng-model="queryFaculty">
+                        <option ng-repeat="faculty in faculties" >{{faculty.facultyName}}</option>
+                    </select>
+                    Специальность
+                    <select ng-model="querySpeciality">
+                        <option ng-repeat="speciality in specialities |filter:queryFaculty">{{speciality.specialityName}}</option>
+                    </select>
+                </p>
+
+                <table border="1">
+                <caption><h3>Cтуденты</h3></caption>
+                    <tr>
+                        <th>ФИО</th>
+                        <th>Курс</th>
+                        <th>Факультет</th>
+                        <th>Специальность</th>
+                        <th>Форма обучения</th>
+                        <th>Номер приказа</th>
+                        <th>Страна</th>
+                        <th>Паспортные данные</th>
+                        <th>Адресс регистрации</th>
+                    </tr>
+                    <tr ng-repeat="student in students|filter:querySpeciality">
+                        <td>{{student.lastName}} {{student.firstName}} {{student.middleName}}</td>
+                        <td>{{student.course.courseName}}</td>
+                        <td>{{student.group.speciality.faculty.facultyName}}</td>
+                        <td>{{student.group.speciality.specialityName}}</td>
+                        <td>{{student.studyForm}}</td>
+                        <td>{{student.orderNumber}}</td>
+                        <td>{{student.country.countryName}}</td>
+                        <td>{{student.passportNumber}}</td>
+                        <td>{{student.registrationAddress}}</td>
+                    </tr>
+                </table>
+            </div>
+        </md-tab>
+        <md-tab class="md-transition-right">
+            <md-tab-label>
+            <h3>По странам</h3>
+            </md-tab-label>
+            <div role="tabpanel" class="tabpanel-container">
+                <p>
+                    Страна
+                    <select ng-model="queryCountry">
+                        <option ng-repeat="country in countries">{{country.countryName}}</option>
+                    </select>
+                    </p>
+                    <table border="1">
+                    <caption><h3>Cтуденты</h3></caption>
+                        <tr>
+                            <th>ФИО</th>
+                            <th>Курс</th>
+                            <th>Специальность</th>
+                            <th>Номер приказа</th>
+                            <th>Страна</th>
+                            <th>Паспортные данные</th>
+                            <th>Адресс регистрации</th>
+                            <th>Место рождения</th>
+                        </tr>
+                        <tr ng-repeat="student in students|filter:queryCountry">
+                            <td>{{student.lastName}} {{student.firstName}} {{student.middleName}}</td>
+                            <td>{{student.course.courseName}}</td>
+                            <td>{{student.group.speciality.specialityName}}</td> &ndash;&gt;
+                            <td>{{student.orderNumber}}</td>
+                            <td>{{student.country.countryName}}</td>
+                            <td>{{student.passportNumber}}</td>
+                            <td>{{student.registrationAddress}}</td>
+                            <td>{{student.birthPlace}}</td>
+                        </tr>
+                    </table>
+            </div>
+        </md-tab>
+    </md-tabs>
+    </md-tabs></md-tabs>
+</div>
+
+
+
+
+
+<!--
 <div ng-controller="StudentsCtrl"  layout-fill class="tabsStaticTabs doc-content md-whiteframe-z4">
     <md-tabs class="md-transition-left md-accent" md-selected="data.selectedIndex" md-stretch-tabs="never">
-      <md-tab id="tab1" aria-controls="tab1-content" class="md-transition-left" >
+      <md-tab role="tab" id="tab1" aria-controls="tab1-content" class="md-transition-left" >
         По специальностям
       </md-tab>
-       <md-tab id="tab2" aria-controls="tab2-content" class="md-transition-left" >
+       <md-tab  role="tab" id="tab2" aria-controls="tab2-content" class="md-transition-left" >
         По странам
       </md-tab>
-      <md-tab id="tab3" aria-controls="tab3-content" calss="md-transition-left" >
+      <md-tab  role="tab" id="tab3" aria-controls="tab3-content" calss="md-transition-left" >
         По группам
       </md-tab>
-      <md-tab id="tab4" aria-controls="tab4-content" calss="md-transition-left" >
+      <md-tab  role="tab" id="tab4" aria-controls="tab4-content" calss="md-transition-left" >
         По курсам
       </md-tab>
     </md-tabs>
 
     <ng-switch on="data.selectedIndex" class="tabpanel-container">
         <div role="tabpanel" id="tab1-content" aria-labelledby="tab1" ng-switch-when="0">
-        	факультет
-        	<select ng-model="queryFaculty">
-  				<option ng-repeat="faculty in faculties" >{{faculty.facultyName}}</option>
-			</select>
-			специальность
+        	Факультет
+          <select ng-model="queryFaculty">
+            <option ng-repeat="faculty in faculties" >{{faculty.facultyName}}</option>
+			    </select>
+          Специальность
         	<select ng-model="querySpeciality">
-  				<option ng-repeat="speciality in specialities |filter:queryFaculty">{{speciality.specialityName}}</option>
-			</select>
+  				  <option ng-repeat="speciality in specialities |filter:queryFaculty">{{speciality.specialityName}}</option>
+          </select>
 
         	<table border="1">
-   			<caption>студенты</caption>
-   			<tr>
-    			<th>ФИО</th>
-    			<th>Курс</th>
-    			<th>Факультет</th>
-    			<th>Специальность</th>
-   				<th>Форма обучения</th>
-   				<th>Номер приказа</th>
-   				<th>Страна</th>
-   				<th>Паспортные данные</th>
-   				<th>Адресс регистрации</th>
-   			</tr>
-   			<tr ng-repeat="student in students|filter:querySpeciality">
-   				<td>{{student.lastName}} {{student.firstName}} {{student.middleName}}</td>
-   				<td>{{student.course.courseName}}</td>
-   				<td>{{student.group.speciality.faculty.facultyName}}</td>
-   				<td>{{student.group.speciality.specialityName}}</td>
-   				<td>{{student.studyForm}}</td>
-   				<td>{{student.orderNumber}}</td>
-   				<td>{{student.country.countryName}}</td>
-   				<td>{{student.passportNumber}}</td>
-   				<td>{{student.registrationAddress}}</td>
-   			</tr>
-  			</table>
+   			    <caption><h3>Cтуденты</h3></caption>
+            <tr>
+              <th>ФИО</th>
+              <th>Курс</th>
+              <th>Факультет</th>
+              <th>Специальность</th>
+              <th>Форма обучения</th>
+              <th>Номер приказа</th>
+              <th>Страна</th>
+              <th>Паспортные данные</th>
+              <th>Адресс регистрации</th>
+   			    </tr>
+   			    <tr ng-repeat="student in students|filter:querySpeciality">
+              <td>{{student.lastName}} {{student.firstName}} {{student.middleName}}</td>
+              <td>{{student.course.courseName}}</td>
+              <td>{{student.group.speciality.faculty.facultyName}}</td>
+              <td>{{student.group.speciality.specialityName}}</td>
+              <td>{{student.studyForm}}</td>
+              <td>{{student.orderNumber}}</td>
+              <td>{{student.country.countryName}}</td>
+              <td>{{student.passportNumber}}</td>
+              <td>{{student.registrationAddress}}</td>
+            </tr>
+          </table>
         </div>
         <div role="tabpanel" id="tab2-content" aria-labelledby="tab2" ng-switch-when="1">
-            страна
+          Страна
         	<select ng-model="queryCountry">
-  				<option ng-repeat="country in countries">{{country.countryName}}</option>
-			</select>
-			<table border="1">
-   			<caption>студенты</caption>
-   			<tr>
-    			<th>ФИО</th>
-    			<th>Курс</th>
-    			<th>Специальность</th>
-   				<th>Номер приказа</th>
-   				<th>Страна</th>
-   				<th>Паспортные данные</th>
-   				<th>Адресс регистрации</th>
-   				<th>Место рождения</th>
-   			</tr>
-   			<tr ng-repeat="student in students|filter:queryCountry">
-   				<td>{{student.lastName}} {{student.firstName}} {{student.middleName}}</td>
-   				<td>{{student.course.courseName}}</td>
-   				<td>{{student.group.speciality.specialityName}}</td> -->
-   				<td>{{student.orderNumber}}</td>
-   				<td>{{student.country.countryName}}</td>
-   				<td>{{student.passportNumber}}</td>
-   				<td>{{student.registrationAddress}}</td>
-   				<td>{{student.birthPlace}}</td>
-   			</tr>
-  			</table>
+  				  <option ng-repeat="country in countries">{{country.countryName}}</option>
+          </select>
+          <table border="1">
+            <caption><h3>Cтуденты</h3></caption>
+   			    <tr>
+              <th>ФИО</th>
+              <th>Курс</th>
+              <th>Специальность</th>
+              <th>Номер приказа</th>
+              <th>Страна</th>
+              <th>Паспортные данные</th>
+              <th>Адресс регистрации</th>
+              <th>Место рождения</th>
+            </tr>
+            <tr ng-repeat="student in students|filter:queryCountry">
+              <td>{{student.lastName}} {{student.firstName}} {{student.middleName}}</td>
+              <td>{{student.course.courseName}}</td>
+              <td>{{student.group.speciality.specialityName}}</td> &ndash;&gt;
+              <td>{{student.orderNumber}}</td>
+              <td>{{student.country.countryName}}</td>
+              <td>{{student.passportNumber}}</td>
+              <td>{{student.registrationAddress}}</td>
+              <td>{{student.birthPlace}}</td>
+            </tr>
+          </table>
         </div>
         <div role="tabpanel" id="tab3-content" aria-labelledby="tab3" ng-switch-when="2">
             View for Item #3<br/>
@@ -87,4 +177,4 @@
             View for Item #4<br/>
         </div>
     </ng-switch>
-</div>
+</div>-->
