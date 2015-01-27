@@ -1,18 +1,5 @@
 /* app css stylesheet */
-body {
-  height: none; 
-  background-color: #E7E7E7;
-}
-button, select, html, textarea, input {
-font-family: RobotoDraft, Roboto, 'Helvetica Neue', sans-serif;
-}
 
-.box {
-  width: 200px;
-  height: 200px;
-  background-color: yellow;
-
-}
 
 .fix-top {
   position: fixed; 
@@ -23,100 +10,6 @@ font-family: RobotoDraft, Roboto, 'Helvetica Neue', sans-serif;
   width: 56px; 
   height: 56px;
 }
-
-.nornal-round-btn {
-  width: 56px; 
-  height: 56px;
-  border-radius: 50%;
-}
-
-.float-btn {
-  height:56px; 
-  width: 56px; 
-  position: fixed; 
-  bottom: 55px; 
-  right: 55px; 
-}
-
-md-whiteframe {
-  background: #fff;
-  margin: 20px;
-  padding: 20px; 
-}
-
-.check {
-    background-color: #E8EAF6;
-}
-.left-box {
-  width:56px; height: 56px; padding:0; background-color: gray; border-radius: 50%;
-}
-.active-checkbox {
-  background-color: transparent !important;
-}
-
-   core-tooltip.fancy::shadow .core-tooltip {
-      opacity: 0;
-      -webkit-transition: all 300ms cubic-bezier(0,1.92,.99,1.07);
-      transition: all 300ms cubic-bezier(0,1.92,.99,1.07);
-      -webkit-transform: translate3d(0, -10px, 0);
-      transform: translate3d(0, -10px, 0);
-    }
-
-    core-tooltip.fancy:hover::shadow .core-tooltip,
-    core-tooltip.fancy:focus::shadow .core-tooltip {
-      opacity: 1;
-      -webkit-transform: translate3d(0, 0, 0);
-      transform: translate3d(0, 0, 0);
-    }
-
-    .sample-show-hide {
-   
-}
-
-.sample-show-hide {
-  -webkit-transition:all linear 0.5s;
-  transition:all linear 0.5s;
-}
-
-.sample-show-hide.ng-hide {
-  opacity:0;
-}
-
-
-    .md-subheader {
-  background-color: #dcedc8;
-
-   }
-   h2.md-subheader {
-  margin: 0px;
-  margin-left: -24px;
-  margin-right: -24px;
-  margin-top: -24px; }
-   h2.md-subheader.md-sticky-clone {
-  margin-right: 0px;
-  margin-top: 0px;
-  box-shadow: 0px 2px 4px 0 rgba(0, 0, 0, 0.16); }
-   h2 .md-subheader-content {
-  padding-left: 10px; }
-
-  
-
- md-backdrop {
-  position: fixed !important;
- }
-
- md-toast {
-    position: fixed !important;
-
- }
-
- md-sidenav {
-  position: fixed !important;
- }
-
- md-tooltip {
-  position: fixed !important;
- }
 
  .menu-item {
   background: none;
@@ -179,93 +72,28 @@ md-whiteframe {
   font-size: 18px;
 }
 
-.list-cont {
-  background-color: #E7E7E7 !important; 
-  max-width: 800px; 
-  margin: 0 auto; 
-  height: 100%; 
-  overflow: hidden; 
+.main-context{
+    margin:0px 20px;
+    padding-top: 90px;
+    height: 95%;
 }
-
-.list-cb {
-  margin: 0;  
-  position: relative; 
-  top: 15px; 
-  left: 19px;
-}
-
-.list-check-area {
-  width:56px; 
-  height: 56px; 
-  padding:0; 
-  margin-right: 10px;
-}
-
 
 .app-context{
-   /* max-width: 80%;*/
-    min-width: 350px;
-    margin:10px 10px 10px 10px;
-    height: 100%;
-    /*align-content: center;*/
-    /*align-items: center;*/
+    min-width: 370px;
     overflow: hidden;
+    height: 100%;
+    /*max-width:80%; */
+
 }
-.main-context{
-    align-content: center;
-    align-items: center;
-    padding-top: 100px;
+.app-login{
+    min-width: 230px;
+    overflow: hidden;
+    height: 100%;
+    max-width:500px; 
+    max-height:50%;
 }
 
 .app-context .tabpanel-container{
-    padding: 10px;
+    padding: 20px;
     overflow: auto;
 }
-  .tabsStaticTabs .tabpanel-container {
-    display: block;
-    position: relative;
-    background: white;
-    border: 0px solid black;
-    height: 600px;
-    overflow: hidden; 
-    min-width: 320px;
-    width: 900px;
-  }
-  .tabsStaticTabs [role="tabpanel"] {
-    color: black;
-    width: 100%;
-    height: 100%;
-    -webkit-transition: all cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.5s;
-    transition: all cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.5s;
-    position: absolute; 
-  }
-  .tabsStaticTabs [role="tabpanel"].ng-leave.ng-leave-active, .tabsStaticTabs [role="tabpanel"].ng-enter {
-    top: -300px; 
-  }
-  .tabsStaticTabs [role="tabpanel"].ng-leave, .tabsStaticTabs [role="tabpanel"].ng-enter.ng-enter-active {
-    top: 0; 
-  }
-  .tabsStaticTabs [role="tabpanel"].ng-leave {
-    z-index: 100; 
-  }
-  .tabsStaticTabs .tabpanel-container [role="tabpanel"] {
-    padding: 20px; 
-  }
-  .tabsStaticTabs .md-header {
-    background-color: #5C6BC0 !important; 
-  }
-  .tabsStaticTabs md-tab {
-    color: #90caf9 !important; 
-  }
-  .tabsStaticTabs md-tab.active, .tabsStaticTabs md-tab:focus {
-    color: white !important; 
-  }
-  .tabsStaticTabs md-tab[disabled] {
-    opacity: 0.5; 
-  }
-  .tabsStaticTabs .md-header .md-ripple {
-    border-color: #FFFF8D !important; 
-  }
-  .tabsStaticTabs md-tabs-ink-bar {
-    background-color: #FFFF8D !important; 
-  }
