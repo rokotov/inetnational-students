@@ -44,7 +44,7 @@ public class GroupDaoTest {
     public void addEntity(){
         Group entity = new Group();
         entity.setGroupName("123");
-        entity.setSpeciality(new Speciality());
+        entity.setSpeciality(groupDao.findEntityById(1).getSpeciality());
 
         Assert.assertTrue(groupDao.addEntity(entity) > 0);
     }
@@ -53,7 +53,7 @@ public class GroupDaoTest {
     public void deleteEntity(){
         Group entity = new Group();
         entity.setGroupName("123");
-        entity.setSpeciality(new Speciality());
+        entity.setSpeciality(groupDao.findEntityById(1).getSpeciality());
 
         groupDao.addEntity(entity);
         groupDao.deleteEntity(entity);
@@ -64,7 +64,7 @@ public class GroupDaoTest {
         //new entity
         Group entity = new Group();
         entity.setGroupName("setGroupName 1");
-        entity.setSpeciality(new Speciality());
+        entity.setSpeciality(groupDao.findEntityById(1).getSpeciality());
         //add entity
         groupDao.addEntity(entity);
         //edit entity

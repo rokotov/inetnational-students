@@ -62,9 +62,9 @@ public class StudentDaoTest {
     public void addEntity(){
 
         Student entity = new Student();
-        entity.setGroup(new Group());
-        entity.setCountry(new Country());
-        entity.setCourse(new Course());
+        entity.setGroup(studentDao.findEntityById(1).getGroup());
+        entity.setCountry(studentDao.findEntityById(1).getCountry());
+        entity.setCourse(studentDao.findEntityById(1).getCourse());
         entity.setFirstName("123");
         entity.setLastName("123");
         entity.setMiddleName("123");
@@ -86,9 +86,9 @@ public class StudentDaoTest {
     @Test
     public void deleteEntity(){
         Student entity = new Student();
-        entity.setGroup(new Group());
-        entity.setCountry(new Country());
-        entity.setCourse(new Course());
+        entity.setGroup(studentDao.findEntityById(1).getGroup());
+        entity.setCountry(studentDao.findEntityById(1).getCountry());
+        entity.setCourse(studentDao.findEntityById(1).getCourse());
         entity.setFirstName("123");
         entity.setLastName("123");
         entity.setMiddleName("123");
@@ -111,9 +111,9 @@ public class StudentDaoTest {
     public void saveOrUpdateEntity(){
         //new entity
         Student entity = new Student();
-        entity.setGroup(new Group());
-        entity.setCountry(new Country());
-        entity.setCourse(new Course());
+        entity.setGroup(studentDao.findEntityById(1).getGroup());
+        entity.setCountry(studentDao.findEntityById(1).getCountry());
+        entity.setCourse(studentDao.findEntityById(1).getCourse());
         entity.setFirstName("123");
         entity.setLastName("123");
         entity.setMiddleName("123");
