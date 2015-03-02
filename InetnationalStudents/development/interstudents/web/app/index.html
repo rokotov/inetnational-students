@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="en" ng-app="myApp" class="no-js"> <!--<![endif]-->
+<head>
+    <title>Students</title>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="Material design angular demo">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="bower_components/html5-boilerplate/css/normalize.css">
+    <link rel="stylesheet" href="bower_components/html5-boilerplate/css/main.css">
+    <link rel="stylesheet" href="bower_components/angular-material/angular-material.css">
+    <link rel="stylesheet" href="themes/indigo-theme.css">
+
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-route/angular-route.js"></script>
+    <script src="bower_components/angular-animate/angular-animate.js"></script>
+    <script src="bower_components/angular-aria/angular-aria.js"></script>
+    <script src="bower_components/angular-loader/angular-loader.js"></script>
+    <script src="bower_components/hammerjs/hammer.js"></script>
+    <script src="bower_components/angular-material/angular-material.js"></script>
+
+    <script src="views/home/home.js"></script>
+    <script src="views/login/login.js"></script>
+    <script src="views/view1/view1.js"></script>
+    <script src="views/students/students.js"></script>
+    <script src="components/version/version.js"></script>
+    <script src="components/version/version-directive.js"></script>
+    <script src="components/version/interpolate-filter.js"></script>
+
+    <link rel="stylesheet" href="app.css"/>
+    <script src="js/app.js"></script>
+</head>
+
+<body ng-controller="MainCtrl">
+<!-- Верхняя панель-->
+<md-toolbar md-theme="indigo" class="app-toolbar md-whiteframe-z2 fix-top" >
+    <div class="md-toolbar-tools" tabindex="0">
+        <md-button class="menu-icon normal-btn" ng-click="toggleRight()" aria-label="Toggle Menu">
+            <md-tooltip >
+                Меню
+            </md-tooltip>
+            <md-icon icon="img/icons/ic_menu_24px.svg"></md-icon>
+        </md-button>
+        <span>International Students</span>
+    </div>
+</md-toolbar>
+
+<!--Сюда будут вставляться views-->
+<div class="main-context" layout-align="center" layout="row" ng-view></div>
+<!-- Боковая панель -->
+<md-sidenav md-theme="indigo" class="md-sidenav-left md-whiteframe-z3" md-component-id="left">
+    <div ng-controller="LeftCtrl" ng-click="close()">
+        <md-toolbar >
+            <h1 class="md-toolbar-tools">Меню</h1>
+        </md-toolbar>
+        <md-content >
+            <a class="menu-item menu-sub-item md-menu-item" ng-click="menu.toggleSelectPage(page)" ng-repeat="page in menu.pages" ng-href="#{{page.url}}" md-highlight="menu.isPageSelected(page)" md-ink-ripple="#bbb">
+                <span > {{page.discription}} </span>
+            </a>
+        </md-content>
+    </div>
+</md-sidenav>
+
+</body>
+</html>

@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="interstudents-web:war">
+    <output-path>$PROJECT_DIR$/rest/interstudents-rest-service/interstudents-web/target</output-path>
+    <root id="archive" name="interstudents-web-1.0.0.war">
+      <element id="artifact" artifact-name="interstudents-web:war exploded" />
+    </root>
+  </artifact>
+</component>
