@@ -10,7 +10,7 @@ import java.util.Date;
 /**
  * Created by vkotov on 16.01.2015.
  */
-@Entity(name = "student")
+@Entity()
 @Table(name = "student")
 @XmlAccessorType(value = XmlAccessType.FIELD)
 public class Student extends AbstractEntity{
@@ -29,17 +29,11 @@ public class Student extends AbstractEntity{
     Country country;
 
     @ManyToOne
-    @JoinColumn(name = "course_id")
-    Course course;
+    @JoinColumn(name = "personal_info_id")
+    PersonalInfo personalInfo;
 
-    @Column(name = "first_name")
-    String firstName;
-
-    @Column(name = "last_name")
-    String lastName;
-
-    @Column(name = "midle_name")
-    String middleName;
+    @Column(name = "fio")
+    String fio;
 
     @Column(name = "fio_latin")
     String fioLatin;
@@ -94,38 +88,6 @@ public class Student extends AbstractEntity{
 
     public void setCountry(Country country) {
         this.country = country;
-    }
-
-    public Course getCourse() {
-        return course;
-    }
-
-    public void setCourse(Course course) {
-        this.course = course;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public String getMiddleName() {
-        return middleName;
-    }
-
-    public void setMiddleName(String middleName) {
-        this.middleName = middleName;
     }
 
     public String getFioLatin() {
