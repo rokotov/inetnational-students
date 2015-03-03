@@ -70,6 +70,9 @@ public class Student extends AbstractEntity{
     @Column(name = "vacation_end_date")
     private Date vacationEndDate;
 
+    @Column(name = "line")
+    private String line;
+
     @Override
     public Integer getId() {
         return id;
@@ -189,5 +192,21 @@ public class Student extends AbstractEntity{
 
     public void setVacationEndDate(Date vacationEndDate) {
         this.vacationEndDate = vacationEndDate;
+    }
+
+    public Group getGroup() {
+        return group;
+    }
+
+    public void setGroup(Group group) {
+        this.group = group;
+    }
+
+    public String getLine() {
+        return line;
+    }
+
+    public void setLine(String line) {
+        this.line = line;
     }
 }
