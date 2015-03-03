@@ -7,21 +7,21 @@ import javax.persistence.*;
 /**
  * Created by vkotov on 16.01.2015.
  */
-@Entity(name = "groups")
-@Table(name = "groups")
+@Entity()
+@Table(name = "groupe")
 public class Group extends AbstractEntity{
 
     @Id
     @GeneratedValue
     @Column(name = "group_id")
-    Integer id;
+    private Integer id;
 
     @Column(name = "group_name")
-    String groupName;
+    private String groupName;
 
     @ManyToOne
     @JoinColumn(name = "speciality_id")
-    Speciality speciality;
+    private Speciality speciality;
 
     @Override
     public Integer getId() {

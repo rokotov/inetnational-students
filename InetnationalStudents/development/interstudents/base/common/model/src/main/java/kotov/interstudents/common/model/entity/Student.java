@@ -10,7 +10,7 @@ import java.util.Date;
 /**
  * Created by vkotov on 16.01.2015.
  */
-@Entity()
+@Entity
 @Table(name = "student")
 @XmlAccessorType(value = XmlAccessType.FIELD)
 public class Student extends AbstractEntity{
@@ -18,52 +18,57 @@ public class Student extends AbstractEntity{
     @Id
     @GeneratedValue()
     @Column(name = "student_id")
-    Integer id;
+    private Integer id;
 
     @ManyToOne
     @JoinColumn(name = "group_id")
-    Group group;
+    private Group group;
 
     @ManyToOne
     @JoinColumn(name = "country_id")
-    Country country;
+    private Country country;
+
+    @OneToOne
+    @JoinColumn(name = "personal_info_id")
+    private PersonalInfo personalInfo;
+
+    @OneToOne
+    @JoinColumn(name = "education_info_id")
+    private EducationInfo educationInfo;
 
     @ManyToOne
-    @JoinColumn(name = "personal_info_id")
-    PersonalInfo personalInfo;
+    @JoinColumn(name = "hostel_id")
+    private Hostel hostel;
+
+    @Column(name = "course")
+    private String course;
 
     @Column(name = "fio")
-    String fio;
+    private String fio;
 
     @Column(name = "fio_latin")
-    String fioLatin;
-
-    @Column(name = "study_form")
-    String studyForm;
+    private String fioLatin;
 
     @Column(name = "registration_address")
-    String registrationAddress;
+    private String registrationAddress;
 
-    @Column(name = "registration_deadline")
-    Date registrationDeadline;
-
-    @Column(name = "order_number")
-    int orderNumber;
-
-    @Column(name = "birth_date")
-    Date birthDate;
-
-    @Column(name = "birth_place")
-    String birthPlace;
-
-    @Column(name = "passport_number")
-    String passportNumber;
-
-    @Column(name = "passport_validity")
-    Date passportValidity;
+    @Column(name = "registration_end_date")
+    private Date registrationEndDate;
 
     @Column(name = "graduated")
-    String graduated;
+    private String graduated;
+
+    @Column(name = "receipt_date")
+    private Date receiptDate;
+
+    @Column(name = "vacation")
+    private String vacation;
+
+    @Column(name = "vacation_start_date")
+    private Date vacationStartDate;
+
+    @Column(name = "vacation_end_date")
+    private Date vacationEndDate;
 
     @Override
     public Integer getId() {
@@ -72,14 +77,6 @@ public class Student extends AbstractEntity{
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public Group getGroup() {
-        return group;
-    }
-
-    public void setGroup(Group group) {
-        this.group = group;
     }
 
     public Country getCountry() {
@@ -98,12 +95,44 @@ public class Student extends AbstractEntity{
         this.fioLatin = fioLatin;
     }
 
-    public String getStudyForm() {
-        return studyForm;
+    public PersonalInfo getPersonalInfo() {
+        return personalInfo;
     }
 
-    public void setStudyForm(String studyForm) {
-        this.studyForm = studyForm;
+    public void setPersonalInfo(PersonalInfo personalInfo) {
+        this.personalInfo = personalInfo;
+    }
+
+    public EducationInfo getEducationInfo() {
+        return educationInfo;
+    }
+
+    public void setEducationInfo(EducationInfo educationInfo) {
+        this.educationInfo = educationInfo;
+    }
+
+    public Hostel getHostel() {
+        return hostel;
+    }
+
+    public void setHostel(Hostel hostel) {
+        this.hostel = hostel;
+    }
+
+    public String getCourse() {
+        return course;
+    }
+
+    public void setCourse(String course) {
+        this.course = course;
+    }
+
+    public String getFio() {
+        return fio;
+    }
+
+    public void setFio(String fio) {
+        this.fio = fio;
     }
 
     public String getRegistrationAddress() {
@@ -114,52 +143,12 @@ public class Student extends AbstractEntity{
         this.registrationAddress = registrationAddress;
     }
 
-    public Date getRegistrationDeadline() {
-        return registrationDeadline;
+    public Date getRegistrationEndDate() {
+        return registrationEndDate;
     }
 
-    public void setRegistrationDeadline(Date registrationDeadline) {
-        this.registrationDeadline = registrationDeadline;
-    }
-
-    public int getOrderNumber() {
-        return orderNumber;
-    }
-
-    public void setOrderNumber(int orderNumber) {
-        this.orderNumber = orderNumber;
-    }
-
-    public Date getBirthDate() {
-        return birthDate;
-    }
-
-    public void setBirthDate(Date birthDate) {
-        this.birthDate = birthDate;
-    }
-
-    public String getBirthPlace() {
-        return birthPlace;
-    }
-
-    public void setBirthPlace(String birthPlace) {
-        this.birthPlace = birthPlace;
-    }
-
-    public String getPassportNumber() {
-        return passportNumber;
-    }
-
-    public void setPassportNumber(String passportNumber) {
-        this.passportNumber = passportNumber;
-    }
-
-    public Date getPassportValidity() {
-        return passportValidity;
-    }
-
-    public void setPassportValidity(Date passportValidity) {
-        this.passportValidity = passportValidity;
+    public void setRegistrationEndDate(Date registrationEndDate) {
+        this.registrationEndDate = registrationEndDate;
     }
 
     public String getGraduated() {
@@ -168,5 +157,37 @@ public class Student extends AbstractEntity{
 
     public void setGraduated(String graduated) {
         this.graduated = graduated;
+    }
+
+    public Date getReceiptDate() {
+        return receiptDate;
+    }
+
+    public void setReceiptDate(Date receiptDate) {
+        this.receiptDate = receiptDate;
+    }
+
+    public String getVacation() {
+        return vacation;
+    }
+
+    public void setVacation(String vacation) {
+        this.vacation = vacation;
+    }
+
+    public Date getVacationStartDate() {
+        return vacationStartDate;
+    }
+
+    public void setVacationStartDate(Date vacationStartDate) {
+        this.vacationStartDate = vacationStartDate;
+    }
+
+    public Date getVacationEndDate() {
+        return vacationEndDate;
+    }
+
+    public void setVacationEndDate(Date vacationEndDate) {
+        this.vacationEndDate = vacationEndDate;
     }
 }

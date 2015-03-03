@@ -9,7 +9,7 @@ import javax.xml.bind.annotation.XmlAccessorType;
 /**
  * Created by vkotov on 16.01.2015.
  */
-@Entity(name = "speciality")
+@Entity
 @Table(name = "speciality")
 @XmlAccessorType(value = XmlAccessType.FIELD)
 public class Speciality extends AbstractEntity{
@@ -17,14 +17,14 @@ public class Speciality extends AbstractEntity{
     @Id
     @GeneratedValue
     @Column(name = "speciality_id")
-    Integer id;
+    private Integer id;
 
     @Column(name = "speciality_name")
-    String specialityName;
+    private String specialityName;
 
     @ManyToOne
     @JoinColumn(name = "faculty_id")
-    Faculty faculty;
+    private Faculty faculty;
 
     @Override
     public Integer getId() {

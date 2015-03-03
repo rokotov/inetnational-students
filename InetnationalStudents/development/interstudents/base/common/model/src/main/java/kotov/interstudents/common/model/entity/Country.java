@@ -14,10 +14,13 @@ public class Country extends AbstractEntity{
     @Id
     @GeneratedValue
     @Column(name = "country_id")
-    Integer id;
+    private Integer id;
 
     @Column(name = "country_name")
-    String countryName;
+    private String countryName;
+
+    @Column(name = "is_bad")
+    private boolean isBad;
 
     @Override
     public Integer getId() {
