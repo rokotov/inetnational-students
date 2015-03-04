@@ -197,4 +197,35 @@
         </dependency>
     </dependencies>
 
+    <!-- Production and Development Profiles -->
+    <profiles>
+        <profile>
+            <id>production</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+                <property>
+                    <name>environment.type</name>
+                    <value>prod</value>
+                </property>
+            </activation>
+            <properties>
+                <build.profile>prod</build.profile>
+            </properties>
+        </profile>
+
+        <profile>
+            <id>development</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+                <property>
+                    <name>environment.type</name>
+                    <value>dev</value>
+                </property>
+            </activation>
+            <properties>
+                <build.profile>dev</build.profile>
+            </properties>
+        </profile>
+    </profiles>
+
 </project>

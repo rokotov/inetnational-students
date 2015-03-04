@@ -1,0 +1,37 @@
+<!--
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+             xmlns:beans="http://www.springframework.org/schema/beans" 
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+	http://www.springframework.org/schema/security
+	http://www.springframework.org/schema/security/spring-security-3.2.xsd">
+
+    <http pattern="/login" security="none"/>
+  
+    <http use-expressions="true"> 
+        <intercept-url pattern="/*" access="isAuthenticated()"/>
+        <form-login
+            login-page="/login"
+            default-target-url="/my-vacations"
+            authentication-failure-url="/login?hasErrors=true"
+            username-parameter="login"
+            password-parameter="password"/>
+        <logout logout-success-url="/logout" delete-cookies="JSESSIONID" />
+        &lt;!&ndash;remember-me/&ndash;&gt;
+    </http>
+  
+    <authentication-manager>
+        <ldap-authentication-provider
+            user-search-base="cn=Users,DC=ARTGROUP,DC=local"
+            user-search-filter="sAMAccountName={0}"
+            group-search-filter="member={0}"
+            group-search-base="cn=Users,DC=ARTGROUP,DC=local"
+            role-prefix="ROLE_"
+            server-ref="ldapServer"/>
+    </authentication-manager>
+    
+    <ldap-server id="ldapServer" url="ldap://dc-m.artgroup.local:389" manager-dn="ARTGROUP\svn-art-vacation" manager-password="VZEIfn004h"/>
+    
+</beans:beans> -->
