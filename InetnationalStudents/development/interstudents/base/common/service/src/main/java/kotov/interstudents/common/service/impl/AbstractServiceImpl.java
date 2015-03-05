@@ -1,8 +1,8 @@
-package kotov.interstudents.common.service;
+package kotov.interstudents.common.service.impl;
 
 import kotov.interstudents.common.AbstractDao;
 import kotov.interstudents.common.model.AbstractEntity;
-import kotov.interstudents.common.AbstractService;
+import kotov.interstudents.common.service.AbstractService;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;

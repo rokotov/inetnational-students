@@ -12,7 +12,6 @@ import java.util.Date;
  */
 @Entity
 @Table(name = "student")
-@XmlAccessorType(value = XmlAccessType.FIELD)
 public class Student extends AbstractEntity{
 
     @Id
@@ -43,8 +42,14 @@ public class Student extends AbstractEntity{
     @Column(name = "course")
     private String course;
 
-    @Column(name = "fio")
-    private String fio;
+    @Column(name = "first_name")
+    private String firstName;
+
+    @Column(name = "last_name")
+    private String lastName;
+
+    @Column(name = "middle_name")
+    private String middleName;
 
     @Column(name = "fio_latin")
     private String fioLatin;
@@ -130,12 +135,28 @@ public class Student extends AbstractEntity{
         this.course = course;
     }
 
-    public String getFio() {
-        return fio;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setFio(String fio) {
-        this.fio = fio;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getMiddleName() {
+        return middleName;
+    }
+
+    public void setMiddleName(String middleName) {
+        this.middleName = middleName;
     }
 
     public String getRegistrationAddress() {

@@ -46,22 +46,24 @@
 </head>
 
 <body ng-controller="MainCtrl">
-<div class="md-whiteframe-z4 app-login" ng-controller="LoginCtrl" layout="column" layout-align="center center">
+<div class="md-whiteframe-z4 app-login loginForm" ng-controller="LoginCtrl" layout="column" layout-align="center center">
+<form method="post">
   <md-content >
     <md-input-container >
       <label >Логин</label>
-      <input ng-model="credentials.login" >
+      <input type="text" name="login" >
     </md-input-container>
 
     <md-input-container >
       <label>Пароль</label>
-      <input type="password" ng-model="credentials.password">
+      <input type="password" name="password">
     </md-input-container>
 
     <div  style="padding: 20px;">
-      <md-button ng-click="login()" class="md-raised">Button</md-button>
+      <md-button ng-click="submit" class="md-raised">Button</md-button>
     </div>
   </md-content>
+</form>
 </div>
 </body>
 </html>

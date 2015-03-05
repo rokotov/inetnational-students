@@ -4,14 +4,14 @@
 angular.module('myApp.login', ['ngRoute','ngMaterial'])
 
     .config(['$routeProvider', function($routeProvider) {
-        $routeProvider.when('/login',{
-            templateUrl:'views/login/login.html',
-            controller:'LoginCtrl'
-        });
+        //$routeProvider.when('/login',{
+        //    templateUrl:'views/login/login.html',
+        //    controller:'LoginCtrl'
+        //});
     }])
 
     .controller('LoginCtrl', function($location, $scope) {
-    	 $scope.credentials = {login:'', password:''};
+         $scope.credentials = {login:'', password:''};
          $scope.login = function(){
             if($scope.credentials.login === 'admin'){
                 $location.path('home');

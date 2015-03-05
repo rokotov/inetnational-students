@@ -1,7 +1,7 @@
 package kotov.interstudents.service.impl;
 
 import kotov.interstudents.common.model.entity.Student;
-import kotov.interstudents.common.service.AbstractServiceImpl;
+import kotov.interstudents.common.service.impl.AbstractServiceImpl;
 import kotov.interstudents.dao.StudentDao;
 import kotov.interstudents.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;

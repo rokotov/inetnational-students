@@ -26,5 +26,10 @@
         <property name="serviceUrl" value="${studentServiceUrl}" />
     </bean>
 
+    <bean id="userRestClient" class="kotov.interstudents.common.rest.client.UserRestClient">
+        <property name="restTemplate" ref="restTemplate" />
+        <property name="serviceUrl" value="${userServiceUrl}" />
+    </bean>
+
 
 </beans>

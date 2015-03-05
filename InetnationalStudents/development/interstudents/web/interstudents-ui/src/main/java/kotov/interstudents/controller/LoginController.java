@@ -1,5 +1,8 @@
 package kotov.interstudents.controller;
 
+import kotov.interstudents.common.model.entity.User;
+import kotov.interstudents.common.rest.client.StudentRestClient;
+import kotov.interstudents.common.rest.client.UserRestClient;
 import kotov.interstudents.form.LoginForm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -23,15 +26,15 @@ public class LoginController {
 
     public static final String REDIRECT_PATH = "/my-vacations";
 
-   /* @Autowired
-    private EmployeeRestClient employeeRestClient;
+    @Autowired
+    private UserRestClient userRestClient;
 
     @Autowired
-    private JobPositionRestClient jobPositionRestClient;*/
+    private StudentRestClient studentRestClient;
 
     @RequestMapping(method = RequestMethod.GET)
     public String login(ModelMap model) {
-        model.addAttribute(new LoginForm());
+        model.addAttribute("loginForm", new LoginForm());
         return "login/loginAngular";
     }
 
@@ -43,6 +46,7 @@ public class LoginController {
         if (result.hasErrors()) {
             return "login/loginAngular";
         }
+        User user = userRestClient.getByLogin(loginForm.getLogin());
 
       /*  Employee employee = employeeRestClient.getByLogin(loginForm.getLogin());
         if (employee == null) {

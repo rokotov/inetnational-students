@@ -30,6 +30,7 @@
         <div class="form-group">
           <input type="password" name="password" class="form-control" />
         </div>
+        <button type="submit" class="btn btn-primary pull-right">Login</button>
       </form>
     </div>
   </div>

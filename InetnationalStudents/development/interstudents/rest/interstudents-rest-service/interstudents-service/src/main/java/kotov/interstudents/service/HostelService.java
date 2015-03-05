@@ -1,6 +1,6 @@
 package kotov.interstudents.service;
 
-import kotov.interstudents.common.AbstractService;
+import kotov.interstudents.common.service.AbstractService;
 import kotov.interstudents.common.model.entity.Hostel;
 
 /**

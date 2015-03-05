@@ -1,6 +1,6 @@
 package kotov.interstudents.web;
 
-import kotov.interstudents.common.AbstractRestService;
+import kotov.interstudents.common.service.AbstractRestService;
 import kotov.interstudents.common.model.entity.Faculty;
 import kotov.interstudents.service.FacultyService;
 import org.springframework.beans.factory.annotation.Autowired;

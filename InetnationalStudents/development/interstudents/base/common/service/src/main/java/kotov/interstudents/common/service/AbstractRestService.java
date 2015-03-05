@@ -1,4 +1,4 @@
-package kotov.interstudents.common;
+package kotov.interstudents.common.service;
 
 import kotov.interstudents.common.model.AbstractEntity;
 import javax.ws.rs.core.Response;
