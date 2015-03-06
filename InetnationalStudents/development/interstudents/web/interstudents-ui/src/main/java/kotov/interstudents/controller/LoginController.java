@@ -24,13 +24,10 @@ public class LoginController {
 
     public static final String LOGIN_PATH = "/login";
 
-    public static final String REDIRECT_PATH = "/my-vacations";
+    public static final String REDIRECT_PATH = "/home";
 
     @Autowired
     private UserRestClient userRestClient;
-
-    @Autowired
-    private StudentRestClient studentRestClient;
 
     @RequestMapping(method = RequestMethod.GET)
     public String login(ModelMap model) {

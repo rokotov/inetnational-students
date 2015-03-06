@@ -1,13 +1,14 @@
 /**
  * Created by vkotov on 21.01.2015.
  */
+/*
 angular.module('myApp.login', ['ngRoute','ngMaterial'])
 
     .config(['$routeProvider', function($routeProvider) {
-        //$routeProvider.when('/login',{
-        //    templateUrl:'views/login/login.html',
-        //    controller:'LoginCtrl'
-        //});
+        $routeProvider.when('/login',{
+            templateUrl:'views/login/login.html',
+            controller:'LoginCtrl'
+        });
     }])
 
     .controller('LoginCtrl', function($location, $scope) {
@@ -17,4 +18,4 @@ angular.module('myApp.login', ['ngRoute','ngMaterial'])
                 $location.path('home');
             };
          };
-    });
+    });*/

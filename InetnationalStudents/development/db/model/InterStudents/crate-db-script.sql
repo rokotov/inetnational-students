@@ -14,6 +14,8 @@ drop table if exists speciality;
 
 drop table if exists student;
 
+drop table if exists user;
+
 /*==============================================================*/
 /* Table: country                                               */
 /*==============================================================*/
@@ -118,7 +120,9 @@ create table student
    education_info_id    int,
    hostel_id            int,
    course               char(10),
-   fio                  char(255),
+   first_name           char(60),
+   last_name            char(60),
+   middle_name          char(60),
    fio_latin            char(255),
    registration_address char(255),
    registration_end_date date,
@@ -129,6 +133,18 @@ create table student
    vacation_end_date    date,
    line                 char(60),
    primary key (student_id)
+);
+
+/*==============================================================*/
+/* Table: user                                                  */
+/*==============================================================*/
+create table user
+(
+   user_id              int not null,
+   login                char(255),
+   password             char(255),
+   is_admin             bool,
+   primary key (user_id)
 );
 
 alter table groupe add constraint FK_group_speciality foreign key (speciality_id)

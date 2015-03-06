@@ -19,34 +19,36 @@
   <meta name="description" content="Material design angular demo">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <script type="text/javascript" src="${pageContext.request.contextPath}/script/angular/angular.js"></script>
-  <script type="text/javascript" src="${pageContext.request.contextPath}/script/angular-material/angular-material.js"></script>
-  <script type="text/javascript" src="${pageContext.request.contextPath}/script/angular/angular-animate.js"></script>
-  <script type="text/javascript" src="${pageContext.request.contextPath}/script/angular/angular-route.js"></script>
-  <script type="text/javascript" src="${pageContext.request.contextPath}/script/angular/angular-aria.js"></script>
-  <script type="text/javascript" src="${pageContext.request.contextPath}/script/angular/angular-loader.js"></script>
-  <script type="text/javascript" src="${pageContext.request.contextPath}/script/hammer/hammer.js"></script>
-  <script type="text/javascript" src="${pageContext.request.contextPath}/script/version/version.js"></script>
-  <script type="text/javascript" src="${pageContext.request.contextPath}/script/version/version-directive.js"></script>
-  <script type="text/javascript" src="${pageContext.request.contextPath}/script/version/interpolate-filter.js"></script>
-  <script type="text/javascript" src="${pageContext.request.contextPath}/script/login.js"></script>
-  <script type="text/javascript" src="${pageContext.request.contextPath}/script/app.js"></script>
+    <script type="text/javascript">
+        App = {}
+    </script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/script/angular/angular.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/script/angular-material/angular-material.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/script/angular/angular-animate.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/script/angular/angular-route.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/script/angular/angular-aria.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/script/angular/angular-loader.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/script/hammer/hammer.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/script/version/version.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/script/version/version-directive.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/script/version/interpolate-filter.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/script/login.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/script/app.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/script/home.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/script/students.js"></script>
 
-  <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/html5-boilerplate/main.css"/>
-  <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/html5-boilerplate/normalize.css"/>
-  <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/angular-material/angular-material.css"/>
-  <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/angular-material/default-theme.css"/>
-  <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/app.css"/>
 
-  <%--  <link rel="stylesheet" href="bower_components/html5-boilerplate/css/normalize.css">
-  <link rel="stylesheet" href="bower_components/html5-boilerplate/css/main.css">
-  <link rel="stylesheet" href="themes/indigo-theme.css">--%>
-
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/html5-boilerplate/main.css"/>
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/html5-boilerplate/normalize.css"/>
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/angular-material/angular-material.css"/>
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/themes/indigo-theme.css"/>
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/app.css"/>
+</head>
 
 </head>
 
 <body ng-controller="MainCtrl">
-<div class="md-whiteframe-z4 app-login loginForm" ng-controller="LoginCtrl" layout="column" layout-align="center center">
+<div class="md-whiteframe-z4 app-login loginForm" <%--ng-controller="LoginCtrl"--%> layout="column" layout-align="center center">
 <form method="post">
   <md-content >
     <md-input-container >
@@ -60,7 +62,7 @@
     </md-input-container>
 
     <div  style="padding: 20px;">
-      <md-button ng-click="submit" class="md-raised">Button</md-button>
+      <md-button <%--ng-click="login()"--%> type="submit" class="md-raised">Button</md-button>
     </div>
   </md-content>
 </form>

@@ -7,9 +7,9 @@
 angular.module('myApp', [
     'ngRoute',
 
-    'myApp.login',
-    //'myApp.home',
-    //'myApp.students',
+   /* 'myApp.login',
+    'myApp.home',
+    'myApp.students',*/
     //'myApp.version',
     'ngMaterial'
 ]).

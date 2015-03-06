@@ -37,8 +37,8 @@
         </property>
         <property name="order" value="2" />
     </bean>
-   <!-- <bean class="org.springframework.context.support.ResourceBundleMessageSource" id="messageSource">
+    <bean class="org.springframework.context.support.ResourceBundleMessageSource" id="messageSource">
         <property name="basename" value="messages" />
         <property name="defaultEncoding" value="UTF-8" />
-    </bean>-->
+    </bean>
 </beans>

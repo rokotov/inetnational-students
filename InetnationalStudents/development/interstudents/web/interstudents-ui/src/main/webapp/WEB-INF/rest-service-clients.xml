@@ -21,6 +21,40 @@
         </property>
     </bean>
 
+    <bean id="countryRestClient" class="kotov.interstudents.common.rest.client.CountryRestClient">
+        <property name="restTemplate" ref="restTemplate" />
+        <property name="serviceUrl" value="${countryServiceUrl}" />
+    </bean>
+    <bean id="educationInfoRestClient" class="kotov.interstudents.common.rest.client.EducationInfoRestClient">
+        <property name="restTemplate" ref="restTemplate" />
+        <property name="serviceUrl" value="${educationInfoServiceUrl}" />
+    </bean>
+
+    <bean id="facultyRestClient" class="kotov.interstudents.common.rest.client.FacultyRestClient">
+        <property name="restTemplate" ref="restTemplate" />
+        <property name="serviceUrl" value="${facultyServiceUrl}" />
+    </bean>
+
+    <bean id="groupRestClient" class="kotov.interstudents.common.rest.client.GroupRestClient">
+        <property name="restTemplate" ref="restTemplate" />
+        <property name="serviceUrl" value="${groupServiceUrl}" />
+    </bean>
+
+    <bean id="hostelRestClient" class="kotov.interstudents.common.rest.client.HostelRestClient">
+        <property name="restTemplate" ref="restTemplate" />
+        <property name="serviceUrl" value="${hostelServiceUrl}" />
+    </bean>
+
+    <bean id="personalInfoRestClient" class="kotov.interstudents.common.rest.client.PersonalInfoRestClient">
+        <property name="restTemplate" ref="restTemplate" />
+        <property name="serviceUrl" value="${personalInfoServiceUrl}" />
+    </bean>
+
+    <bean id="specialityRestClient" class="kotov.interstudents.common.rest.client.SpecialityRestClient">
+        <property name="restTemplate" ref="restTemplate" />
+        <property name="serviceUrl" value="${specialityServiceUrl}" />
+    </bean>
+
     <bean id="studentRestClient" class="kotov.interstudents.common.rest.client.StudentRestClient">
         <property name="restTemplate" ref="restTemplate" />
         <property name="serviceUrl" value="${studentServiceUrl}" />
@@ -30,6 +64,5 @@
         <property name="restTemplate" ref="restTemplate" />
         <property name="serviceUrl" value="${userServiceUrl}" />
     </bean>
-
 
 </beans>

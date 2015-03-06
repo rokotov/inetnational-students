@@ -1,6 +1,5 @@
 package kotov.interstudents.filter;
 
-import kotov.interstudents.controller.LoginController;
 
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
@@ -24,9 +23,9 @@ public class AuthenticationFilter implements Filter {
         HttpServletRequest request = (HttpServletRequest) servletRequest;
         HttpServletResponse response = (HttpServletResponse) servletResponse;
         HttpSession session = request.getSession(true);
-        if (session.getAttribute("employee") == null) {
+        if (session.getAttribute("user") == null) {
             session.setAttribute("redirect", request.getRequestURL().toString());
-            response.sendRedirect(request.getContextPath() + LoginController.LOGIN_PATH);
+            response.sendRedirect(request.getContextPath() + "/login");
             return;
         }
         filterChain.doFilter(servletRequest, servletResponse);
