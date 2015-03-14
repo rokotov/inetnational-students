@@ -26,16 +26,16 @@ public class LoginController {
 
     public static final String REDIRECT_PATH = "/home";
 
-    @Autowired
+  /*  @Autowired
     private UserRestClient userRestClient;
-
+*/
     @RequestMapping(method = RequestMethod.GET)
-    public String login(ModelMap model) {
-        model.addAttribute("loginForm", new LoginForm());
-        return "login/loginAngular";
+    public String login(/*ModelMap model*/) {
+//        model.addAttribute("loginForm", new LoginForm());
+        return "login/login";
     }
 
-    @RequestMapping(method = RequestMethod.POST)
+   /* @RequestMapping(method = RequestMethod.POST)
     public String login(@Valid @ModelAttribute("loginForm") LoginForm loginForm,
                         BindingResult result,
                         HttpSession session) {
@@ -45,11 +45,11 @@ public class LoginController {
         }
         User user = userRestClient.getByLogin(loginForm.getLogin());
 
-      /*  Employee employee = employeeRestClient.getByLogin(loginForm.getLogin());
+      *//*  Employee employee = employeeRestClient.getByLogin(loginForm.getLogin());
         if (employee == null) {
             result.rejectValue("login", "loginForm.notFound");
             return "testlogin";
-        }*/
+        }*//*
 //        JobPosition hrPostion = jobPositionRestClient.getHr();
 //        session.setAttribute("isHr", employee.getPosition().equals(hrPostion));
 //        session.setAttribute("employee", employee);
@@ -67,5 +67,5 @@ public class LoginController {
         session.removeAttribute("employee");
         session.removeAttribute("isHr");
         return "redirect:" + LOGIN_PATH;
-    }
+    }*/
 }

@@ -1,3 +1,4 @@
+/*
 package kotov.interstudents.controller;
 
 
@@ -6,9 +7,11 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+*/
 /**
  * Created by vkotov on 06.03.2015.
- */
+ *//*
+
 @Controller
 @RequestMapping("/home")
 public class HomeController {
@@ -19,3 +22,4 @@ public class HomeController {
         return "home/home";
     }
 }
+*/

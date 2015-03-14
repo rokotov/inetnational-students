@@ -1,3 +1,4 @@
+/*
 package kotov.interstudents.controller;
 
 import kotov.interstudents.common.model.entity.*;
@@ -8,9 +9,11 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+*/
 /**
  * Created by vkotov on 06.03.2015.
- */
+ *//*
+
 @Controller
 @RequestMapping("/student")
 public class StudentController {
@@ -31,6 +34,9 @@ public class StudentController {
     private HostelRestClient hostelRestClient;
 
     @Autowired
+    private SpecialityRestClient specialityRestClient;
+
+    @Autowired
     private StudentRestClient studentRestClient;
 
     @RequestMapping(method = RequestMethod.GET)
@@ -39,7 +45,9 @@ public class StudentController {
         model.addAttribute("faculties", facultyRestClient.getAll(Faculty[].class));
         model.addAttribute("groups", groupRestClient.getAll(Group[].class));
         model.addAttribute("hostels", hostelRestClient.getAll(Hostel[].class));
+        model.addAttribute("specialities", specialityRestClient.getAll(Speciality[].class));
         model.addAttribute("students", studentRestClient.getAll(Student[].class));
         return "student/student";
     }
 }
+*/

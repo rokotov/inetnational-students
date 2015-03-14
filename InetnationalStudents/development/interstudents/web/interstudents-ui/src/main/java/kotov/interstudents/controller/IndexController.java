@@ -13,11 +13,11 @@ public class IndexController {
 
     @RequestMapping()
     public String index() {
-        return "redirect:" + LoginController.LOGIN_PATH;
+        return "redirect:" +"/login";
     }
 
     @RequestMapping(method = RequestMethod.HEAD)
     public String head() {
-        return "redirect: " + LoginController.LOGIN_PATH;
+        return "redirect: " + "/login";
     }
 }
