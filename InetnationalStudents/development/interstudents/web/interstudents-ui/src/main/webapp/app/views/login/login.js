@@ -1,7 +1,6 @@
 /**
  * Created by vkotov on 21.01.2015.
  */
-/*
 angular.module('myApp.login', ['ngRoute','ngMaterial'])
 
     .config(['$routeProvider', function($routeProvider) {
@@ -12,10 +11,10 @@ angular.module('myApp.login', ['ngRoute','ngMaterial'])
     }])
 
     .controller('LoginCtrl', function($location, $scope) {
-         $scope.credentials = {login:'', password:''};
+    	 $scope.credentials = {login:'', password:''};
          $scope.login = function(){
             if($scope.credentials.login === 'admin'){
                 $location.path('home');
             };
          };
-    });*/
+    });

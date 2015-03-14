@@ -1,6 +1,5 @@
 'use strict';
 
-/*
 angular.module('myApp.home', ['ngRoute','ngMaterial'])
 
 .config(['$routeProvider', function($routeProvider) {
@@ -11,4 +10,5 @@ angular.module('myApp.home', ['ngRoute','ngMaterial'])
 }])
 
 .controller('HomeCtrl', function($scope) {
-});*/
+  
+});

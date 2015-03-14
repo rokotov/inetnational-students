@@ -3,12 +3,11 @@
  */
 'use strict';
 
-/*
 angular.module('myApp.students', ['ngRoute','ngMaterial'])
 
     .config(['$routeProvider', function($routeProvider) {
         $routeProvider.when('/students', {
-            templateUrl: 'views/students//students.html',
+            templateUrl: 'views/students/students.html',
             controller: 'StudentsCtrl'
         });
     }])
@@ -26,7 +25,6 @@ angular.module('myApp.students', ['ngRoute','ngMaterial'])
     	$http.get('http://localhost:8080/rest/country/all').success(function(data,status,headers,config){
     		$scope.countries = data;
     	});
-
 
         $scope.showAdvanced = function(ev) {
     $mdDialog.show({
@@ -54,4 +52,4 @@ function DialogController($scope, $mdDialog) {
   $scope.answer = function(answer) {
     $mdDialog.hide(answer);
   };
-}*/
+}
