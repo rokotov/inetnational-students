@@ -9,6 +9,6 @@ angular.module('myApp.home', ['ngRoute','ngMaterial'])
   });
 }])
 
-.controller('HomeCtrl', function($scope) {
+  .controller('HomeCtrl', function($scope) {
   
-});
+  });

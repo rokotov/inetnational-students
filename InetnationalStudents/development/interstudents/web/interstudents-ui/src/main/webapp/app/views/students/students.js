@@ -3,7 +3,7 @@
  */
 'use strict';
 
-angular.module('myApp.students', ['ngRoute','ngMaterial'])
+angular.module('myApp.students', ['ngRoute','ngMaterial','ngResource'])
 
     .config(['$routeProvider', function($routeProvider) {
         $routeProvider.when('/students', {
@@ -12,44 +12,51 @@ angular.module('myApp.students', ['ngRoute','ngMaterial'])
         });
     }])
 
-    .controller('StudentsCtrl', function($scope, $http,$mdDialog) {
-    	$http.get('http://localhost:8080/rest/faculty/all').success(function(data,status,headers,config){
-    		$scope.faculties = data;
-    	});
-    	$http.get('http://localhost:8080/rest/speciality/all').success(function(data,status,headers,config){
-    		$scope.specialities = data;
-    	});
-    	$http.get('http://localhost:8080/rest/student/all').success(function(data,status,headers,config){
-    		$scope.students = data;
-    	});
-    	$http.get('http://localhost:8080/rest/country/all').success(function(data,status,headers,config){
-    		$scope.countries = data;
-    	});
+    .controller('StudentsCtrl', StudentsCtrl)
+    .factory("Student", StudentFtr);
 
-        $scope.showAdvanced = function(ev) {
-    $mdDialog.show({
-      controller: DialogController,
-      templateUrl: 'views/students/editDialog.html',
-      targetEvent: ev,
-    })
-    .then(function(answer) {
-      $scope.alert = 'Вы сказали"' + answer + '".';
-    }, function() {
-      $scope.alert = 'Вы закрыли диолог.';
+function StudentsCtrl ($scope, $http,$mdDialog,Student) {
+   /* $http.get('http://localhost:8080/rest/faculty/all').success(function (data, status, headers, config) {
+        $scope.faculties = data;
     });
-  };
+    $http.get('http://localhost:8080/rest/speciality/all').success(function (data, status, headers, config) {
+        $scope.specialities = data;
+    });
 
+    $http.get('http://localhost:8080/rest/country/all').success(function (data, status, headers, config) {
+        $scope.countries = data;
+    });*/
 
-    });    
+    Student.query(function(data) {
+        $scope.students = data;
+    });
+
+    $scope.showAdvanced = function(ev) {
+        $mdDialog.show({
+            controller: DialogController,
+            templateUrl: 'views/students/editDialog.html',
+            targetEvent: ev
+        })
+            .then(function(answer) {
+                $scope.alert = 'Вы сказали"' + answer + '".';
+            }, function() {
+                $scope.alert = 'Вы закрыли диолог.';
+            });
+    };
+}
 
 function DialogController($scope, $mdDialog) {
-  $scope.hide = function() {
-    $mdDialog.hide();
-  };
-  $scope.cancel = function() {
-    $mdDialog.cancel();
-  };
-  $scope.answer = function(answer) {
-    $mdDialog.hide(answer);
-  };
+    $scope.hide = function() {
+        $mdDialog.hide();
+    };
+    $scope.cancel = function() {
+        $mdDialog.cancel();
+    };
+    $scope.answer = function(answer) {
+        $mdDialog.hide(answer);
+    };
+}
+
+function StudentFtr($resource){
+    return $resource("http://localhost:8080/rest/student/:id");
 }

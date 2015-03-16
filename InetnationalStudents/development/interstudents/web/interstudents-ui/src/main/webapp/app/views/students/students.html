@@ -12,6 +12,7 @@
                 <md-icon  icon="img/icons/ic_border_color_24px.svg"></md-icon>
               </md-button>
                 <p>
+                   <!-- {{student}}-->
                     Факультет
                     <select ng-model="queryFaculty">
                         <option ng-repeat="faculty in faculties" >{{faculty.facultyName}}</option>
@@ -61,7 +62,7 @@
                         <option ng-repeat="country in countries">{{country.countryName}}</option>
                     </select>
                     </p> 
-                    <table border="1">
+                   <!-- <table border="1">
                         <tr>
                             <th>ФИО</th>
                             <th>Курс</th>
@@ -75,14 +76,14 @@
                         <tr ng-repeat="student in students|filter:queryCountry">
                             <td>{{student.lastName}} {{student.firstName}} {{student.middleName}}</td>
                             <td>{{student.course.courseName}}</td>
-                            <td>{{student.group.speciality.specialityName}}</td> 
+                            <td>{{student.group.speciality.specialityName}}</td>
                             <td>{{student.orderNumber}}</td>
                             <td>{{student.country.countryName}}</td>
                             <td>{{student.passportNumber}}</td>
                             <td>{{student.registrationAddress}}</td>
                             <td>{{student.birthPlace}}</td>
                         </tr>
-                    </table>
+                    </table>-->
             </div>
         </md-tab>
         <md-tab class="md-transition-right">
@@ -96,7 +97,7 @@
                         <option ng-repeat="country in countries">{{country.countryName}}</option>
                     </select>
                     </p> 
-                    <table border="1">
+                   <!-- <table border="1">
                         <tr>
                             <th>ФИО</th>
                             <th>Курс</th>
@@ -117,7 +118,7 @@
                             <td>{{student.registrationAddress}}</td>
                             <td>{{student.birthPlace}}</td>
                         </tr>
-                    </table>
+                    </table>-->
             </div>
         </md-tab>
     </md-tabs>

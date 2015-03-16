@@ -71,7 +71,6 @@ public abstract class AbstractRestServiceImpl<T extends AbstractEntity> implemen
 
     @Override
     @GET
-    @Path("/all")
     @Produces(MediaType.APPLICATION_JSON)
     public Response findAll() {
         try {

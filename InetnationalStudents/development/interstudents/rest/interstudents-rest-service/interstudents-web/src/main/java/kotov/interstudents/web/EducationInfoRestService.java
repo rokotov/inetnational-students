@@ -53,7 +53,6 @@ public class EducationInfoRestService {
     }
 
     @GET
-    @Path("/all")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getAllEntities() {
         try {

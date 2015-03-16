@@ -10,11 +10,13 @@ angular.module('myApp.login', ['ngRoute','ngMaterial'])
         });
     }])
 
-    .controller('LoginCtrl', function($location, $scope) {
-    	 $scope.credentials = {login:'', password:''};
-         $scope.login = function(){
-            if($scope.credentials.login === 'admin'){
-                $location.path('home');
-            };
-         };
-    });
+    .controller('LoginCtrl', LoginCtrl);
+
+function LoginCtrl($location, $scope) {
+    $scope.credentials = {login:'', password:''};
+    $scope.login = function(){
+        if($scope.credentials.login === 'admin'){
+            $location.path('home');
+        };
+    };
+};
