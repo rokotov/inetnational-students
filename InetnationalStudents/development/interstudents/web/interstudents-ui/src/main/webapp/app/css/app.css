@@ -73,20 +73,24 @@
 }
 
 .main-context{
+    min-width: 900px;
     margin:0px 20px;
     padding-top: 90px;
     height: 95%;
 }
 
 .app-context{
-    min-width: 370px;
     overflow: hidden;
     height: 100%;
-    /*max-width:1113px;*/
-
 }
-.app-login{
-    min-width: 230px;
+.md-tabs-content, .md-tabs-content .md-tab-content, .app-context .tabpanel-container {
+    height: 100%;
+}
+.data-context{
+    overflow-y: scroll;
+    height: 85%;
+}
+.app-login{    min-width: 230px;
     overflow: hidden;
     height: 100%;
     max-width:500px; 

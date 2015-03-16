@@ -3,7 +3,7 @@
  */
 'use strict';
 
-angular.module('myApp.students', ['ngRoute','ngMaterial','ngResource'])
+angular.module('myApp.students', ['ngRoute','ngMaterial','ngResource','infinite-scroll'])
 
     .config(['$routeProvider', function($routeProvider) {
         $routeProvider.when('/students', {
@@ -27,9 +27,21 @@ function StudentsCtrl ($scope, $http,$mdDialog,Student) {
         $scope.countries = data;
     });*/
 
+
+
     Student.query(function(data) {
-        $scope.students = data;
+        //$scope.students = data;
     });
+
+
+    $scope.images = [1, 2, 3, 4, 5, 6, 7, 8,9,10,11,12,13,14,15,16,17,18];
+
+    $scope.loadMore = function() {
+        var last = $scope.images[$scope.images.length - 1];
+        for(var i = 1; i <= 18; i++) {
+            $scope.images.push(last + i);
+        }
+    };
 
     $scope.showAdvanced = function(ev) {
         $mdDialog.show({
