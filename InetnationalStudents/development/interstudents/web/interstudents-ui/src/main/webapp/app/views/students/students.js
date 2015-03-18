@@ -26,11 +26,13 @@ function StudentsCtrl ($scope, $http,$mdDialog,Student) {
     $http.get('http://localhost:8080/rest/country/all').success(function (data, status, headers, config) {
         $scope.countries = data;
     });*/
-
-
+    $scope.students = [];
 
     Student.query(function(data) {
-        //$scope.students = data;
+        for (var i = 0; i < 50; i++) {
+            $scope.students[i] = data[i];
+        }
+
     });
 
 

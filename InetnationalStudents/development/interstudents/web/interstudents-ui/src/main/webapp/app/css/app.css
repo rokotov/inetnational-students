@@ -87,7 +87,7 @@
     height: 100%;
 }
 .data-context{
-    overflow-y: scroll;
+    overflow-y: auto;
     height: 85%;
 }
 .app-login{    min-width: 230px;
