@@ -3,7 +3,7 @@
  */
 'use strict';
 
-angular.module('myApp.students', ['ngRoute','ngMaterial','ngResource','infinite-scroll'])
+angular.module('myApp.students', ['ngRoute','ngMaterial','ngResource','infinite-scroll','solo.table'])
 
     .config(['$routeProvider', function($routeProvider) {
         $routeProvider.when('/students', {
