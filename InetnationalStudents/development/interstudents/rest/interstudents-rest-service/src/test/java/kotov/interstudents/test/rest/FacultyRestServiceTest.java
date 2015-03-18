@@ -26,7 +26,7 @@ public class FacultyRestServiceTest {
 
     @Test
     public void getAllEntities() {
-        Response response =  facultyRestService.getAllEntities();
+        Response response =  facultyRestService.findAll();
         Assert.assertNotEquals(Response.Status.INTERNAL_SERVER_ERROR, response.getStatus());
     }
 
@@ -40,7 +40,7 @@ public class FacultyRestServiceTest {
 
     @Test
     public void getEntityById(){
-        Response response =  facultyRestService.getEntityById(1);
+        Response response =  facultyRestService.find(1);
         Assert.assertNotEquals(Response.Status.INTERNAL_SERVER_ERROR, response.getStatus());
     }
 }
