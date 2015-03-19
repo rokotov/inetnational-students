@@ -1,27 +1,27 @@
 /**
-AngularJS table with filters, sorting and pagination
+ AngularJS table with filters, sorting and pagination
 
-The MIT License (MIT)
+ The MIT License (MIT)
 
-Copyright (c) 2013 Andrey Filippov <solo.framework@gmail.com>
+ Copyright (c) 2013 Andrey Filippov <solo.framework@gmail.com>
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+ Permission is hereby granted, free of charge, to any person obtaining a copy
+ of this software and associated documentation files (the "Software"), to deal
+ in the Software without restriction, including without limitation the rights
+ to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ copies of the Software, and to permit persons to whom the Software is
+ furnished to do so, subject to the following conditions:
 
-The above copyright notice and this permission notice shall be included in
-all copies or substantial portions of the Software.
+ The above copyright notice and this permission notice shall be included in
+ all copies or substantial portions of the Software.
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-THE SOFTWARE.
+ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ THE SOFTWARE.
 
  */
 
@@ -29,7 +29,7 @@ angular.module("solo.table", [])
 
 	.controller("SoloTableCtrl", ['$scope', function ($scope){
 
-		$scope.original = [];
+		//$scope.original = [];
 
 		$scope.bindData = function(data)
 		{
@@ -205,14 +205,14 @@ angular.module("solo.table", [])
 			return items.slice(offset, offset + onPage);
 		};
 	})
-	/**
-	 * Эта директива добавляет данные в таблицу
-	 *
-	 * Пример:
-	 * <div solo-table-data>
-	 * [{"id":0,"prefix":"Miss","name":"Alvah Gleason","address":"58707 Ophelia Field\nEast Lorena, LA 89754-9301"}]
-	 * </div>
-	 */
+/**
+ * Эта директива добавляет данные в таблицу
+ *
+ * Пример:
+ * <div solo-table-data>
+ * [{"id":0,"prefix":"Miss","name":"Alvah Gleason","address":"58707 Ophelia Field\nEast Lorena, LA 89754-9301"}]
+ * </div>
+ */
 	.directive("soloTableData", function(){
 		return {
 			require: "?ngModel",
@@ -227,15 +227,15 @@ angular.module("solo.table", [])
 			}
 		};
 	})
-	/**
-	 * Эта директива добавляет возможность сортировки колонки
-	 * и добавляет в разметку стрелки, указывающие направление сортировки
-	 *
-	 * Пример:
-	 * <tr>
-	 *   <th sort-by='id'>Id</th>
-	 * </tr>
-	 */
+/**
+ * Эта директива добавляет возможность сортировки колонки
+ * и добавляет в разметку стрелки, указывающие направление сортировки
+ *
+ * Пример:
+ * <tr>
+ *   <th sort-by='id'>Id</th>
+ * </tr>
+ */
 	.directive("sortBy", function($compile){
 		return {
 			require: "?ngModel",
@@ -257,12 +257,12 @@ angular.module("solo.table", [])
 		};
 	})
 
-	/**
-	 * Можно также указать направление сортировки по-умолчанию, возможные значения asc и desc.
-	 * Указать можно только у одной колонки.
-	 * Пример:
-	 * <th sort-flag='name' default-sort="asc">Name</th>
-	 */
+/**
+ * Можно также указать направление сортировки по-умолчанию, возможные значения asc и desc.
+ * Указать можно только у одной колонки.
+ * Пример:
+ * <th sort-flag='name' default-sort="asc">Name</th>
+ */
 	.directive("defaultSort", function(){
 		return {
 			restrict: "A",
@@ -282,13 +282,13 @@ angular.module("solo.table", [])
 		}
 	})
 
-	/**
-	 * Базовая директива
-	 *
-	 * <solo-table [items-on-page = "15"] [make-sortable]>
-	 *     ...
-	 * </solo-table>
-	 */
+/**
+ * Базовая директива
+ *
+ * <solo-table [items-on-page = "15"] [make-sortable]>
+ *     ...
+ * </solo-table>
+ */
 	.directive("soloTable", function(){
 		return {
 			require: "?ngModel",
@@ -368,18 +368,18 @@ angular.module("solo.table", [])
 						// обработка настройки items-on-page
 						if (attr.hasOwnProperty("itemsOnPage"))
 							scope.pager.setOnPage(attr.itemsOnPage);
-							//scope.pager.onPage = parseInt(attr.itemsOnPage);
+						//scope.pager.onPage = parseInt(attr.itemsOnPage);
 					}
 				};
 			}
 		};
 	})
 
-	/**
-	 * Фильтрация только по указанным полям
-	 *
-	 * @example <tr ng-repeat="item in filtered = (original | filterByFields:filter:['id', 'login', 'name']">
-	 */
+/**
+ * Фильтрация только по указанным полям
+ *
+ * @example <tr ng-repeat="item in filtered = (original | filterByFields:filter:['id', 'login', 'name']">
+ */
 	.filter("filterByFields", function(){
 
 		/**
@@ -401,9 +401,6 @@ angular.module("solo.table", [])
 			{
 				var compare = function(val, search)
 				{
-                    // null hasn't method toString()
-                    if ( val == null )
-                        return false;
 					return val.toString().toLowerCase().indexOf(search) !== -1;
 				};
 
@@ -423,4 +420,3 @@ angular.module("solo.table", [])
 			return items.filter(test);
 		};
 	});
-
