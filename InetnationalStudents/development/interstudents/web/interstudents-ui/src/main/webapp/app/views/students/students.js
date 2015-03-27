@@ -12,25 +12,6 @@
  * @param modules Список модулей, подключаемых к приложению
  * @constructor
  */
-//var AppFactory = function(testApp, myApp, modules)
-//{
-//    if (!modules)
-//        modules = [];
-//    var el = document.getElementById(testApp);
-//    angular.module(myApp, modules).config([
-//
-//    /**
-//     * Т.к. используется Smarty, то символы {{ и }} нужно заменить,
-//     * например, на <[ и ]>
-//     */
-//        "$interpolateProvider", function($interpolateProvider){
-//            $interpolateProvider.startSymbol('<[');
-//            $interpolateProvider.endSymbol(']>');
-//        }
-//    ]);
-//    modules.push(myApp);
-//    angular.bootstrap(el, modules);
-//};
 
 angular.module('myApp.students', ['ngRoute','ngMaterial','ngResource','infinite-scroll','solo.table'])
 

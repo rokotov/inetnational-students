@@ -10,6 +10,7 @@ angular.module('myApp', [
     'myApp.login',
     'myApp.home',
     'myApp.students',
+    'myApp.statistic',
     'myApp.version',
 /*    'myApp.filters',*/
 /*    'myApp.services',*/
@@ -33,7 +34,8 @@ function MainCtrl($scope, $mdSidenav) {
     $scope.menu = {};
     $scope.menu.pages = [
         {"url": "/home", "discription":"Главная"},
-        {"url": "/students", "discription":"Список студентов"}
+        {"url": "/students", "discription":"Список студентов"},
+        {"url": "/statistic", "discription":"Статистика"}
 
     ];
 
