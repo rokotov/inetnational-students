@@ -7,7 +7,8 @@ angular.module('myApp.statistic', ['ngRoute','ngMaterial','ngResource','infinite
         });
     }])
 
-    .controller('StatisticCtrl', StatisticCtrl);
+    .controller('StatisticCtrl', StatisticCtrl)
+    .factory("StatisticSpec", StatisticSpec);
     //.factory("Country", CountryFact)
     //.factory("Group", GroupFact)
     //.factory("Student", StudentFact)
@@ -37,4 +38,8 @@ function StatisticCtrl ($scope, Student, Speciality, Faculty, Country, Group) {
         $scope.original = data;
     });
 
+}
+
+function StatisticSpec($resource){
+    return $resource("http://localhost:8080/rest/country/:id");
 }
