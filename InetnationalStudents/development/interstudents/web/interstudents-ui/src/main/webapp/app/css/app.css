@@ -96,6 +96,9 @@
     overflow-y: auto;
     height: inherit;
 }
+.data-context th{
+    padding: 4px;
+}
 .app-login{
     min-width: 230px;
     overflow: hidden;

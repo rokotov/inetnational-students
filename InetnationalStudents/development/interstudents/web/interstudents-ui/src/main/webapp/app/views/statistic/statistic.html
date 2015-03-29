@@ -5,64 +5,38 @@
                 <h3>По специальностям</h3>
             </md-tab-label>
             <div role="tabpanel" class="tabpanel-container">
-                <!--                     <b layout="row" layout-align="center center" layout-margin>
-                                     </b>
-                                     <md-button ng-click="showAdvanced($event)">
-                                         <md-icon  icon="img/icons/ic_border_color_24px.svg"></md-icon>
-                                     </md-button>-->
                 <div class="data-context">
-                    <solo-table items-on-page = "10" make-sortable>
-                        <div layout="row" layout-align="center">
-                            <md-content>
-                                <md-select ng-model="queryFaculty" placeholder="Выбрать факультет">
-                                    <md-option ng-value="faculty.facultyName" ng-repeat="faculty in faculties">{{ faculty.facultyName }}</md-option>
-                                </md-select>
-                                <md-select ng-model="querySpeciality" placeholder="Выбрать специальность">
-                                    <md-option ng-value="speciality.specialityName" ng-repeat="speciality in specialities | filter:queryFaculty">{{ speciality.specialityName }}</md-option>
-                                </md-select>
-                            </md-content>
-                        </div>
-                        <!-- Показываем данные пейджинга: сколько всего страниц, на какой находимся, сколько записей во всей таблице -->
-                        <div layout="row" layout-align="center" style="padding: 20px 0">Страница {{pager.currentPage}} of {{pager.foundPages}}. Всего студентов:  {{pager.found}}</div>
-                        <!-- Эта таблица обязательно  должна присутствовать в директиве solo-table, что, в общем то, очевидно. -->
+                    <solo-table items-on-page = "50" make-sortable>
                         <table class="table table-striped table-bordered" >
                             <thead>
                             <tr>
-                                <th sort-by='lastName'>Фамилия Имя Отчество</th>
-                                <!--<th sort-by='course' >Курс</th>-->
-                                <!--<th sort-by='group.speciality.faculty.facultyName'>Факультет</th>-->
-                                <!--<th sort-by='group.speciality.specialityName'>Специальность</th>-->
-                                <!--<th sort-by='educationInfo.studyForm'>Форма обучения</th>-->
-                                <!--<th sort-by='educationInfo.orderNumber'>Номер приказа</th>-->
-                                <!--<th sort-by='country.countryName'>Страна</th>-->
-                                <!--<th sort-by='personalInfo.pasportNumber'>Паспортные данные</th>-->
-                                <!--<th sort-by='registrationAddress'>Адресс регистрации</th>-->
-                                <!--<th></th>-->
+                                <th sort-by='speciality.specialityName'>Специальность</th>
+                                <th sort-by='count0'>Курс 0</th>
+                                <th sort-by='count1'>Курс 1</th>
+                                <th sort-by='count2'>Курс 2</th>
+                                <th sort-by='count3'>Курс 3</th>
+                                <th sort-by='count4'>Курс 4</th>
+                                <th sort-by='count5'>Курс 5</th>
+                                <th sort-by='countII'>Курс II</th>
+                                <th sort-by='countIII'>Курс III</th>
+                                <th sort-by='countK'>Курс K</th>
+                                <th sort-by='countA'>Курс A</th>
                             </tr>
                             </thead>
-                            <tr ng-repeat="item in filtered = (original| filter:querySpeciality)" >
-                                <td>{{item.lastName}} {{item.firstName}} {{item.middleName}}</td>
-                                <!--<td>{{item.course}}</td>-->
-                                <!--<td>{{item.group.speciality.faculty.facultyName}}</td>-->
-                                <!--<td>{{item.group.speciality.specialityName}}</td>-->
-                                <!--<td>{{item.educationInfo.studyForm}}</td>-->
-                                <!--<td>{{item.educationInfo.orderNumber}}</td>-->
-                                <!--<td>{{item.country.countryName}}</td>-->
-                                <!--<td>{{item.personalInfo.pasportNumber}}</td>-->
-                                <!--<td>{{item.registrationAddress}}</td>-->
-                                <!--<td><md-icon icon="img/icons/ic_border_color_24px.svg"></md-icon></td>-->
+                            <tr ng-repeat="item in statistic" >
+                                <td>{{item.speciality.specialityName}}</td>
+                                <td>{{item.count0}}</td>
+                                <td>{{item.count1}}</td>
+                                <td>{{item.count2}}</td>
+                                <td>{{item.count3}}</td>
+                                <td>{{item.count4}}</td>
+                                <td>{{item.count5}}</td>
+                                <td>{{item.countII}}</td>
+                                <td>{{item.countIII}}</td>
+                                <td>{{item.countK}}</td>
+                                <td>{{item.countA}}</td>
                             </tr>
-
                         </table>
-
-                        <!-- Здесь реализован переход по страницам -->
-                        <div layout="row" layout-align="center" style="padding: 20px 0">
-                            <a href="" ng-click="gotoFirstPage()">Первая страница | </a>
-                            <a href="" ng-click="gotoPrevPage()"> &larr;назад | </a>
-                            <a href="" ng-click="gotoNextPage()">вперед &rarr; | </a>
-                            <a href="" ng-click="gotoLastPage()">Последняя страница </a>
-                        </div>
-
                     </solo-table>
                 </div>
             </div>
@@ -72,13 +46,8 @@
                 <h3>По странам</h3>
             </md-tab-label>
             <div role="tabpanel" class="tabpanel-container">
-                <!--                     <b layout="row" layout-align="center center" layout-margin>
-                                     </b>
-                                     <md-button ng-click="showAdvanced($event)">
-                                         <md-icon  icon="img/icons/ic_border_color_24px.svg"></md-icon>
-                                     </md-button>-->
                 <div class="data-context">
-                    <solo-table items-on-page = "10" make-sortable>
+                    <solo-table items-on-page = "50" make-sortable>
                         <div layout="row" layout-align="center">
                             <md-content>
                                 <md-select ng-model="queryFaculty" placeholder="Выбрать факультет">
@@ -89,47 +58,36 @@
                                 </md-select>
                             </md-content>
                         </div>
-                        <!-- Показываем данные пейджинга: сколько всего страниц, на какой находимся, сколько записей во всей таблице -->
-                        <div layout="row" layout-align="center" style="padding: 20px 0">Страница {{pager.currentPage}} of {{pager.foundPages}}. Всего студентов:  {{pager.found}}</div>
-                        <!-- Эта таблица обязательно  должна присутствовать в директиве solo-table, что, в общем то, очевидно. -->
                         <table class="table table-striped table-bordered" >
                             <thead>
                             <tr>
-                                <th sort-by='lastName'>Фамилия Имя Отчество</th>
-                                <th sort-by='course' >Курс</th>
-                                <th sort-by='group.speciality.faculty.facultyName'>Факультет</th>
-                                <th sort-by='group.speciality.specialityName'>Специальность</th>
-                                <th sort-by='educationInfo.studyForm'>Форма обучения</th>
-                                <th sort-by='educationInfo.orderNumber'>Номер приказа</th>
-                                <th sort-by='country.countryName'>Страна</th>
-                                <th sort-by='personalInfo.pasportNumber'>Паспортные данные</th>
-                                <th sort-by='registrationAddress'>Адресс регистрации</th>
-                                <th></th>
+                                <th sort-by='speciality.specialityName'>Специальность</th>
+                                <th sort-by='count0'>Курс 0</th>
+                                <th sort-by='count1'>Курс 1</th>
+                                <th sort-by='count2'>Курс 2</th>
+                                <th sort-by='count3'>Курс 3</th>
+                                <th sort-by='count4'>Курс 4</th>
+                                <th sort-by='count5'>Курс 5</th>
+                                <th sort-by='countII'>Курс II</th>
+                                <th sort-by='countIII'>Курс III</th>
+                                <th sort-by='countK'>Курс K</th>
+                                <th sort-by='countA'>Курс A</th>
                             </tr>
                             </thead>
-                            <tr ng-repeat="item in filtered = (original| filter:querySpeciality)" >
-                                <td>{{item.lastName}} {{item.firstName}} {{item.middleName}}</td>
-                                <td>{{item.course}}</td>
-                                <td>{{item.group.speciality.faculty.facultyName}}</td>
-                                <td>{{item.group.speciality.specialityName}}</td>
-                                <td>{{item.educationInfo.studyForm}}</td>
-                                <td>{{item.educationInfo.orderNumber}}</td>
-                                <td>{{item.country.countryName}}</td>
-                                <td>{{item.personalInfo.pasportNumber}}</td>
-                                <td>{{item.registrationAddress}}</td>
-                                <!--<td><md-icon icon="img/icons/ic_border_color_24px.svg"></md-icon></td>-->
+                            <tr ng-repeat="item in statistic" >
+                                <td>{{item.speciality.specialityName}}</td>
+                                <td>{{item.count0}}</td>
+                                <td>{{item.count1}}</td>
+                                <td>{{item.count2}}</td>
+                                <td>{{item.count3}}</td>
+                                <td>{{item.count4}}</td>
+                                <td>{{item.count5}}</td>
+                                <td>{{item.countII}}</td>
+                                <td>{{item.countIII}}</td>
+                                <td>{{item.countK}}</td>
+                                <td>{{item.countA}}</td>
                             </tr>
-
                         </table>
-
-                        <!-- Здесь реализован переход по страницам -->
-                        <div layout="row" layout-align="center" style="padding: 20px 0">
-                            <a href="" ng-click="gotoFirstPage()">Первая страница | </a>
-                            <a href="" ng-click="gotoPrevPage()"> &larr;назад | </a>
-                            <a href="" ng-click="gotoNextPage()">вперед &rarr; | </a>
-                            <a href="" ng-click="gotoLastPage()">Последняя страница </a>
-                        </div>
-
                     </solo-table>
                 </div>
             </div>

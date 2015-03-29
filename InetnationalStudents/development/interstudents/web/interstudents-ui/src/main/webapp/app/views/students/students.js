@@ -92,7 +92,9 @@ function SpecialityFact($resource){
 }
 
 function StudentFact($resource){
-    return $resource("http://localhost:8080/rest/student/:id");
+    return $resource('http://localhost:8080/rest/student/:id', {id: '@id'}, {
+        statistic: {method:'GET', url: 'http://localhost:8080/rest/student/statisticbySpec'}
+    });
 }
 function GroupFact($resource){
     return $resource("http://localhost:8080/rest/group/:id");
