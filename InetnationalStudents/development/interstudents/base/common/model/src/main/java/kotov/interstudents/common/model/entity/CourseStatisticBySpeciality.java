@@ -1,7 +1,5 @@
 package kotov.interstudents.common.model.entity;
 
-import javax.persistence.Entity;
-
 /**
  * Created by vkotov on 27.03.2015.
  */
@@ -17,6 +15,7 @@ public class CourseStatisticBySpeciality {
     private int countIII = 0;
     private int countA = 0;
     private int countK = 0;
+    private int countAll = 0;
 
     public Speciality getSpeciality() {
         return speciality;
@@ -106,23 +105,61 @@ public class CourseStatisticBySpeciality {
         this.countK = countK;
     }
 
-    public void addCount0(){this.count0++;}
+    public int getCountAll() {
+        return this.countAll;
+    }
 
-    public void addCount1(){this.count1++;}
+    public void setCountAll(int countAll) {
+        this.countAll = countAll;
+    }
 
-    public void addCount2(){this.count2++;}
+    public void addCount0(){
+        this.count0++;
+        this.countAll++;
+    }
 
-    public void addCount3(){this.count3++;}
+    public void addCount1(){
+        this.count1++;
+        this.countAll++;
+    }
 
-    public void addCount4(){this.count4++;}
+    public void addCount2(){
+        this.count2++;
+        this.countAll++;
+    }
 
-    public void addCount5(){this.count5++;}
+    public void addCount3(){
+        this.count3++;
+        this.countAll++;
+    }
 
-    public void addCountII(){this.countII++;}
+    public void addCount4(){
+        this.count4++;
+        this.countAll++;
+    }
 
-    public void addCountIII(){this.countIII++;}
+    public void addCount5(){
+        this.count5++;
+        this.countAll++;
+    }
 
-    public void addCountK(){this.countK++;}
+    public void addCountII(){
+        this.countII++;
+        this.countAll++;
+    }
 
-    public void addCountA(){this.countA++;}
+    public void addCountIII(){
+        this.countIII++;
+        this.countAll++;
+    }
+
+    public void addCountK(){
+        this.countK++;
+        this.countAll++;
+    }
+
+    public void addCountA(){
+        this.countA++;
+        this.countAll++;
+    }
 }
