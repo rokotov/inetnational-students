@@ -8,12 +8,13 @@ angular.module('myApp.statistic', ['ngRoute','ngMaterial','ngResource','infinite
     }])
 
     .controller('StatisticCtrl', StatisticCtrl)
-    .factory('Statistic',StatisticFact);
+    .factory('StatisticBySpeciality',StatisticSpecialityFact)
+    .factory('StatisticByCountry',StatisticCountryFact);
 
 
-function StatisticCtrl ($scope, Student, Speciality, Faculty, Country, Group, Statistic) {
+function StatisticCtrl ($scope, Speciality, Faculty, Country, Group, StatisticBySpeciality, StatisticByCountry) {
 
-    Group.query(function(data) {
+/*    Group.query(function(data) {
         $scope.groups = data;
     });
 
@@ -27,12 +28,20 @@ function StatisticCtrl ($scope, Student, Speciality, Faculty, Country, Group, St
 
     Speciality.query(function(data) {
         $scope.specialities = data;
+    });*/
+
+    StatisticBySpeciality.query(function(data){
+        $scope.statisticBySpeciality = data;
     });
 
-    Statistic.query(function(data){
-        $scope.statistic = data;
+    StatisticByCountry.query(function(data){
+        $scope.statisticByCountry = data;
     });
 }
-function StatisticFact($resource){
-    return $resource('http://localhost:8080/rest/student/statisticbySpec');
+function StatisticSpecialityFact($resource){
+    return $resource('http://localhost:8080/rest/student/statisticBySpeciality');
+}
+
+function StatisticCountryFact($resource){
+    return $resource('http://localhost:8080/rest/student/statisticByCountry');
 }

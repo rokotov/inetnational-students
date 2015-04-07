@@ -1,5 +1,6 @@
 package kotov.interstudents.service.impl;
 
+import kotov.interstudents.common.model.entity.CourseStatisticByCountry;
 import kotov.interstudents.common.model.entity.CourseStatisticBySpeciality;
 import kotov.interstudents.common.model.entity.Student;
 import kotov.interstudents.common.service.impl.AbstractServiceImpl;
@@ -24,4 +25,10 @@ public class StudentServiceImpl extends AbstractServiceImpl<Student, StudentDao>
     public List<CourseStatisticBySpeciality> getCourseStatisticBySpeciality() {
         return this.dao.getCourseStatisticBySpeciality();
     }
+
+    @Override
+    public List<CourseStatisticByCountry> getCourseStatisticByCountry() {
+        return this.dao.getCourseStatisticByCountry();
+    }
+
 }

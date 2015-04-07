@@ -27,11 +27,23 @@ public class StudentRestService extends AbstractRestServiceImpl<Student> {
     }
 
     @GET
-    @Path("/statisticbySpec")
+    @Path("/statisticBySpeciality")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getCourseStatisticBySpeciality() {
         try {
             return returnEntityCheck(studentService.getCourseStatisticBySpeciality());
+        }
+        catch (CannotCreateTransactionException e){
+            return  Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(e.getMessage()).build();
+        }
+    }
+
+    @GET
+    @Path("/statisticByCountry")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getCourseStatisticByCountry() {
+        try {
+            return returnEntityCheck(studentService.getCourseStatisticByCountry());
         }
         catch (CannotCreateTransactionException e){
             return  Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(e.getMessage()).build();

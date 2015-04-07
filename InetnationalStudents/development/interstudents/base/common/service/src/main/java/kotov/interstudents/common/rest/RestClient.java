@@ -11,7 +11,7 @@ public class RestClient extends AbstractRestClient {
     }
 
     public <T> T getAll(Class<T> responseType) {
-        return restTemplate.getForObject(this.serviceUrlAll, responseType);
+        return restTemplate.getForObject(this.serviceUrl, responseType);
     }
 
     public <T> T get(int entityId, Class<T> responseType) {

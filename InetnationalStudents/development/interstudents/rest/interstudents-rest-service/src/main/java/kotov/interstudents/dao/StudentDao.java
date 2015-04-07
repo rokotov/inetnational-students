@@ -1,6 +1,7 @@
 package kotov.interstudents.dao;
 
 import kotov.interstudents.common.AbstractDao;
+import kotov.interstudents.common.model.entity.CourseStatisticByCountry;
 import kotov.interstudents.common.model.entity.CourseStatisticBySpeciality;
 import kotov.interstudents.common.model.entity.Student;
 
@@ -11,4 +12,5 @@ import java.util.List;
  */
 public interface StudentDao extends AbstractDao<Student> {
     List<CourseStatisticBySpeciality> getCourseStatisticBySpeciality();
+    List<CourseStatisticByCountry> getCourseStatisticByCountry();
 }

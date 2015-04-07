@@ -31,4 +31,9 @@
         <property name="restTemplate" ref="restTemplate" />
         <property name="serviceUrl" value="${specialityServiceUrl}" />
     </bean>
+
+    <bean id="countryRestClient" class="kotov.interstudents.common.rest.client.CountryRestClient">
+        <property name="restTemplate" ref="restTemplate" />
+        <property name="serviceUrl" value="${countryServiceUrl}" />
+    </bean>
 </beans>

@@ -1,9 +1,8 @@
 package kotov.interstudents.dao.impl;
 
 import kotov.interstudents.common.dao.AbstractDaoImpl;
-import kotov.interstudents.common.model.entity.CourseStatisticBySpeciality;
-import kotov.interstudents.common.model.entity.Speciality;
-import kotov.interstudents.common.model.entity.Student;
+import kotov.interstudents.common.model.entity.*;
+import kotov.interstudents.common.rest.client.CountryRestClient;
 import kotov.interstudents.common.rest.client.SpecialityRestClient;
 import kotov.interstudents.dao.SpecialityDao;
 import kotov.interstudents.dao.StudentDao;
@@ -15,6 +14,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -23,8 +23,12 @@ import java.util.List;
 @Repository
 @Transactional
 public class StudentDaoImpl extends AbstractDaoImpl<Student> implements StudentDao {
-    @Autowired
+    @Autowired(required = false)
     private SpecialityRestClient specialityRestClient;
+
+    @Autowired(required = false)
+    private CountryRestClient countryRestClient;
+
 
     @Override
     public List<CourseStatisticBySpeciality> getCourseStatisticBySpeciality() {
@@ -35,7 +39,7 @@ public class StudentDaoImpl extends AbstractDaoImpl<Student> implements StudentD
 
         for(Speciality speciality : specialityList) {
             CourseStatisticBySpeciality statisticBySpeciality = new CourseStatisticBySpeciality();
-            statisticBySpeciality.setSpeciality(specialityRestClient.getEntity(speciality.getId()));
+            statisticBySpeciality.setSpeciality(speciality);
 
             Criteria criteria = getSession().createCriteria(Student.class);
             criteria.createAlias("group","group");
@@ -68,6 +72,51 @@ public class StudentDaoImpl extends AbstractDaoImpl<Student> implements StudentD
                 }
             }
             list.add(statisticBySpeciality);
+        }
+
+        return list;
+    }
+
+    @Override
+    public List<CourseStatisticByCountry> getCourseStatisticByCountry() {
+        List<Country> countryList = countryRestClient.getAll();
+        List<CourseStatisticByCountry> list = new ArrayList<>();
+
+
+        for(Country country : countryList) {
+            CourseStatisticByCountry statisticByCountry = new CourseStatisticByCountry();
+            statisticByCountry.setCountry(country);
+
+            Criteria criteria = getSession().createCriteria(Student.class);
+            List<Student> studentList = criteria.add(Restrictions.eq("country", country)).list();
+
+            for(Student student : studentList){
+                switch (student.getCourse()){
+                    case "0": statisticByCountry.addCount0();
+                        break;
+                    case "1": statisticByCountry.addCount1();
+                        break;
+                    case "2": statisticByCountry.addCount2();
+                        break;
+                    case "3": statisticByCountry.addCount3();
+                        break;
+                    case "4": statisticByCountry.addCount4();
+                        break;
+                    case "5": statisticByCountry.addCount5();
+                        break;
+                    case "II": statisticByCountry.addCountII();
+                        break;
+                    case "III": statisticByCountry.addCountIII();
+                        break;
+                    case "K": statisticByCountry.addCountK();
+                        break;
+                    case "A": statisticByCountry.addCountA();
+                        break;
+                    default:
+                        break;
+                }
+            }
+            list.add(statisticByCountry);
         }
 
         return list;
