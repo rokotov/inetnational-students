@@ -6,6 +6,8 @@ import kotov.interstudents.common.rest.client.CountryRestClient;
 import kotov.interstudents.common.rest.client.SpecialityRestClient;
 import kotov.interstudents.dao.SpecialityDao;
 import kotov.interstudents.dao.StudentDao;
+import kotov.interstudents.service.CountryService;
+import kotov.interstudents.service.SpecialityService;
 import org.hibernate.Criteria;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,17 +25,18 @@ import java.util.List;
 @Repository
 @Transactional
 public class StudentDaoImpl extends AbstractDaoImpl<Student> implements StudentDao {
-    @Autowired(required = false)
-    private SpecialityRestClient specialityRestClient;
 
-    @Autowired(required = false)
-    private CountryRestClient countryRestClient;
+    @Autowired
+    private CountryService countryService;
+
+    @Autowired
+    private SpecialityService specialityService;
 
 
     @Override
     public List<CourseStatisticBySpeciality> getCourseStatisticBySpeciality() {
 
-        List<Speciality> specialityList = specialityRestClient.getAll();
+        List<Speciality> specialityList = specialityService.getAllEntities();
         List<CourseStatisticBySpeciality> list = new ArrayList<>();
 
 
@@ -79,7 +82,7 @@ public class StudentDaoImpl extends AbstractDaoImpl<Student> implements StudentD
 
     @Override
     public List<CourseStatisticByCountry> getCourseStatisticByCountry() {
-        List<Country> countryList = countryRestClient.getAll();
+        List<Country> countryList = countryService.getAllEntities();
         List<CourseStatisticByCountry> list = new ArrayList<>();
 
 
