@@ -194,6 +194,6 @@ INSERT INTO `interstudents`.`user`
 `role`)
 VALUES
 (1,'admin','3b8193d9eb38699c660997a92fcc8a4e1c9a5c86a6171fc62b672e2e870f028b1e6c0066959ece6d','admin'),
-(2,'user','5b2fbb19eb37842fa212d90a61195643df47598bdcc56033313389cabaa40c8f7f3014ff9a883faa','uuserser');
+(2,'user','5b2fbb19eb37842fa212d90a61195643df47598bdcc56033313389cabaa40c8f7f3014ff9a883faa','user');
 
 
