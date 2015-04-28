@@ -1,10 +1,10 @@
 package kotov.interstudents.common.model.entity;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import kotov.interstudents.common.model.AbstractEntity;
+import kotov.interstudents.common.model.JsonStdDateSerializer;
 
 import javax.persistence.*;
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
 import java.util.Date;
 
 /**
@@ -58,21 +58,25 @@ public class Student extends AbstractEntity{
     private String registrationAddress;
 
     @Column(name = "registration_end_date")
+    @JsonSerialize(using = JsonStdDateSerializer.class)
     private Date registrationEndDate;
 
     @Column(name = "graduated")
     private String graduated;
 
     @Column(name = "receipt_date")
+    @JsonSerialize(using = JsonStdDateSerializer.class)
     private Date receiptDate;
 
     @Column(name = "vacation")
     private String vacation;
 
     @Column(name = "vacation_start_date")
+    @JsonSerialize(using = JsonStdDateSerializer.class)
     private Date vacationStartDate;
 
     @Column(name = "vacation_end_date")
+    @JsonSerialize(using = JsonStdDateSerializer.class)
     private Date vacationEndDate;
 
     @Column(name = "line")
