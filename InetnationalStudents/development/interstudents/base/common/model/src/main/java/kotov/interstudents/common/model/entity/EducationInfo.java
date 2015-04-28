@@ -1,6 +1,8 @@
 package kotov.interstudents.common.model.entity;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import kotov.interstudents.common.model.AbstractEntity;
+import kotov.interstudents.common.model.JsonStdDateSerializer;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -18,12 +20,15 @@ public class EducationInfo extends AbstractEntity {
     private Integer id;
 
     @Column(name = "incoming_date")
+    @JsonSerialize(using = JsonStdDateSerializer.class)
     private Date incomingDate;
 
     @Column(name = "graduated_date")
+    @JsonSerialize(using = JsonStdDateSerializer.class)
     private Date graduatedDate;
 
     @Column(name = "dismis_date")
+    @JsonSerialize(using = JsonStdDateSerializer.class)
     private Date dismisDate;
 
     @Column(name = "order_number")
@@ -42,9 +47,11 @@ public class EducationInfo extends AbstractEntity {
     private String invitingPart;
 
     @Column(name = "invite_date")
+    @JsonSerialize(using = JsonStdDateSerializer.class)
     private Date inviteDate;
 
     @Column(name = "incoming_rb_date")
+    @JsonSerialize(using = JsonStdDateSerializer.class)
     private Date incomingRbDate;
 
     @Override
