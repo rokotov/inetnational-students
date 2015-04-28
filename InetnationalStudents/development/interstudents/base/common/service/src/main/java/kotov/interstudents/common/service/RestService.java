@@ -9,7 +9,7 @@ public interface RestService<T> {
 
     Response addEntity(T entity);
 
-    Response saveOrUpdateEntity(T entity);
+    Response saveOrUpdateEntity(Long id,T entity);
 
     Response deleteEntity(Integer id);
 

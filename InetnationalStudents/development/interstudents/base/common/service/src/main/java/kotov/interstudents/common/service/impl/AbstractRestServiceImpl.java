@@ -30,9 +30,10 @@ public abstract class AbstractRestServiceImpl<T extends AbstractEntity> implemen
     }
 
     @Override
-    @PUT
+    @POST
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response saveOrUpdateEntity(T entity) {
+    @Path("{id}")
+    public Response saveOrUpdateEntity(@PathParam("id") Long id,T entity) {
         try {
             getService().saveOrUpdateEntity(entity);
             return Response.status(Response.Status.OK).build();

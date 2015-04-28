@@ -16,6 +16,7 @@ import java.util.List;
  */
 @Service
 public class StudentServiceImpl extends AbstractServiceImpl<Student, StudentDao> implements StudentService{
+
     @Override
     @Autowired
     public void setDao(StudentDao dao) {
