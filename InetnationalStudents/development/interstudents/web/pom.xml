@@ -6,6 +6,7 @@
 
     <modules>
         <module>interstudents-ui</module>
+        <module>angular-ui</module>
     </modules>
 
     <parent>

@@ -1,0 +1,18 @@
+<div class="pull-right">
+	<a href="#!/create" class="btn btn-default" ng-show="hasRole('admin')" title="Create"><span class="glyphicon glyphicon-plus"></span></a>
+</div>
+<div class="page-header">
+	<h3>Общаги</h3>
+</div>
+
+<div ng-repeat="hostel in hostels">
+	<hr />
+	<div class="pull-right">
+		<a href="" ng-click="deleteEntry(hostel)" class="btn btn-xs btn-default" ng-show="hasRole('admin')" title="delete"><span class="glyphicon glyphicon-trash"></span></a>
+		<a href="#!/edit/{{hostel.id}}" class="btn btn-xs btn-default" ng-show="hasRole('admin')" title="edit"><span class="glyphicon glyphicon-pencil"></span></a>
+	</div>
+	<h4>{{hostel.id | id}}</h4>
+	<p>{{hostel.address}}</p>
+	{{hostel.address}
+</div>
+<hr/>
