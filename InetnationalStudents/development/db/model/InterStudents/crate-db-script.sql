@@ -143,7 +143,7 @@ create table user
    user_id              int not null,
    login                char(255),
    password             char(255),
-   is_admin             bool,
+   role                 char(10),
    primary key (user_id)
 );
 
