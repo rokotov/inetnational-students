@@ -148,13 +148,14 @@ function IndexController($scope, HostelService) {
 }
 
 
-function EditController($scope, $routeParams, $location, StudentService) {
+function EditController($scope, $routeParams, $location, StudentService, CountryService) {
 
 	$scope.student = StudentService.get({id: $routeParams.id});
+	$scope.countries = CountryService.query();
 
 	$scope.save = function() {
 		$scope.student.$save(function() {
-			$location.path('/');
+			$location.path('/administration');
 		});
 	};
 }
@@ -170,7 +171,21 @@ function CreateController($scope, $location, HostelService) {
 		});
 	};
 }
-function AdministrationController($scope, $location, HostelService) {
+function AdministrationController($scope, $location, StudentService, FacultyService, SpecialityService, CountryService, GroupService) {
+	$scope.student = new StudentService();
+
+	$scope.save = function() {
+		$scope.student.$save(function() {
+			$location.path('/administration');
+		});
+	};
+
+	$scope.original = StudentService.query();
+
+	$scope.faculties = FacultyService.query();
+	$scope.specialities = SpecialityService.query();
+	$scope.groups = GroupService.query();
+	$scope.courses =[{ name:'0'}, {name:'1'}, {name:'2'}, {name:'3'}, {name:'4'}, {name:'5'}, {name:'II'}, {name:'III'}, {name:'K'}, {name:'A'} ];
 
 }
 
@@ -306,6 +321,18 @@ services.factory('SpecialityService', function($resource) {
 
 services.factory('CountryService', function($resource) {
 	return $resource('rest/country/:id', {id: '@id'});
+});
+
+services.factory('GroupService', function($resource) {
+	return $resource('rest/group/:id', {id: '@id'});
+});
+
+services.factory('EducationInfoService', function($resource) {
+	return $resource('rest/education-info/:id', {id: '@id'});
+});
+
+services.factory('PersonalInfoService', function($resource) {
+	return $resource('rest/personal-info/:id', {id: '@id'});
 });
 
 services.factory('StatisticSpecialityService', function($resource) {
