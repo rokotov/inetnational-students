@@ -16,6 +16,10 @@ angular.module('myApp', ['ngRoute', 'ngCookies', 'ngMaterial', 'myApp.services',
 				templateUrl: 'partials/statistic.html',
 				controller: StatisticController
 			});
+			$routeProvider.when('/administration', {
+				templateUrl: 'partials/administration.html',
+				controller: AdministrationController
+			});
 
 			$routeProvider.when('/student', {
 				templateUrl: 'partials/student.html',
@@ -165,6 +169,9 @@ function CreateController($scope, $location, HostelService) {
 			$location.path('/');
 		});
 	};
+}
+function AdministrationController($scope, $location, HostelService) {
+
 }
 
 function LoginController($scope, $rootScope, $location, $cookieStore, UserService) {

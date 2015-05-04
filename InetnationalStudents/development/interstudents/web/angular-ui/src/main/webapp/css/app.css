@@ -75,7 +75,7 @@
 .main-context{
     min-width: 900px;
     margin:0px 20px;
-    padding-top: 90px;
+    padding-top: 100px;
     height: 95%;
 }
 .md-tabs-content{
@@ -89,12 +89,9 @@
     overflow: hidden;
     height: 100%;
 }
-.tabpanel-container{
-    height: 95%;
-}
 .data-context{
-    overflow-y: auto;
-    height: inherit;
+    height: 600px;
+    padding: 24px;
 }
 .data-context th{
     padding: 4px;
@@ -142,3 +139,8 @@
 .filter-item{
     margin-top: 20px;
 }
+
+/*
+button, select, html, textarea, input, body{
+    font-family: RobotoDraft, Roboto, 'Helvetica Neue', sans-serif;
+}*/
