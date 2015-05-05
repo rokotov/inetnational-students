@@ -1,43 +1,56 @@
-<div style="padding-top: 200px">
+<div style="padding-top: 70px">
 	<md-content>
-		<md-subheader class="md-sticky-no-effect">Student (edit)</md-subheader>
-		<md-input-container>
-			<label>Фамилия</label>
-			<input ng-model="student.lastName" value="{{student.lastName}}">
-		</md-input-container>
-		<md-input-container>
-			<label>Имя</label>
-			<input ng-model="student.firstName"  value="{{student.firstName}}">
-		</md-input-container>
-		<md-input-container>
-			<label>Отчество</label>
-			<input ng-model="student.middleName" value="{{student.middleName}}">
-		</md-input-container>
+<!--		<md-subheader class="md-sticky-no-effect">Student (edit)</md-subheader>-->
+		<div layout layout-sm="column">
+			<md-input-container flex>
+				<label>Фамилия</label>
+				<input ng-model="student.lastName" value="{{student.lastName}}">
+			</md-input-container>
+			<md-input-container flex>
+				<label>Имя</label>
+				<input ng-model="student.firstName"  value="{{student.firstName}}">
+			</md-input-container>
+			<md-input-container flex>
+				<label>Отчество</label>
+				<input ng-model="student.middleName" value="{{student.middleName}}">
+			</md-input-container>
+		</div>
 
 		<md-content class="md-padding">
 			<form name="userForm">
-				<md-input-container flex>
-					<label>Company (Disabled)</label>
-					<input ng-model="user.company" disabled>
-				</md-input-container>
 				<div layout layout-sm="column">
-					<md-select ng-model="student.country.id">
-						<md-option ng-value="country.id" ng-repeat="country in countries">{{ country.countryName }}</md-option>
-					</md-select>
+					<div flex>
+						<md-select ng-model="student.course" placeholder="Курс">
+							<md-option ng-value="course.name" ng-repeat="course in courses">{{ course.name }}</md-option>
+						</md-select>
+					</div>
+					<div flex>
+						<md-select ng-model="student.group.id" placeholder="Группа">
+							<md-option ng-value="group.id" ng-repeat="group in groups">{{ group.groupName }}</md-option>
+						</md-select>
+					</div>
+					<div flex="25">
+						<md-select ng-model="student.country.id" placeholder="Страна">
+							<md-option ng-value="country.id" ng-repeat="country in countries">{{ country.countryName }}</md-option>
+						</md-select>
+					</div>
+					<div flex="25">
+						<md-select ng-model="student.hostel.id" placeholder="Общежитие">
+							<md-option ng-value="hostel.id" ng-repeat="hostel in hostels">{{ hostel.hostelName }}</md-option>
+						</md-select>
+					</div>
+				</div>
+				<div layout layout-sm="column" style="padding-top: 30px;">
 					<md-input-container flex>
-						<label>First Name</label>
-						<input ng-model="user.firstName" placeholder="Placeholder text">
-					</md-input-container>
-					<md-input-container flex>
-						<label>Last Name</label>
-						<input ng-model="theMax">
+						<label>Адрес регистрации</label>
+						<input ng-model="student.registrationAddress">
 					</md-input-container>
 				</div>
-				<md-input-container flex>
-					<label>Address</label>
-					<input ng-model="user.address">
-				</md-input-container>
 				<div layout layout-sm="column">
+					<md-input-container flex>
+						<label>Дата окончания</label>
+						<input  ng-model="student.receiptDate">
+					</md-input-container>
 					<md-input-container flex>
 						<label>City</label>
 						<input ng-model="user.city">
@@ -55,12 +68,11 @@
 					<label>Biography</label>
 					<textarea ng-model="user.biography" columns="1" md-maxlength="150"></textarea>
 				</md-input-container>
-
-
+			</form>
 		</md-content>
 		<div class="md-actions" layout="row">
 			<span flex></span>
-			<button type="submit" class="btn btn-primary" ng-click="save()"><span class="glyphicon glyphicon-ok"></span> Save</button>
+			<!--<button type="submit" class="btn btn-primary" ng-click="save()"><span class="glyphicon glyphicon-ok"></span> Save</button>-->
 			<md-button ng-click="answer('Отмена')">
 				Отмена
 			</md-button>

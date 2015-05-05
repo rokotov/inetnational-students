@@ -13,9 +13,9 @@
 				<md-select ng-model="querySpeciality" placeholder="Выбрать специальность">
 					<md-option ng-value="speciality.specialityName" ng-repeat="speciality in specialities | filter:queryFaculty">{{ speciality.specialityName }}</md-option>
 				</md-select>
-				<md-select ng-model="queryGroup" placeholder="Выбрать группу">
+				<!--<md-select ng-model="queryGroup" placeholder="Выбрать группу">
 					<md-option ng-value="group.groupName" ng-repeat="group in groups | filter:querySpeciality">{{ group.groupName }}</md-option>
-				</md-select>
+				</md-select>-->
 				<md-select ng-model="queryCourse" placeholder="Выбрать курс">
 					<md-option ng-value="course.name" ng-repeat="course in courses">{{ course.name }}</md-option>
 				</md-select>
@@ -52,8 +52,12 @@
 						<td>{{item.group.speciality.specialityName}}</td>
 						<td>{{item.group.groupName}}</td>
 						<td>
-								<a href="#!/edit/{{item.id}}" class="btn btn-xs btn-default" ng-show="hasRole('admin')" title="edit">
-									<md-icon style="color: gray" md-svg-icon="img/icons/pencil.svg"></md-icon></a>
+							<a href="#!/edit/{{item.id}}" class="btn btn-xs btn-default" ng-show="hasRole('admin')">
+								<md-icon style="color: gray" md-svg-icon="img/icons/pencil.svg"></md-icon>
+								<md-tooltip md-direction="right">
+									Изменить данные {{item.lastName}}
+								</md-tooltip>
+							</a>
 						</td>
 					</tr>
 				</table>

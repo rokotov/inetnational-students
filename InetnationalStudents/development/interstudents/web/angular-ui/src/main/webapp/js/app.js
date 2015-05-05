@@ -148,10 +148,16 @@ function IndexController($scope, HostelService) {
 }
 
 
-function EditController($scope, $routeParams, $location, StudentService, CountryService) {
+function EditController($scope, $routeParams, $location, StudentService, CountryService,
+						FacultyService, SpecialityService, CountryService, GroupService, HostelService) {
 
 	$scope.student = StudentService.get({id: $routeParams.id});
 	$scope.countries = CountryService.query();
+	$scope.hostels = HostelService.query();
+	$scope.faculties = FacultyService.query();
+	$scope.specialities = SpecialityService.query();
+	$scope.groups = GroupService.query();
+	$scope.courses =[{ name:'0'}, {name:'1'}, {name:'2'}, {name:'3'}, {name:'4'}, {name:'5'}, {name:'II'}, {name:'III'}, {name:'K'}, {name:'A'} ];
 
 	$scope.save = function() {
 		$scope.student.$save(function() {
@@ -161,13 +167,13 @@ function EditController($scope, $routeParams, $location, StudentService, Country
 }
 
 
-function CreateController($scope, $location, HostelService) {
+function CreateController($scope, $location, StudentService) {
 
-	$scope.hostel = new HostelService();
+	$scope.student = new StudentService();
 
 	$scope.save = function() {
-		$scope.hostel.$save(function() {
-			$location.path('/');
+		$scope.student.$save(function() {
+			$location.path('/administration');
 		});
 	};
 }
