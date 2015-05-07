@@ -23,6 +23,11 @@ public class Group extends AbstractEntity{
     @JoinColumn(name = "speciality_id")
     private Speciality speciality;
 
+    @ManyToOne
+    @JoinColumn(name = "course_id")
+    private Course course;
+
+
     @Override
     public Integer getId() {
         return id;
@@ -46,5 +51,13 @@ public class Group extends AbstractEntity{
 
     public void setSpeciality(Speciality speciality) {
         this.speciality = speciality;
+    }
+
+    public Course getCourse() {
+        return course;
+    }
+
+    public void setCourse(Course course) {
+        this.course = course;
     }
 }
