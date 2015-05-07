@@ -1,3 +1,5 @@
+drop table if exists Course;
+
 drop table if exists country;
 
 drop table if exists education_info;
@@ -15,6 +17,16 @@ drop table if exists speciality;
 drop table if exists student;
 
 drop table if exists user;
+
+/*==============================================================*/
+/* Table: Course                                                */
+/*==============================================================*/
+create table Course
+(
+   course_id            int not null,
+   course_name          char(20),
+   primary key (course_id)
+);
 
 /*==============================================================*/
 /* Table: country                                               */
@@ -64,6 +76,7 @@ create table groupe
 (
    group_id             int not null,
    speciality_id        int,
+   course_id            int,
    group_name           char(60),
    primary key (group_id)
 );
@@ -116,8 +129,8 @@ create table student
    student_id           int not null,
    group_id             int,
    country_id           int,
-   personal_info_id     int,
-   education_info_id    int,
+   personal_info_id     int not null,
+   education_info_id    int not null,
    hostel_id            int,
    course               char(10),
    first_name           char(60),
@@ -146,6 +159,9 @@ create table user
    role                 char(10),
    primary key (user_id)
 );
+
+alter table groupe add constraint FK_group_course foreign key (course_id)
+      references Course (course_id) on delete restrict on update restrict;
 
 alter table groupe add constraint FK_group_speciality foreign key (speciality_id)
       references speciality (speciality_id) on delete restrict on update restrict;
