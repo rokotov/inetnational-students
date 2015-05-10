@@ -8,17 +8,20 @@
 		<div layout="row">
 			<div flex="70">
 				<md-select ng-model="queryFaculty" placeholder="Выбрать факультет">
+					<md-option ng-value="">Все факультеты</md-option>
 					<md-option ng-value="faculty.facultyName" ng-repeat="faculty in faculties">{{ faculty.facultyName }}</md-option>
 				</md-select>
 				<md-select ng-model="querySpeciality" placeholder="Выбрать специальность">
+					<md-option ng-value="">Все специальности</md-option>
 					<md-option ng-value="speciality.specialityName" ng-repeat="speciality in specialities | filter:queryFaculty">{{ speciality.specialityName }}</md-option>
 				</md-select>
-				<!--<md-select ng-model="queryGroup" placeholder="Выбрать группу">
-					<md-option ng-value="group.groupName" ng-repeat="group in groups | filter:querySpeciality">{{ group.groupName }}</md-option>
-				</md-select>-->
-				<md-select ng-model="queryCourse" placeholder="Выбрать курс">
-					<md-option ng-value="course.name" ng-repeat="course in courses">{{ course.name }}</md-option>
+				<md-select ng-model="queryGroup" placeholder="Выбрать группу">
+					<md-option ng-value="">Все группы</md-option>
+					<md-option ng-value="group.groupName" ng-repeat="group in groups | filter:querySpeciality">{{group.groupName}}</md-option>
 				</md-select>
+				<!--<md-select ng-model="queryCourse" placeholder="Выбрать курс">
+					<md-option ng-value="course.courseName" ng-repeat="course in courses">{{ course.courseName }}</md-option>
+				</md-select>-->
 			</div>
 			<div flex="20">
 				<md-input-container >
@@ -38,16 +41,17 @@
 					<thead>
 					<tr>
 						<th sort-by='lastName'>Фамилия Имя Отчество</th>
-						<th sort-by='course' >Курс</th>
+						<th sort-by='group.course.courseName' >Курс</th>
 						<th sort-by='group.speciality.faculty.facultyName'>Факультет</th>
 						<th sort-by='group.speciality.specialityName'>Специальность</th>
 						<th sort-by='group.groupName'>Группа</th>
 						<th></th>
 					</tr>
 					</thead>
-					<tr ng-repeat="item in filtered = (original | filter:{course:queryCourse} | filter: querySpeciality | filter:queryFaculty | filter:queryGroup | filterByFields:filterModel:['lastName', 'firstName'])" >
+					<tr ng-repeat="item in filtered = (original | filter:querySpeciality | filter:queryFaculty | filter:queryGroup | filterByFields:filterModel:['lastName', 'firstName'])" >
+						<!--| -->
 						<td>{{item.lastName}} {{item.firstName}} {{item.middleName}}</td>
-						<td>{{item.course}}</td>
+						<td>{{item.group.course.courseName}}</td>
 						<td>{{item.group.speciality.faculty.facultyName}}</td>
 						<td>{{item.group.speciality.specialityName}}</td>
 						<td>{{item.group.groupName}}</td>

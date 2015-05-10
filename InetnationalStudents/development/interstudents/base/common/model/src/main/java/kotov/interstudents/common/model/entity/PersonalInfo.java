@@ -3,6 +3,7 @@ package kotov.interstudents.common.model.entity;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import kotov.interstudents.common.model.AbstractEntity;
 import kotov.interstudents.common.model.JsonStdDateSerializer;
+import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -15,7 +16,8 @@ import java.util.Date;
 public class PersonalInfo extends AbstractEntity {
 
     @Id
-    @GeneratedValue()
+    @GenericGenerator(name = "studentGen", strategy = "increment")
+    @GeneratedValue(generator = "studentGen")
     @Column(name = "personal_info_id")
     private Integer id;
 

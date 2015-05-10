@@ -1,27 +1,198 @@
-<div class="page-header">
-	<h3>Create</h3>
-</div>
-
-<form class="form-horizontal">
-	<div class="form-group">
-		<div class="col-sm-10">
-			<md-input-container>
+<div style="padding-top: 200px; width: 800px">
+	<md-content>
+		<!--		<md-subheader class="md-sticky-no-effect">Student (edit)</md-subheader>-->
+		<div layout layout-sm="column">
+			<md-input-container flex>
 				<label>Фамилия</label>
 				<input ng-model="student.lastName" value="{{student.lastName}}">
 			</md-input-container>
-			<md-input-container>
+			<md-input-container flex>
 				<label>Имя</label>
 				<input ng-model="student.firstName"  value="{{student.firstName}}">
 			</md-input-container>
-			<md-input-container>
+			<md-input-container flex>
 				<label>Отчество</label>
 				<input ng-model="student.middleName" value="{{student.middleName}}">
 			</md-input-container>
 		</div>
-	</div>
-	<div class="form-group">
-		<div class="col-sm-10 col-sm-offset-2">
-			<button type="submit" class="btn btn-primary" ng-click="save()"><span class="glyphicon glyphicon-ok"></span> Save</button>
+
+		<md-content class="md-padding">
+			<form name="userForm">
+				<p>Информация об образовании</p>
+				<div layout layout-sm="column">
+					<div flex>
+						<md-select ng-model="queryFaculty" placeholder="Факультет">
+							<md-option ng-value="">Все факультеты</md-option>
+							<md-option ng-value="faculty.facultyName" ng-repeat="faculty in faculties">{{ faculty.facultyName }}</md-option>
+						</md-select>
+					</div>
+					<div flex>
+						<md-select ng-model="querySpeciality" placeholder="Специальность">
+							<md-option ng-value="">Все специальности</md-option>
+							<md-option ng-value="speciality.specialityName" ng-repeat="speciality in specialities | filter:queryFaculty">{{ speciality.specialityName }}</md-option>
+						</md-select>
+					</div>
+					<div flex>
+						<md-select ng-model="student.group.id" placeholder="Группа">
+							<md-option ng-value="group.id" ng-repeat="group in groups  | filter:querySpeciality"> {{group.course.courseName}} {{group.groupName}}</md-option>
+						</md-select>
+					</div>
+
+				</div>
+				<div layout layout-sm="column">
+					<div flex="25">
+						<md-input-container flex>
+							<label>Что окончил</label>
+							<input  ng-model="student.graduated">
+						</md-input-container>
+					</div>
+					<div flex="25">
+						<md-input-container flex>
+							<label>Дата окончания</label>
+							<input  ng-model="student.graduatedDate">
+						</md-input-container>
+					</div>
+					<div flex="25">
+						<md-input-container flex>
+							<label>Форма обучения</label>
+							<input ng-model="student.studyForm">
+						</md-input-container>
+					</div>
+					<div flex="25">
+						<md-input-container flex>
+							<label>Номер приказа</label>
+							<input ng-model="user.orderNumber">
+						</md-input-container>
+					</div>
+				</div>
+				<div layout layout-sm="column">
+					<div flex="25">
+						<md-input-container flex>
+							<label>Тип приглашения</label>
+							<input ng-model="student.incomeType">
+						</md-input-container>
+					</div>
+					<div flex="25">
+						<md-input-container flex>
+							<label>Приглашающая сторона</label>
+							<input ng-model="student.invitingPart">
+						</md-input-container>
+					</div>
+					<div flex="25">
+						<md-input-container flex>
+							<label>Дата приглашения</label>
+							<input ng-model="student.inviteDate">
+						</md-input-container>
+					</div>
+					<div flex="25">
+						<md-input-container flex>
+							<label>Дата прибытия</label>
+							<input  ng-model="student.incomingRbDate">
+						</md-input-container>
+					</div>
+				</div>
+				<div layout layout-sm="column">
+					<div flex="25">
+
+					</div>
+					<div flex="25">
+
+					</div>
+					<div flex="25">
+
+					</div>
+					<div flex="25">
+
+					</div>
+				</div>
+				<p style="padding-top: 30px;">Личная информация</p>
+				<div layout layout-sm="column">
+					<div flex="25">
+						<md-select ng-model="student.country.id" placeholder="Страна">
+							<md-option ng-value="country.id" ng-repeat="country in countries">{{ country.countryName }}</md-option>
+						</md-select>
+					</div>
+					<div flex="25">
+						<md-select ng-model="student.hostel.id" placeholder="Общежитие">
+							<md-option ng-value="hostel.id" ng-repeat="hostel in hostels">{{ hostel.hostelName }}</md-option>
+						</md-select>
+					</div>
+					<div flex="25">
+						<md-input-container>
+							<label>Имя латиницей</label>
+							<input ng-model="student.fioLatin">
+						</md-input-container>
+					</div>
+				</div>
+				<div layout layout-sm="column">
+					<md-input-container flex>
+						<label>Адрес регистрации</label>
+						<input ng-model="student.registrationAddress">
+					</md-input-container>
+					<md-input-container>
+						<label>Дата окончания регистрации</label>
+						<input ng-model="student.registrationEndDate">
+					</md-input-container>
+				</div>
+				<div layout layout-sm="column">
+					<div flex="25">
+						<md-input-container>
+							<label>Дата рождения</label>
+							<input ng-model="student.birthDate">
+						</md-input-container>
+					</div>
+					<div flex="25">
+						<md-input-container>
+							<label>Место рождения</label>
+							<input ng-model="student.birthPlace">
+						</md-input-container>
+					</div>
+					<div flex="25">
+						<md-input-container>
+							<label>Пол</label>
+							<input ng-model="student.gender">
+						</md-input-container>
+					</div>
+					<div flex="25">
+
+					</div>
+				</div>
+				<div layout layout-sm="column">
+					<div flex="25">
+						<md-input-container>
+							<label>Номер паспорта</label>
+							<input ng-model="student.pasportNumber">
+						</md-input-container>
+					</div>
+					<div flex="25">
+						<md-input-container>
+							<label>Срок действия паспорта</label>
+							<input ng-model="student.pasportValidity">
+						</md-input-container>
+					</div>
+					<div flex="25">
+						<md-input-container>
+							<label>Номер визы</label>
+							<input ng-model="student.visaNumber">
+						</md-input-container>
+					</div>
+					<div flex="25">
+						<md-input-container>
+							<label>Срок действия визы</label>
+							<input ng-model="student.visaEndDate">
+						</md-input-container>
+					</div>
+				</div>
+			</form>
+		</md-content>
+		<div class="md-actions" layout="row">
+			<span flex></span>
+			<md-button ng-click="answer('Отмена')">
+				Отмена
+			</md-button>
+			<md-button ng-click="save()" class="Сохранить">
+				Сохранить
+			</md-button>
 		</div>
-	</div>
-</form>
+	</md-content>
+</div>

@@ -149,15 +149,18 @@ function IndexController($scope, HostelService) {
 
 
 function EditController($scope, $routeParams, $location, StudentService, CountryService,
-						FacultyService, SpecialityService, CountryService, GroupService, HostelService) {
+						FacultyService, SpecialityService, CourseService, GroupService, HostelService) {
+
 
 	$scope.student = StudentService.get({id: $routeParams.id});
+
+
 	$scope.countries = CountryService.query();
 	$scope.hostels = HostelService.query();
 	$scope.faculties = FacultyService.query();
 	$scope.specialities = SpecialityService.query();
 	$scope.groups = GroupService.query();
-	$scope.courses =[{ name:'0'}, {name:'1'}, {name:'2'}, {name:'3'}, {name:'4'}, {name:'5'}, {name:'II'}, {name:'III'}, {name:'K'}, {name:'A'} ];
+	$scope.courses = CourseService.query();
 
 	$scope.save = function() {
 		$scope.student.$save(function() {
@@ -167,17 +170,26 @@ function EditController($scope, $routeParams, $location, StudentService, Country
 }
 
 
-function CreateController($scope, $location, StudentService) {
+function CreateController($scope, $location, StudentService, CountryService,
+						  FacultyService, SpecialityService, CourseService, GroupService, HostelService) {
 
 	$scope.student = new StudentService();
 
+	$scope.countries = CountryService.query();
+	$scope.hostels = HostelService.query();
+	$scope.faculties = FacultyService.query();
+	$scope.specialities = SpecialityService.query();
+	$scope.groups = GroupService.query();
+	$scope.courses = CourseService.query();
+
 	$scope.save = function() {
 		$scope.student.$save(function() {
 			$location.path('/administration');
 		});
+
 	};
 }
-function AdministrationController($scope, $location, StudentService, FacultyService, SpecialityService, CountryService, GroupService) {
+function AdministrationController($scope, $location, StudentService, FacultyService, SpecialityService, CourseService, GroupService) {
 	$scope.student = new StudentService();
 
 	$scope.save = function() {
@@ -191,7 +203,7 @@ function AdministrationController($scope, $location, StudentService, FacultyServ
 	$scope.faculties = FacultyService.query();
 	$scope.specialities = SpecialityService.query();
 	$scope.groups = GroupService.query();
-	$scope.courses =[{ name:'0'}, {name:'1'}, {name:'2'}, {name:'3'}, {name:'4'}, {name:'5'}, {name:'II'}, {name:'III'}, {name:'K'}, {name:'A'} ];
+	$scope.courses = CourseService.query();//[{ name:'0'}, {name:'1'}, {name:'2'}, {name:'3'}, {name:'4'}, {name:'5'}, {name:'II'}, {name:'III'}, {name:'K'}, {name:'A'} ];
 
 }
 
@@ -317,6 +329,14 @@ services.factory('StudentService', function($resource) {
 	return $resource('rest/student/:id', {id: '@id'});
 });
 
+services.factory('PersonalInfoService', function($resource) {
+	return $resource('rest/personal-info/:id', {id: '@id'});
+});
+
+services.factory('EducationInfoService', function($resource) {
+	return $resource('rest/education-info/:id', {id: '@id'});
+});
+
 services.factory('FacultyService', function($resource) {
 	return $resource('rest/faculty/:id', {id: '@id'});
 });
@@ -331,6 +351,10 @@ services.factory('CountryService', function($resource) {
 
 services.factory('GroupService', function($resource) {
 	return $resource('rest/group/:id', {id: '@id'});
+});
+
+services.factory('CourseService', function($resource) {
+	return $resource('rest/course/:id', {id: '@id'});
 });
 
 services.factory('EducationInfoService', function($resource) {

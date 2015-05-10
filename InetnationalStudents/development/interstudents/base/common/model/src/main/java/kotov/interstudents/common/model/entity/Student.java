@@ -25,17 +25,11 @@ public class Student extends AbstractEntity{
     @JoinColumn(name = "group_id")
     private Group group;
 
+    //////////////личная
+
     @ManyToOne
     @JoinColumn(name = "country_id")
     private Country country;
-
-    @OneToOne
-    @JoinColumn(name = "personal_info_id")
-    private PersonalInfo personalInfo;
-
-    @OneToOne
-    @JoinColumn(name = "education_info_id")
-    private EducationInfo educationInfo;
 
     @ManyToOne
     @JoinColumn(name = "hostel_id")
@@ -63,8 +57,45 @@ public class Student extends AbstractEntity{
     @JsonSerialize(using = JsonStdDateSerializer.class)
     private Date registrationEndDate;
 
+    @Column(name = "birth_date")
+    @JsonSerialize(using = JsonStdDateSerializer.class)
+    private Date birthDate;
+
+    @Column(name = "birth_place")
+    private String birthPlace;
+
+    @Column(name = "pasport_number")
+    private String pasportNumber;
+
+    @Column(name = "pasport_validity")
+    @JsonSerialize(using = JsonStdDateSerializer.class)
+    private Date pasportValidity;
+
+    @Column(name = "gender")
+    private String gender;
+
+    @Column(name = "visa_number")
+    private String visaNumber;
+
+    @Column(name = "visa_end_date")
+    @JsonSerialize(using = JsonStdDateSerializer.class)
+    private Date visaEndDate;
+
+    @Column(name = "insurance_number")
+    private String insuranceNumber;
+
+    @Column(name = "insurance_end_date")
+    @JsonSerialize(using = JsonStdDateSerializer.class)
+    private Date insuranceEndDate;
+
+    //////////// образование
+
     @Column(name = "graduated")
     private String graduated;
+
+    @Column(name = "graduated_date")
+    @JsonSerialize(using = JsonStdDateSerializer.class)
+    private Date graduatedDate;
 
     @Column(name = "receipt_date")
     @JsonSerialize(using = JsonStdDateSerializer.class)
@@ -83,6 +114,37 @@ public class Student extends AbstractEntity{
 
     @Column(name = "line")
     private String line;
+
+    @Column(name = "incoming_date")
+    @JsonSerialize(using = JsonStdDateSerializer.class)
+    private Date incomingDate;
+
+    @Column(name = "dismis_date")
+    @JsonSerialize(using = JsonStdDateSerializer.class)
+    private Date dismisDate;
+
+    @Column(name = "order_number")
+    private String orderNumber;
+
+    @Column(name = "study_form")
+    private String studyForm;
+
+    @Column(name = "reason_dismis")
+    private String reasonDismis;
+
+    @Column(name = "income_type")
+    private String incomeType;
+
+    @Column(name = "inviting_part")
+    private String invitingPart;
+
+    @Column(name = "invite_date")
+    @JsonSerialize(using = JsonStdDateSerializer.class)
+    private Date inviteDate;
+
+    @Column(name = "incoming_rb_date")
+    @JsonSerialize(using = JsonStdDateSerializer.class)
+    private Date incomingRbDate;
 
     @Override
     public Integer getId() {
@@ -107,22 +169,6 @@ public class Student extends AbstractEntity{
 
     public void setFioLatin(String fioLatin) {
         this.fioLatin = fioLatin;
-    }
-
-    public PersonalInfo getPersonalInfo() {
-        return personalInfo;
-    }
-
-    public void setPersonalInfo(PersonalInfo personalInfo) {
-        this.personalInfo = personalInfo;
-    }
-
-    public EducationInfo getEducationInfo() {
-        return educationInfo;
-    }
-
-    public void setEducationInfo(EducationInfo educationInfo) {
-        this.educationInfo = educationInfo;
     }
 
     public Hostel getHostel() {
@@ -235,5 +281,157 @@ public class Student extends AbstractEntity{
 
     public void setLine(String line) {
         this.line = line;
+    }
+
+    public Date getBirthDate() {
+        return birthDate;
+    }
+
+    public void setBirthDate(Date birthDate) {
+        this.birthDate = birthDate;
+    }
+
+    public String getBirthPlace() {
+        return birthPlace;
+    }
+
+    public void setBirthPlace(String birthPlace) {
+        this.birthPlace = birthPlace;
+    }
+
+    public String getPasportNumber() {
+        return pasportNumber;
+    }
+
+    public void setPasportNumber(String pasportNumber) {
+        this.pasportNumber = pasportNumber;
+    }
+
+    public Date getPasportValidity() {
+        return pasportValidity;
+    }
+
+    public void setPasportValidity(Date pasportValidity) {
+        this.pasportValidity = pasportValidity;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public String getVisaNumber() {
+        return visaNumber;
+    }
+
+    public void setVisaNumber(String visaNumber) {
+        this.visaNumber = visaNumber;
+    }
+
+    public Date getVisaEndDate() {
+        return visaEndDate;
+    }
+
+    public void setVisaEndDate(Date visaEndDate) {
+        this.visaEndDate = visaEndDate;
+    }
+
+    public String getInsuranceNumber() {
+        return insuranceNumber;
+    }
+
+    public void setInsuranceNumber(String insuranceNumber) {
+        this.insuranceNumber = insuranceNumber;
+    }
+
+    public Date getInsuranceEndDate() {
+        return insuranceEndDate;
+    }
+
+    public void setInsuranceEndDate(Date insuranceEndDate) {
+        this.insuranceEndDate = insuranceEndDate;
+    }
+
+    public Date getIncomingDate() {
+        return incomingDate;
+    }
+
+    public void setIncomingDate(Date incomingDate) {
+        this.incomingDate = incomingDate;
+    }
+
+    public Date getGraduatedDate() {
+        return graduatedDate;
+    }
+
+    public void setGraduatedDate(Date graduatedDate) {
+        this.graduatedDate = graduatedDate;
+    }
+
+    public Date getDismisDate() {
+        return dismisDate;
+    }
+
+    public void setDismisDate(Date dismisDate) {
+        this.dismisDate = dismisDate;
+    }
+
+    public String getOrderNumber() {
+        return orderNumber;
+    }
+
+    public void setOrderNumber(String orderNumber) {
+        this.orderNumber = orderNumber;
+    }
+
+    public String getStudyForm() {
+        return studyForm;
+    }
+
+    public void setStudyForm(String studyForm) {
+        this.studyForm = studyForm;
+    }
+
+    public String getReasonDismis() {
+        return reasonDismis;
+    }
+
+    public void setReasonDismis(String reasonDismis) {
+        this.reasonDismis = reasonDismis;
+    }
+
+    public String getIncomeType() {
+        return incomeType;
+    }
+
+    public void setIncomeType(String incomeType) {
+        this.incomeType = incomeType;
+    }
+
+    public String getInvitingPart() {
+        return invitingPart;
+    }
+
+    public void setInvitingPart(String invitingPart) {
+        this.invitingPart = invitingPart;
+    }
+
+    public Date getInviteDate() {
+        return inviteDate;
+    }
+
+    public void setInviteDate(Date inviteDate) {
+        this.inviteDate = inviteDate;
+    }
+
+    public Date getIncomingRbDate() {
+        return incomingRbDate;
+    }
+
+    public void setIncomingRbDate(Date incomingRbDate) {
+        this.incomingRbDate = incomingRbDate;
     }
 }
