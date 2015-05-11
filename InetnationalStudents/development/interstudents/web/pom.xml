@@ -5,7 +5,6 @@
     <modelVersion>4.0.0</modelVersion>
 
     <modules>
-        <module>interstudents-ui</module>
         <module>angular-ui</module>
     </modules>
 
@@ -54,54 +53,10 @@
                 </configuration>
             </plugin>
         </plugins>
-<!--
-        <pluginManagement>
-            <plugins>
-                <plugin>
-                    <groupId>org.apache.tomcat.maven</groupId>
-                    <artifactId>tomcat7-maven-plugin</artifactId>
-                    <version>${tomcat7-maven-plugin.version}</version>
-                    <configuration>
-                        <url>http://localhost:8080/manager/text</url>
-                        <warFile>${project.build.directory}/${project.artifactId}.war</warFile>
-                        <path>${context.path}</path>
-                        <update>true</update>
-                        <username>admin</username>
-                        <password>admin</password>
-                    </configuration>
-                </plugin>
-            </plugins>
-        </pluginManagement>-->
     </build>
 
 
     <dependencies>
 
-        <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-core</artifactId>
-            <version>2.5.0</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-databind</artifactId>
-            <version>2.5.0</version>
-        </dependency>
-
-
-        <dependency>
-            <groupId>kotov.interstudents</groupId>
-            <artifactId>service</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>kotov.interstudents</groupId>
-            <artifactId>common-web</artifactId>
-            <type>war</type>
-            <version>${project.version}</version>
-            <scope>compile</scope>
-        </dependency>
     </dependencies>
 </project>

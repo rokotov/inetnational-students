@@ -5,8 +5,6 @@ import kotov.interstudents.auth.transfer.TokenTransfer;
 import kotov.interstudents.auth.transfer.UserTransfer;
 import kotov.interstudents.common.model.entity.User;
 import kotov.interstudents.common.service.AbstractService;
-import kotov.interstudents.common.service.RestService;
-import kotov.interstudents.common.service.impl.AbstractRestServiceImpl;
 import kotov.interstudents.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -16,13 +14,10 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Component;
-import org.springframework.transaction.CannotCreateTransactionException;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
 import java.util.HashMap;
 import java.util.Map;
 

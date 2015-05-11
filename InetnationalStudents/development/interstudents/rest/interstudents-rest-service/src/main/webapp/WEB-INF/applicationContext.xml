@@ -37,6 +37,8 @@
         <security:custom-filter ref="authenticationTokenProcessingFilter" position="FORM_LOGIN_FILTER" />
         <security:intercept-url pattern="/rest/user/authenticate" access="permitAll" />
 
+        <security:intercept-url method="GET" pattern="/administration/**" access="hasRole('admin')" />
+
         <security:intercept-url method="GET" pattern="/student/**" access="hasRole('user')" />
         <security:intercept-url method="PUT" pattern="/student/**" access="hasRole('admin')" />
         <security:intercept-url method="POST" pattern="/student/**" access="hasRole('admin')" />
@@ -46,6 +48,11 @@
         <security:intercept-url method="PUT" pattern="/hostel/**" access="hasRole('admin')" />
         <security:intercept-url method="POST" pattern="/hostel/**" access="hasRole('admin')" />
         <security:intercept-url method="DELETE" pattern="/hostel/**" access="hasRole('admin')" />
+
+        <security:intercept-url method="GET" pattern="/faculty/**" access="hasRole('user')" />
+        <security:intercept-url method="PUT" pattern="/faculty/**" access="hasRole('admin')" />
+        <security:intercept-url method="POST" pattern="/faculty/**" access="hasRole('admin')" />
+        <security:intercept-url method="DELETE" pattern="/faculty/**" access="hasRole('admin')" />
     </security:http>
 
     <bean id="unauthorizedEntryPoint" class="kotov.interstudents.auth.UnauthorizedEntryPoint" />
