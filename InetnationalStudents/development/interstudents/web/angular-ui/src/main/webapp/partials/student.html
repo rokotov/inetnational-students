@@ -1,271 +1,415 @@
-<div class="app-context md-whiteframe-z4" >
-    <md-tabs role="tablist"  md-theme="indigo" class="app-context">
-        <md-tab class="md-transition-left">
-            <md-tab-label>
-                <h3>  По специальностям</h3>
-            </md-tab-label>
-            <div role="tabpanel" class="tabpanel-container">
-                <div layout="row">
-                    <div flex="40">
-                        <md-select ng-model="queryFaculty" placeholder="Выбрать факультет">
-                            <md-option ng-value="faculty.facultyName" ng-repeat="faculty in faculties">{{ faculty.facultyName }}</md-option>
-                        </md-select>
-                        <md-select ng-model="querySpeciality" placeholder="Выбрать специальность">
-                            <md-option ng-value="speciality.specialityName" ng-repeat="speciality in specialities | filter:queryFaculty">{{ speciality.specialityName }}</md-option>
-                        </md-select>
-                    </div>
-                    <div flex="20">
-                        <md-input-container >
-                            <label>Имя или фамилия</label>
-                            <input ng-model="filterModel">
-                        </md-input-container>
-                    </div>
-                    <div flex="30">
-                        <div layout="row" layout-align="center">
-                            <!-- Показываем данные пейджинга: сколько всего страниц, на какой находимся, сколько записей во всей таблице -->
-                            <div layout="row" layout-align="center">Страница {{pager.currentPage}} of {{pager.foundPages}}. Всего студентов:  {{pager.found}}</div>
+<div layout="column" layout-fill>
+    <md-whiteframe class="md-whiteframe-z1">
+        <md-tabs md-dynamic-height md-border-bottom>
+            <md-tab label="one">
+                <md-tab-label>По специальностям</md-tab-label>
+                <md-tab-body class="tab-content">
+                    <div layout="row">
+                        <div flex="40">
+                            <md-select ng-model="queryFaculty" placeholder="Выбрать факультет">
+                                <md-option ng-value="faculty.facultyName" ng-repeat="faculty in faculties">{{ faculty.facultyName }}</md-option>
+                            </md-select>
+                            <md-select ng-model="querySpeciality" placeholder="Выбрать специальность">
+                                <md-option ng-value="speciality.specialityName" ng-repeat="speciality in specialities | filter:queryFaculty">{{ speciality.specialityName }}</md-option>
+                            </md-select>
+                        </div>
+                        <div flex="20">
+                            <md-input-container >
+                                <label>Имя или фамилия</label>
+                                <input ng-model="filterModel">
+                            </md-input-container>
+                        </div>
+                        <div flex="30">
+                            <div layout="row" layout-align="center">
+                                <!-- Показываем данные пейджинга: сколько всего страниц, на какой находимся, сколько записей во всей таблице -->
+                                <div layout="row" layout-align="center">Страница {{pager.currentPage}} of {{pager.foundPages}}. Всего студентов:  {{pager.found}}</div>
+                            </div>
+                        </div>
+                        <div flex="10">
+                            <md-button download="students.xls"   href="" class="md-icon-button"
+                                       onclick="return ExcellentExport.excel(this, 'dataStudentsBySpeciality', 'Sheet Name Here');" aria-label="Администрирование">
+                                <md-tooltip>
+                                    Выгрузить в Excel
+                                </md-tooltip>
+                                <md-icon md-svg-icon="img/icons/file-excel.svg" style="color: #3949ab;"></md-icon>
+                            </md-button>
                         </div>
                     </div>
-                    <div flex="10">
-                        <md-button download="students.xls"   href="" class="md-icon-button"
-                                   onclick="return ExcellentExport.excel(this, 'dataStudentsBySpeciality', 'Sheet Name Here');" aria-label="Администрирование">
-                            <md-tooltip>
-                                Выгрузить в Excel
-                            </md-tooltip>
-                            <md-icon md-svg-icon="img/icons/file-excel.svg" style="color: #3949ab;"></md-icon>
-                        </md-button>
-                    </div>
-                </div>
-                <md-content layout-padding class="data-context">
-                    <solo-table items-on-page = "15" make-sortable>
-                        <!-- Эта таблица обязательно  должна присутствовать в директиве solo-table, что, в общем то, очевидно. -->
-                        <table id="dataStudentsBySpeciality" class="table table-striped table-bordered" >
-                            <thead>
-                            <tr>
-                                <th sort-by='lastName'>Фамилия Имя Отчество</th>
-                                <th sort-by='group.course.courseName' >Курс</th>
-                                <th sort-by='group.speciality.faculty.facultyName'>Факультет</th>
-                                <th sort-by='group.speciality.specialityName'>Специальность</th>
-                                <th sort-by='studyForm'>Форма обучения</th>
-                                <th sort-by='orderNumber'>Номер приказа</th>
-                                <th sort-by='country.countryName'>Страна</th>
-                                <th sort-by='pasportNumber'>Паспортные данные</th>
-                                <th sort-by='registrationAddress'>Адресс регистрации</th>
-                                <th></th>
-                            </tr>
-                            </thead>
-                            <tr ng-repeat="item in filtered = (original | filter: querySpeciality | filter:queryFaculty | filterByFields:filterModel:['lastName', 'firstName'])" >
-                                <td>{{item.lastName}} {{item.firstName}} {{item.middleName}}</td>
-                                <td>{{item.group.course.courseName}}</td>
-                                <td>{{item.group.speciality.faculty.facultyName}}</td>
-                                <td>{{item.group.speciality.specialityName}}</td>
-                                <td>{{item.studyForm}}</td>
-                                <td>{{item.orderNumber}}</td>
-                                <td>{{item.country.countryName}}</td>
-                                <td>{{item.pasportNumber}}</td>
-                                <td>{{item.registrationAddress}}</td>
-                                <!--<td><md-icon icon="img/icons/ic_border_color_24px.svg"></md-icon></td>-->
-                            </tr>
+                    <md-content layout-padding class="data-context">
+                        <solo-table items-on-page = "15" make-sortable>
+                            <!-- Эта таблица обязательно  должна присутствовать в директиве solo-table, что, в общем то, очевидно. -->
+                            <table id="dataStudentsBySpeciality" class="table table-striped table-bordered" >
+                                <thead>
+                                <tr>
+                                    <th sort-by='lastName'>Фамилия Имя Отчество</th>
+                                    <th sort-by='group.course.courseName' >Курс</th>
+                                    <th sort-by='group.speciality.faculty.facultyName'>Факультет</th>
+                                    <th sort-by='group.speciality.specialityName'>Специальность</th>
+                                    <th sort-by='studyForm'>Форма обучения</th>
+                                    <th sort-by='orderNumber'>Номер приказа</th>
+                                    <th sort-by='country.countryName'>Страна</th>
+                                    <th sort-by='pasportNumber'>Паспортные данные</th>
+                                    <th sort-by='registrationAddress'>Адресс регистрации</th>
+                                    <th></th>
+                                </tr>
+                                </thead>
+                                <tr ng-repeat="item in filtered = (original | filter: querySpeciality | filter:queryFaculty | filterByFields:filterModel:['lastName', 'firstName'])" >
+                                    <td>{{item.lastName}} {{item.firstName}} {{item.middleName}}</td>
+                                    <td>{{item.group.course.courseName}}</td>
+                                    <td>{{item.group.speciality.faculty.facultyName}}</td>
+                                    <td>{{item.group.speciality.specialityName}}</td>
+                                    <td>{{item.studyForm}}</td>
+                                    <td>{{item.orderNumber}}</td>
+                                    <td>{{item.country.countryName}}</td>
+                                    <td>{{item.pasportNumber}}</td>
+                                    <td>{{item.registrationAddress}}</td>
+                                    <!--<td><md-icon icon="img/icons/ic_border_color_24px.svg"></md-icon></td>-->
+                                </tr>
 
-                        </table>
-                    </solo-table>
-                </md-content>
-                <!-- Здесь реализован переход по страницам -->
-                <div layout="row" layout-align="center" style="padding: 20px 0">
-                    <div flex="50">
-                        <label style="padding-top: 5px"> Студентов на странице </label>
-                        <input type="number" min="1" min="999999" placeholder="число" type="text" name="onpage" ng-model="len" ng-change="pager.setOnPage(len)" style="width: 120px; padding: 3px; margin: 3px;" class="ng-valid ng-dirty">
-                        <label style="padding-top: 5px"> или </label>
-                        <select  name="op" id="op" ng-model="op" ng-change="pager.setOnPage(op)" class="ng-valid ng-dirty" style="margin: 3px;">
-                            <option value="">выбрать</option>
-                            <option value="10">10</option>
-                            <option value="20">20</option>
-                            <option value="50">50</option>
-                            <option value="100">100</option>
-                            <option value="500">500</option>
-                            <option value="1000">1000</option>
-                        </select>
-                    </div>
-                    <div  flex="50">
-                        <a href="" ng-click="gotoFirstPage()">Первая страница | </a>
-                        <a href="" ng-click="gotoPrevPage()"> &larr;назад | </a>
-                        <a href="" ng-click="gotoNextPage()">вперед &rarr; | </a>
-                        <a href="" ng-click="gotoLastPage()">Последняя страница </a>
-                    </div>
-                </div>
-                <!--                     <b layout="row" layout-align="center center" layout-margin>
-                                    </b>
-                                    <md-button ng-click="showAdvanced($event)">
-                                        <md-icon  icon="img/icons/ic_border_color_24px.svg"></md-icon>
-                                    </md-button>-->
-            </div>
-        </md-tab>
-        <md-tab class="md-transition-right">
-            <md-tab-label>
-                <h3>По странам</h3>
-            </md-tab-label>
-            <div role="tabpanel" class="tabpanel-container">
-                <div layout="row">
-                    <div flex="40">
-                        <md-select ng-model="queryCountry" placeholder="Выбрать страну">
-                            <md-option ng-value="country.countryName" ng-repeat="country in countries">{{ country.countryName }}</md-option>
-                        </md-select>
-                    </div>
-                    <div flex="20">
-                        <md-input-container >
-                            <label>Имя или фамилия</label>
-                            <input ng-model="filterModel">
-                        </md-input-container>
-                    </div>
-                    <div flex="30">
-                        <div layout="row" layout-align="center">
-                            <!-- Показываем данные пейджинга: сколько всего страниц, на какой находимся, сколько записей во всей таблице -->
-                            <div layout="row" layout-align="center">Страница {{pager.currentPage}} of {{pager.foundPages}}. Всего студентов:  {{pager.found}}</div>
+                            </table>
+                        </solo-table>
+                    </md-content>
+                    <!-- Здесь реализован переход по страницам -->
+                    <div layout="row" layout-align="center" style="padding: 20px 0">
+                        <div flex="50">
+                            <label style="padding-top: 5px"> Студентов на странице </label>
+                            <input type="number" min="1" min="999999" placeholder="число" type="text" name="onpage" ng-model="len" ng-change="pager.setOnPage(len)" style="width: 120px; padding: 3px; margin: 3px;" class="ng-valid ng-dirty">
+                            <label style="padding-top: 5px"> или </label>
+                            <select  name="op" id="op" ng-model="op" ng-change="pager.setOnPage(op)" class="ng-valid ng-dirty" style="margin: 3px;">
+                                <option value="">выбрать</option>
+                                <option value="10">10</option>
+                                <option value="20">20</option>
+                                <option value="50">50</option>
+                                <option value="100">100</option>
+                                <option value="500">500</option>
+                                <option value="1000">1000</option>
+                            </select>
+                        </div>
+                        <div  flex="50">
+                            <a href="" ng-click="gotoFirstPage()">Первая страница | </a>
+                            <a href="" ng-click="gotoPrevPage()"> &larr;назад | </a>
+                            <a href="" ng-click="gotoNextPage()">вперед &rarr; | </a>
+                            <a href="" ng-click="gotoLastPage()">Последняя страница </a>
                         </div>
                     </div>
-                    <div flex="10">
-                        <md-button download="dataStudentsByCountry.xls"   href="" class="md-icon-button"
-                                   onclick="return ExcellentExport.excel(this, 'dataStudentsByCountry', 'Sheet Name Here');" aria-label="Администрирование">
-                            <md-tooltip>
-                                Выгрузить в Excel
-                            </md-tooltip>
-                            <md-icon md-svg-icon="img/icons/file-excel.svg" style="color: #3949ab;"></md-icon>
-                        </md-button>
-                    </div>
-                </div>
-                <md-content layout-padding class="data-context">
-                    <solo-table items-on-page = "15" make-sortable>
-                        <!-- Эта таблица обязательно  должна присутствовать в директиве solo-table, что, в общем то, очевидно. -->
-                        <table id="dataStudentsByCountry" class="table table-striped table-bordered" >
-                            <thead>
-                            <tr>
-                                <th sort-by='lastName'>Фамилия Имя Отчество</th>
-                                <th sort-by='group.course.courseName'>Курс</th>
-                                <th sort-by='group.speciality.specialityName'>Специальность</th>
-                                <th sort-by='orderNumber'>Номер приказа</th>
-                                <th sort-by='pasportNumber'>Паспортные данные</th>
-                                <th sort-by='registrationAddress'>Адресс регистрации</th>
-                                <th sort-by='birthPlace'>Место рождения</th>
-                                <th sort-by='incomingRbDate'>Дата въезда в РБ</th>
-                                <th></th>
-                            </tr>
-                            </thead>
+                </md-tab-body>
 
-                            <!--
-                            В атрибуте контроллера "original" содержатся все данные, предоставленные провайдером solo-table-data.
-                            В атрибуте "filtered" - отфильтрованные данные, но т.к. у нас простейший пример и никаких фильтров нет,
-                            то filtered идентичен original
-                            -->
+            </md-tab>
+            <md-tab label="two">
+                <md-tab-label>По странам</md-tab-label>
+                <md-tab-body>
+                   <div class="tab-content">
+                       <div layout="row">
+                           <div flex="40">
+                               <md-select ng-model="queryCountry" placeholder="Выбрать страну">
+                                   <md-option ng-value="country.countryName" ng-repeat="country in countries">{{ country.countryName }}</md-option>
+                               </md-select>
+                           </div>
+                           <div flex="20">
+                               <md-input-container >
+                                   <label>Имя или фамилия</label>
+                                   <input ng-model="filterModel">
+                               </md-input-container>
+                           </div>
+                           <div flex="30">
+                               <div layout="row" layout-align="center">
+                                   <div layout="row" layout-align="center">Страница {{pager.currentPage}} of {{pager.foundPages}}. Всего студентов:  {{pager.found}}</div>
+                               </div>
+                           </div>
+                           <div flex="10">
+                               <md-button download="dataStudentsByCountry.xls"   href="" class="md-icon-button"
+                                          onclick="return ExcellentExport.excel(this, 'dataStudentsByCountry', 'Sheet Name Here');" aria-label="Администрирование">
+                                   <md-tooltip>
+                                       Выгрузить в Excel
+                                   </md-tooltip>
+                                   <md-icon md-svg-icon="img/icons/file-excel.svg" style="color: #3949ab;"></md-icon>
+                               </md-button>
+                           </div>
+                       </div>
+                       <md-content layout-padding class="data-context">
+                           <solo-table items-on-page = "15" make-sortable>
+                               <table id="dataStudentsByCountry" class="table table-striped table-bordered" >
+                                   <thead>
+                                   <tr>
+                                       <th sort-by='lastName'>Фамилия Имя Отчество</th>
+                                       <th sort-by='group.course.courseName'>Курс</th>
+                                       <th sort-by='group.speciality.specialityName'>Специальность</th>
+                                       <th sort-by='orderNumber'>Номер приказа</th>
+                                       <th sort-by='pasportNumber'>Паспортные данные</th>
+                                       <th sort-by='registrationAddress'>Адресс регистрации</th>
+                                       <th sort-by='birthPlace'>Место рождения</th>
+                                       <th sort-by='incomingRbDate'>Дата въезда в РБ</th>
+                                       <th></th>
+                                   </tr>
+                                   </thead>
+                                   <tr ng-repeat="item in filtered = (original | filter:queryCountry | filterByFields:filterModel:['lastName', 'firstName'])" >
+                                       <td>{{item.lastName}} {{item.firstName}} {{item.middleName}}</td>
+                                       <td>{{item.group.course.courseName}}</td>
+                                       <td>{{item.group.speciality.specialityName}}</td>
+                                       <td>{{item.orderNumber}}</td>
+                                       <td>{{item.pasportNumber}}</td>
+                                       <td>{{item.registrationAddress}}</td>
+                                       <td>{{item.birthPlace}}</td>
+                                       <td>{{item.incomingRbDate}}</td>
+                                       <td>
+                                           <md-button ng-click="showAdvanced($event)">
+                                               <span class="glyphicon glyphicon-pencil"></span>
+                                           </md-button>
+                                           <a href="#!/edit/{{item.id}}" class="btn btn-xs btn-default" ng-show="hasRole('admin')" title="edit"><span class="glyphicon glyphicon-pencil"></span></a>
+                                       </td>
+                                   </tr>
 
-                            <tr ng-repeat="item in filtered = (original | filter:queryCountry | filterByFields:filterModel:['lastName', 'firstName'])" >
-                                <td>{{item.lastName}} {{item.firstName}} {{item.middleName}}</td>
-                                <td>{{item.group.course.courseName}}</td>
-                                <td>{{item.group.speciality.specialityName}}</td>
-                                <td>{{item.orderNumber}}</td>
-                                <td>{{item.pasportNumber}}</td>
-                                <td>{{item.registrationAddress}}</td>
-                                <td>{{item.birthPlace}}</td>
-                                <td>{{item.incomingRbDate}}</td>
-                                <td>
-                                    <md-button ng-click="showAdvanced($event)">
-                                        <span class="glyphicon glyphicon-pencil"></span>
-                                    </md-button>
-                                    <a href="#!/edit/{{item.id}}" class="btn btn-xs btn-default" ng-show="hasRole('admin')" title="edit"><span class="glyphicon glyphicon-pencil"></span></a>
-                                </td>
-                            </tr>
-
-                        </table>
-                    </solo-table>
+                               </table>
+                           </solo-table>
+                       </md-content>
+                       <!--Здесь реализован переход по страницам-->
+                       <div layout="row" layout-align="center" style="padding: 20px 0">
+                           <div flex="50">
+                               <label style="padding-top: 5px"> Студентов на странице </label>
+                               <input type="number" min="1" min="999999" placeholder="число" type="text" name="onpage" ng-model="len" ng-change="pager.setOnPage(len)" style="width: 120px; padding: 3px; margin: 3px;" class="ng-valid ng-dirty">
+                               <label style="padding-top: 5px"> или </label>
+                               <select  name="op" id="op" ng-model="op" ng-change="pager.setOnPage(op)" class="ng-valid ng-dirty" style="margin: 3px;">
+                                   <option value="">выбрать</option>
+                                   <option value="10">10</option>
+                                   <option value="20">20</option>
+                                   <option value="50">50</option>
+                                   <option value="100">100</option>
+                                   <option value="500">500</option>
+                                   <option value="1000">1000</option>
+                               </select>
+                           </div>
+                           <div  flex="50">
+                               <a href="" ng-click="gotoFirstPage()">Первая страница | </a>
+                               <a href="" ng-click="gotoPrevPage()"> &larr;назад | </a>
+                               <a href="" ng-click="gotoNextPage()">вперед &rarr; | </a>
+                               <a href="" ng-click="gotoLastPage()">Последняя страница </a>
+                           </div>
+                       </div>
+                   </div>
+                </md-tab-body>
+            </md-tab>
+            <md-tab label="three">
+                <md-content class="md-padding">
+                    <h1 class="md-display-2">Tab Three</h1>
+                    <p>Integer turpis erat, porttitor vitae mi faucibus, laoreet interdum tellus. Curabitur posuere molestie dictum. Morbi eget congue risus, quis rhoncus quam. Suspendisse vitae hendrerit erat, at posuere mi. Cras eu fermentum nunc. Sed id ante eu orci commodo volutpat non ac est. Praesent ligula diam, congue eu enim scelerisque, finibus commodo lectus.</p>
                 </md-content>
-                <!-- Здесь реализован переход по страницам -->
-                <div layout="row" layout-align="center" style="padding: 20px 0">
-                    <div flex="50">
-                        <label style="padding-top: 5px"> Студентов на странице </label>
-                        <input type="number" min="1" min="999999" placeholder="число" type="text" name="onpage" ng-model="len" ng-change="pager.setOnPage(len)" style="width: 120px; padding: 3px; margin: 3px;" class="ng-valid ng-dirty">
-                        <label style="padding-top: 5px"> или </label>
-                        <select  name="op" id="op" ng-model="op" ng-change="pager.setOnPage(op)" class="ng-valid ng-dirty" style="margin: 3px;">
-                            <option value="">выбрать</option>
-                            <option value="10">10</option>
-                            <option value="20">20</option>
-                            <option value="50">50</option>
-                            <option value="100">100</option>
-                            <option value="500">500</option>
-                            <option value="1000">1000</option>
-                        </select>
-                    </div>
-                    <div  flex="50">
-                        <a href="" ng-click="gotoFirstPage()">Первая страница | </a>
-                        <a href="" ng-click="gotoPrevPage()"> &larr;назад | </a>
-                        <a href="" ng-click="gotoNextPage()">вперед &rarr; | </a>
-                        <a href="" ng-click="gotoLastPage()">Последняя страница </a>
-                    </div>
-                </div>
-            </div>
-        </md-tab>
-        <!--<md-tab class="md-transition-right">-->
-            <!--<md-tab-label>-->
-                <!--<h3>По группам</h3>-->
-            <!--</md-tab-label>-->
-            <!--<div role="tabpanel" class="tabpanel-container">-->
-                <!--<div id="testApp3">-->
-                    <!--<solo-table items-on-page = "20" make-sortable>-->
-                        <!--<div layout="row" layout-align="center">-->
-                            <!--<md-select ng-model="querySpeciality" placeholder="Выбрать специальность">-->
-                                <!--<md-option ng-value="speciality.specialityName" ng-repeat="speciality in specialities">{{ speciality.specialityName }}</md-option>-->
-                            <!--</md-select>-->
-                            <!--<md-select ng-model="queryGroup" placeholder="Выбрать группу">-->
-                                <!--<md-option ng-value="group.groupName" ng-repeat="group in groups | filter:querySpeciality">{{ group.groupName }}</md-option>-->
-                            <!--</md-select>-->
-                        <!--</div>-->
-                        <!--&lt;!&ndash; Показываем данные пейджинга: сколько всего страниц, на какой находимся, сколько записей во всей таблице &ndash;&gt;-->
-                        <!--<div layout="row" layout-align="center" style="padding: 20px 0; ">Страница {{pager.currentPage}} of {{pager.foundPages}}. Всего студентов:  {{pager.found}}</div>-->
-
-                        <!--&lt;!&ndash; Эта таблица обязательно  должна присутствовать в директиве solo-table, что, в общем то, очевидно. &ndash;&gt;-->
-                        <!--<table class="table table-striped table-bordered" >-->
-                            <!--<thead>-->
-                            <!--<tr>-->
-                                <!--<th>Фамилия Имя Отчество</th>-->
-                                <!--<th>Курс</th>-->
-                                <!--<th>Группа</th>-->
-                                <!--<th>Номер приказа</th>-->
-                                <!--<th>Страна</th>-->
-                                <!--<th>Паспортные данные</th>-->
-                                <!--<th>Адресс регистрации</th>-->
-                                <!--<th>Место рождения</th>-->
-                            <!--</tr>-->
-                            <!--</thead>-->
-
-                            <!--&lt;!&ndash;-->
-                            <!--В атрибуте контроллера "original" содержатся все данные, предоставленные провайдером solo-table-data.-->
-                            <!--В атрибуте "filtered" - отфильтрованные данные, но т.к. у нас простейший пример и никаких фильтров нет,-->
-                            <!--то filtered идентичен original-->
-                            <!--&ndash;&gt;-->
-
-                            <!--<tr ng-repeat="item in filtered = (original | filter:queryGroup)" >-->
-                                <!--<td>{{item.lastName}} {{item.firstName}} {{item.middleName}}</td>-->
-                                <!--<td>{{item.course}}</td>-->
-                                <!--<td>{{item.group.groupName}}</td>-->
-                                <!--<td>{{item.educationInfo.orderNumber}}</td>-->
-                                <!--<td>{{item.country.countryName}}</td>-->
-                                <!--<td>{{item.personalInfo.pasportNumber}}</td>-->
-                                <!--<td>{{item.registrationAddress}}</td>-->
-                                <!--<td>{{item.personalInfo.birthPlace}}</td>-->
-                            <!--</tr>-->
-
-                        <!--</table>-->
-
-                        <!--&lt;!&ndash; Здесь реализован переход по страницам &ndash;&gt;-->
-                        <!--<div layout="row" layout-align="center" style="padding: 20px 0">-->
-                            <!--<a href="" ng-click="gotoFirstPage()">Первая страница | </a>-->
-                            <!--<a href="" ng-click="gotoPrevPage()"> &larr;назад | </a>-->
-                            <!--<a href="" ng-click="gotoNextPage()">вперед &rarr; | </a>-->
-                            <!--<a href="" ng-click="gotoLastPage()">Последняя страница </a>-->
-                        <!--</div>-->
-
-                    <!--</solo-table>-->
-                <!--</div>-->
-            <!--</div>-->
-        <!--</md-tab>-->
-    </md-tabs>
-    </md-tabs></md-tabs>
+            </md-tab>
+        </md-tabs>
+    </md-whiteframe>
 </div>
+
+
+
+<!--
+<div layout="row" layout-align="center center" >
+    <md-whiteframe class="md-whiteframe-z1 login-form">
+        <md-content layout-padding>
+           &lt;!&ndash; <md-tabs role="tablist"  md-theme="indigo">
+                <md-tab class="md-transition-left">
+                    <md-tab-label>
+                        <h3>  По специальностям</h3>
+                    </md-tab-label>
+                    <div role="tabpanel" class="tabpanel-container">
+                        <div layout="row">
+                            <div flex="40">
+                                <md-select ng-model="queryFaculty" placeholder="Выбрать факультет">
+                                    <md-option ng-value="faculty.facultyName" ng-repeat="faculty in faculties">{{ faculty.facultyName }}</md-option>
+                                </md-select>
+                                <md-select ng-model="querySpeciality" placeholder="Выбрать специальность">
+                                    <md-option ng-value="speciality.specialityName" ng-repeat="speciality in specialities | filter:queryFaculty">{{ speciality.specialityName }}</md-option>
+                                </md-select>
+                            </div>
+                            <div flex="20">
+                                <md-input-container >
+                                    <label>Имя или фамилия</label>
+                                    <input ng-model="filterModel">
+                                </md-input-container>
+                            </div>
+                            <div flex="30">
+                                <div layout="row" layout-align="center">
+                                    &lt;!&ndash; Показываем данные пейджинга: сколько всего страниц, на какой находимся, сколько записей во всей таблице &ndash;&gt;
+                                    <div layout="row" layout-align="center">Страница {{pager.currentPage}} of {{pager.foundPages}}. Всего студентов:  {{pager.found}}</div>
+                                </div>
+                            </div>
+                            <div flex="10">
+                                <md-button download="students.xls"   href="" class="md-icon-button"
+                                           onclick="return ExcellentExport.excel(this, 'dataStudentsBySpeciality', 'Sheet Name Here');" aria-label="Администрирование">
+                                    <md-tooltip>
+                                        Выгрузить в Excel
+                                    </md-tooltip>
+                                    <md-icon md-svg-icon="img/icons/file-excel.svg" style="color: #3949ab;"></md-icon>
+                                </md-button>
+                            </div>
+                        </div>
+                        <md-content layout-padding class="data-context">
+                            <solo-table items-on-page = "15" make-sortable>
+                                &lt;!&ndash; Эта таблица обязательно  должна присутствовать в директиве solo-table, что, в общем то, очевидно. &ndash;&gt;
+                                <table id="dataStudentsBySpeciality" class="table table-striped table-bordered" >
+                                    <thead>
+                                    <tr>
+                                        <th sort-by='lastName'>Фамилия Имя Отчество</th>
+                                        <th sort-by='group.course.courseName' >Курс</th>
+                                        <th sort-by='group.speciality.faculty.facultyName'>Факультет</th>
+                                        <th sort-by='group.speciality.specialityName'>Специальность</th>
+                                        <th sort-by='studyForm'>Форма обучения</th>
+                                        <th sort-by='orderNumber'>Номер приказа</th>
+                                        <th sort-by='country.countryName'>Страна</th>
+                                        <th sort-by='pasportNumber'>Паспортные данные</th>
+                                        <th sort-by='registrationAddress'>Адресс регистрации</th>
+                                        <th></th>
+                                    </tr>
+                                    </thead>
+                                    <tr ng-repeat="item in filtered = (original | filter: querySpeciality | filter:queryFaculty | filterByFields:filterModel:['lastName', 'firstName'])" >
+                                        <td>{{item.lastName}} {{item.firstName}} {{item.middleName}}</td>
+                                        <td>{{item.group.course.courseName}}</td>
+                                        <td>{{item.group.speciality.faculty.facultyName}}</td>
+                                        <td>{{item.group.speciality.specialityName}}</td>
+                                        <td>{{item.studyForm}}</td>
+                                        <td>{{item.orderNumber}}</td>
+                                        <td>{{item.country.countryName}}</td>
+                                        <td>{{item.pasportNumber}}</td>
+                                        <td>{{item.registrationAddress}}</td>
+                                        &lt;!&ndash;<td><md-icon icon="img/icons/ic_border_color_24px.svg"></md-icon></td>&ndash;&gt;
+                                    </tr>
+
+                                </table>
+                            </solo-table>
+                        </md-content>
+                        &lt;!&ndash; Здесь реализован переход по страницам &ndash;&gt;
+                        <div layout="row" layout-align="center" style="padding: 20px 0">
+                            <div flex="50">
+                                <label style="padding-top: 5px"> Студентов на странице </label>
+                                <input type="number" min="1" min="999999" placeholder="число" type="text" name="onpage" ng-model="len" ng-change="pager.setOnPage(len)" style="width: 120px; padding: 3px; margin: 3px;" class="ng-valid ng-dirty">
+                                <label style="padding-top: 5px"> или </label>
+                                <select  name="op" id="op" ng-model="op" ng-change="pager.setOnPage(op)" class="ng-valid ng-dirty" style="margin: 3px;">
+                                    <option value="">выбрать</option>
+                                    <option value="10">10</option>
+                                    <option value="20">20</option>
+                                    <option value="50">50</option>
+                                    <option value="100">100</option>
+                                    <option value="500">500</option>
+                                    <option value="1000">1000</option>
+                                </select>
+                            </div>
+                            <div  flex="50">
+                                <a href="" ng-click="gotoFirstPage()">Первая страница | </a>
+                                <a href="" ng-click="gotoPrevPage()"> &larr;назад | </a>
+                                <a href="" ng-click="gotoNextPage()">вперед &rarr; | </a>
+                                <a href="" ng-click="gotoLastPage()">Последняя страница </a>
+                            </div>
+                        </div>
+                        &lt;!&ndash;                     <b layout="row" layout-align="center center" layout-margin>
+                                            </b>
+                                            <md-button ng-click="showAdvanced($event)">
+                                                <md-icon  icon="img/icons/ic_border_color_24px.svg"></md-icon>
+                                            </md-button>&ndash;&gt;
+                    </div>
+                </md-tab>
+                <md-tab class="md-transition-right">
+                    <md-tab-label>
+                        <h3>По странам</h3>
+                    </md-tab-label>
+                    <div role="tabpanel" class="tabpanel-container">
+                        <div layout="row">
+                            <div flex="40">
+                                <md-select ng-model="queryCountry" placeholder="Выбрать страну">
+                                    <md-option ng-value="country.countryName" ng-repeat="country in countries">{{ country.countryName }}</md-option>
+                                </md-select>
+                            </div>
+                            <div flex="20">
+                                <md-input-container >
+                                    <label>Имя или фамилия</label>
+                                    <input ng-model="filterModel">
+                                </md-input-container>
+                            </div>
+                            <div flex="30">
+                                <div layout="row" layout-align="center">
+                                    &lt;!&ndash; Показываем данные пейджинга: сколько всего страниц, на какой находимся, сколько записей во всей таблице &ndash;&gt;
+                                    <div layout="row" layout-align="center">Страница {{pager.currentPage}} of {{pager.foundPages}}. Всего студентов:  {{pager.found}}</div>
+                                </div>
+                            </div>
+                            <div flex="10">
+                                <md-button download="dataStudentsByCountry.xls"   href="" class="md-icon-button"
+                                           onclick="return ExcellentExport.excel(this, 'dataStudentsByCountry', 'Sheet Name Here');" aria-label="Администрирование">
+                                    <md-tooltip>
+                                        Выгрузить в Excel
+                                    </md-tooltip>
+                                    <md-icon md-svg-icon="img/icons/file-excel.svg" style="color: #3949ab;"></md-icon>
+                                </md-button>
+                            </div>
+                        </div>
+                        <md-content layout-padding class="data-context">
+                            <solo-table items-on-page = "15" make-sortable>
+                                &lt;!&ndash; Эта таблица обязательно  должна присутствовать в директиве solo-table, что, в общем то, очевидно. &ndash;&gt;
+                                <table id="dataStudentsByCountry" class="table table-striped table-bordered" >
+                                    <thead>
+                                    <tr>
+                                        <th sort-by='lastName'>Фамилия Имя Отчество</th>
+                                        <th sort-by='group.course.courseName'>Курс</th>
+                                        <th sort-by='group.speciality.specialityName'>Специальность</th>
+                                        <th sort-by='orderNumber'>Номер приказа</th>
+                                        <th sort-by='pasportNumber'>Паспортные данные</th>
+                                        <th sort-by='registrationAddress'>Адресс регистрации</th>
+                                        <th sort-by='birthPlace'>Место рождения</th>
+                                        <th sort-by='incomingRbDate'>Дата въезда в РБ</th>
+                                        <th></th>
+                                    </tr>
+                                    </thead>
+
+                                    &lt;!&ndash;
+                                    В атрибуте контроллера "original" содержатся все данные, предоставленные провайдером solo-table-data.
+                                    В атрибуте "filtered" - отфильтрованные данные, но т.к. у нас простейший пример и никаких фильтров нет,
+                                    то filtered идентичен original
+                                    &ndash;&gt;
+
+                                    <tr ng-repeat="item in filtered = (original | filter:queryCountry | filterByFields:filterModel:['lastName', 'firstName'])" >
+                                        <td>{{item.lastName}} {{item.firstName}} {{item.middleName}}</td>
+                                        <td>{{item.group.course.courseName}}</td>
+                                        <td>{{item.group.speciality.specialityName}}</td>
+                                        <td>{{item.orderNumber}}</td>
+                                        <td>{{item.pasportNumber}}</td>
+                                        <td>{{item.registrationAddress}}</td>
+                                        <td>{{item.birthPlace}}</td>
+                                        <td>{{item.incomingRbDate}}</td>
+                                        <td>
+                                            <md-button ng-click="showAdvanced($event)">
+                                                <span class="glyphicon glyphicon-pencil"></span>
+                                            </md-button>
+                                            <a href="#!/edit/{{item.id}}" class="btn btn-xs btn-default" ng-show="hasRole('admin')" title="edit"><span class="glyphicon glyphicon-pencil"></span></a>
+                                        </td>
+                                    </tr>
+
+                                </table>
+                            </solo-table>
+                        </md-content>
+                        &lt;!&ndash; Здесь реализован переход по страницам &ndash;&gt;
+                        <div layout="row" layout-align="center" style="padding: 20px 0">
+                            <div flex="50">
+                                <label style="padding-top: 5px"> Студентов на странице </label>
+                                <input type="number" min="1" min="999999" placeholder="число" type="text" name="onpage" ng-model="len" ng-change="pager.setOnPage(len)" style="width: 120px; padding: 3px; margin: 3px;" class="ng-valid ng-dirty">
+                                <label style="padding-top: 5px"> или </label>
+                                <select  name="op" id="op" ng-model="op" ng-change="pager.setOnPage(op)" class="ng-valid ng-dirty" style="margin: 3px;">
+                                    <option value="">выбрать</option>
+                                    <option value="10">10</option>
+                                    <option value="20">20</option>
+                                    <option value="50">50</option>
+                                    <option value="100">100</option>
+                                    <option value="500">500</option>
+                                    <option value="1000">1000</option>
+                                </select>
+                            </div>
+                            <div  flex="50">
+                                <a href="" ng-click="gotoFirstPage()">Первая страница | </a>
+                                <a href="" ng-click="gotoPrevPage()"> &larr;назад | </a>
+                                <a href="" ng-click="gotoNextPage()">вперед &rarr; | </a>
+                                <a href="" ng-click="gotoLastPage()">Последняя страница </a>
+                            </div>
+                        </div>
+                    </div>
+                </md-tab>
+
+            </md-tabs>&ndash;&gt;
+
+        </md-content>
+    </md-whiteframe>
+</div>-->

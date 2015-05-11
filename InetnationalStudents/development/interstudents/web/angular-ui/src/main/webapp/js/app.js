@@ -1,6 +1,9 @@
 angular.module('myApp', ['ngRoute', 'ngCookies', 'ngMaterial', 'myApp.services', 'solo.table'])
 	.config(
-		[ '$routeProvider', '$locationProvider', '$httpProvider', function($routeProvider, $locationProvider, $httpProvider) {
+		[ '$routeProvider', '$locationProvider', '$httpProvider', function($routeProvider, $locationProvider, $httpProvider, $mdThemingProvider) {
+
+			/*$mdThemingProvider.theme('indigo')
+				.dark();*/
 
 			$routeProvider.when('/create', {
 				templateUrl: 'partials/create.html',
@@ -61,7 +64,6 @@ angular.module('myApp', ['ngRoute', 'ngCookies', 'ngMaterial', 'myApp.services',
 			        		} else {
 			        			$rootScope.error = method + " on " + url + " failed with status " + status;
 			        		}
-
 			        		return $q.reject(rejection);
 			        	}
 			        };

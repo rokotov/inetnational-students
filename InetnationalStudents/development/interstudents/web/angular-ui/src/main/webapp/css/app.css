@@ -1,16 +1,19 @@
 /* app css stylesheet */
-
-
-.fix-top {
-  position: fixed; 
-  top:0;
+.tooltipTb{
+    margin-top: 10px;
+}
+.main-content{
+    margin-top: 20px;
+    padding: 10px 40px;
+    /*height: 90%;*/
 }
 
-.normal-btn {
-  width: 56px; 
-  height: 56px;
+.login-form{
+    padding: 30px;
 }
-
+.tab-content{
+    padding: 10px;
+}
  .menu-item {
   background: none;
   border-width: 0;
@@ -59,55 +62,22 @@
   color: #1976d2;
 }
 
-.menu-icon {
-  background: none;
-  border: none;
-}
 
-.menu-separator-icon {
+/*.menu-separator-icon {
   margin: 0;
 }
 .menu-module-name {
   opacity: 0.6;
   font-size: 18px;
-}
+}*/
 
-.main-context{
-    min-width: 900px;
-    margin:0px 20px;
-    padding-top: 100px;
-    height: 95%;
-}
-.md-tabs-content{
-    height: 95%;
-}
-.md-tab-content{
-    height: 100%;
-}
-
-.app-context{
-    overflow: hidden;
-    height: 100%;
-}
-.data-context{
-    height: 600px;
-    padding: 24px;
-}
 .data-context th{
     padding: 4px;
 }
-.app-login{
-    min-width: 230px;
-    overflow: hidden;
-    height: 100%;
-    max-width:500px; 
-    max-height:50%;
-}
-
-.app-context .tabpanel-container{
-    padding: 15px 20px;
-    overflow: auto;
-}
+/*.app-context .tabpanel-container{*/
+    /*padding: 15px 20px;*/
+    /*overflow: auto;*/
+/*}*/
 
 .solo-table-sort-asc > .solo-column-arrow
 {
@@ -139,8 +109,3 @@
 .filter-item{
     margin-top: 20px;
 }
-
-/*
-button, select, html, textarea, input, body{
-    font-family: RobotoDraft, Roboto, 'Helvetica Neue', sans-serif;
-}*/

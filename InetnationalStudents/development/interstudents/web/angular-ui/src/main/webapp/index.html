@@ -17,31 +17,29 @@
 	<link rel="stylesheet" type="text/css" href="css/themes/indigo-theme.css"/>
 	<link rel="stylesheet" href="css/app.css"/>
 </head>
-	<div class="loader" ng-hide="initialized">
-		Loading...
-	</div>
 	<body ng-controller="MainCtrl">
 	<!-- Верхняя панель-->
-	<md-toolbar md-theme="indigo" class="app-toolbar md-whiteframe-z2 fix-top" >
-		<div class="md-toolbar-tools" tabindex="0">
-			<md-button class="menu-icon normal-btn" ng-show="user" ng-click="toggleRight()" aria-label="Toggle Menu">
-				<md-tooltip>
+
+	<md-toolbar md-theme="indigo" class="md-whiteframe-z1" >
+		<div class="md-toolbar-tools">
+			<md-button class="md-icon-button" ng-show="user" ng-click="toggleRight()" aria-label="Toggle Menu">
+				<md-tooltip class="tooltipTb">
 					Меню
 				</md-tooltip>
-				<md-icon md-svg-icon="img/icons/ic_menu_24px.svg" ></md-icon>
+				<md-icon md-svg-icon="img/icons/ic_menu_24px.svg"></md-icon>
 			</md-button>
 			<h2>
 				<span>International Students</span>
 			</h2>
 			<span flex></span>
-			<md-button  class="menu-icon normal-btn"  ng-show="hasRole('admin')" ng-href="#!/administration" aria-label="Администрирование">
-				<md-tooltip>
+			<md-button  class="md-icon-button"  ng-show="hasRole('admin')" ng-href="#!/administration" aria-label="Администрирование">
+				<md-tooltip class="tooltipTb">
 					Администрирование
 				</md-tooltip>
-				<md-icon md-svg-icon="img/icons/account-key.svg" style="color: white; margin-top: 11px;"></md-icon>
+				<md-icon md-svg-icon="img/icons/account-key.svg" style="color: white;"></md-icon>
 			</md-button>
-			<md-button ng-click="logout()" ng-show="user" class="menu-icon normal-btn" aria-label="Выход">
-				<md-tooltip>
+			<md-button class="md-icon-button" ng-click="logout()" ng-show="user" aria-label="Выход">
+				<md-tooltip class="tooltipTb">
 					Выход
 				</md-tooltip>
 				<md-icon md-svg-icon="img/icons/logout.svg"></md-icon>
@@ -50,8 +48,10 @@
 	</md-toolbar>
 
 	<!--Сюда будут вставляться views-->
-	<div class="alert alert-danger" ng-show="error">{{error}}</div>
-	<div class="main-context" layout="row" layout-align="center center" ng-view></div>
+	<!--<div class="alert alert-danger" ng-show="error">{{error}}</div>-->
+	<md-content class="main-content" flex layout-padding ng-view>
+	</md-content>
+
 
 	<!-- Боковая панель -->
 	<md-sidenav md-theme="indigo" class="md-sidenav-left md-whiteframe-z3" md-component-id="left">
