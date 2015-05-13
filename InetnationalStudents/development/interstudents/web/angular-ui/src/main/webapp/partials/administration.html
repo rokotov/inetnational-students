@@ -1,4 +1,203 @@
-<div class="app-context md-whiteframe-z1" >
+<div layout="column" layout-fill>
+	<md-tabs md-dynamic-height md-border-bottom class="md-indigo-theme">
+		<md-tab label="Студенты" class="md-indigo-theme">
+			<md-tab-body >
+				<div layout="row" layout-align="center center">
+					<md-whiteframe class="md-whiteframe-z2 filter-context">
+						<md-context>
+							<div layout="row">
+								<div flex="70">
+									<md-select ng-model="queryFaculty" placeholder="Выбрать факультет">
+										<md-option ng-value="">Все факультеты</md-option>
+										<md-option ng-value="faculty.facultyName" ng-repeat="faculty in faculties">{{ faculty.facultyName }}</md-option>
+									</md-select>
+									<md-select ng-model="querySpeciality" placeholder="Выбрать специальность">
+										<md-option ng-value="">Все специальности</md-option>
+										<md-option ng-value="speciality.specialityName" ng-repeat="speciality in specialities | filter:queryFaculty">{{ speciality.specialityName }}</md-option>
+									</md-select>
+									<md-select ng-model="queryGroup" placeholder="Выбрать группу">
+										<md-option ng-value="">Все группы</md-option>
+										<md-option ng-value="group.groupName" ng-repeat="group in groups | filter:querySpeciality">{{group.groupName}}</md-option>
+									</md-select>
+									<!--<md-select ng-model="queryCourse" placeholder="Выбрать курс">
+                                        <md-option ng-value="course.courseName" ng-repeat="course in courses">{{ course.courseName }}</md-option>
+                                    </md-select>-->
+								</div>
+								<div flex="20">
+									<md-input-container >
+										<label>Имя или фамилия</label>
+										<input ng-model="filterModel">
+									</md-input-container>
+								</div>
+								<div flex="10">
+									<a href="#!/create" class="btn btn-xs btn-default" ng-show="hasRole('admin')" title="edit">
+										<md-icon style="color: gray" md-svg-icon="img/icons/plus-box.svg"></md-icon></a>
+								</div>
+							</div>
+						</md-context>
+					</md-whiteframe>
+				</div>
+				<div layout="row" layout-align="center center">
+					<md-whiteframe class="md-whiteframe-z2 table-context">
+						<md-content layout-padding class="data-context">
+							<solo-table items-on-page = "15" make-sortable>
+								<!-- Эта таблица обязательно  должна присутствовать в директиве solo-table, что, в общем то, очевидно. -->
+								<table id="dataStudentsBySpeciality" class="table table-striped table-bordered" >
+									<thead>
+									<tr>
+										<th sort-by='lastName'>Фамилия Имя Отчество</th>
+										<th sort-by='group.course.courseName' >Курс</th>
+										<th sort-by='group.speciality.faculty.facultyName'>Факультет</th>
+										<th sort-by='group.speciality.specialityName'>Специальность</th>
+										<th sort-by='group.groupName'>Группа</th>
+										<th></th>
+									</tr>
+									</thead>
+									<tr ng-repeat="item in filtered = (original | filter:querySpeciality | filter:queryFaculty | filter:queryGroup | filterByFields:filterModel:['lastName', 'firstName'])" >
+										<!--| -->
+										<td>{{item.lastName}} {{item.firstName}} {{item.middleName}}</td>
+										<td>{{item.group.course.courseName}}</td>
+										<td>{{item.group.speciality.faculty.facultyName}}</td>
+										<td>{{item.group.speciality.specialityName}}</td>
+										<td>{{item.group.groupName}}</td>
+										<td>
+											<a href="#!/edit/{{item.id}}" class="btn btn-xs btn-default" ng-show="hasRole('admin')">
+												<md-icon style="color: gray" md-svg-icon="img/icons/pencil.svg"></md-icon>
+												<md-tooltip md-direction="right">
+													Изменить данные {{item.lastName}}
+												</md-tooltip>
+											</a>
+										</td>
+									</tr>
+								</table>
+							</solo-table>
+						</md-content>
+					</md-whiteframe>
+				</div>
+				<!-- Здесь реализован переход по страницам -->
+				<div layout="row" layout-align="center" style="padding: 20px 0">
+					<div flex="50">
+						<label style="padding-top: 5px"> Студентов на странице </label>
+						<input type="number" min="1" min="999999" placeholder="число" type="text" name="onpage" ng-model="len" ng-change="pager.setOnPage(len)" style="width: 120px; padding: 3px; margin: 3px;" class="ng-valid ng-dirty">
+						<label style="padding-top: 5px"> или </label>
+						<select  name="op" id="op" ng-model="op" ng-change="pager.setOnPage(op)" class="ng-valid ng-dirty" style="margin: 3px;">
+							<option value="">выбрать</option>
+							<option value="10">10</option>
+							<option value="20">20</option>
+							<option value="50">50</option>
+							<option value="100">100</option>
+							<option value="500">500</option>
+							<option value="1000">1000</option>
+						</select>
+					</div>
+					<div  flex="50">
+						<a href="" ng-click="gotoFirstPage()">Первая страница | </a>
+						<a href="" ng-click="gotoPrevPage()"> &larr;назад | </a>
+						<a href="" ng-click="gotoNextPage()">вперед &rarr; | </a>
+						<a href="" ng-click="gotoLastPage()">Последняя страница </a>
+					</div>
+				</div>
+			</md-tab-body>
+		</md-tab>
+		<md-tab label="Группы">
+			<md-tab-body>
+				<div >
+					<div layout="row">
+						<div flex="40">
+							<md-select ng-model="queryCountry" placeholder="Выбрать страну">
+								<md-option ng-value="country.countryName" ng-repeat="country in countries">{{ country.countryName }}</md-option>
+							</md-select>
+						</div>
+						<div flex="20">
+							<md-input-container >
+								<label>Имя или фамилия</label>
+								<input ng-model="filterModel">
+							</md-input-container>
+						</div>
+						<div flex="30">
+							<div layout="row" layout-align="center">
+								<div layout="row" layout-align="center">Страница {{pager.currentPage}} of {{pager.foundPages}}. Всего студентов:  {{pager.found}}</div>
+							</div>
+						</div>
+						<div flex="10">
+							<md-button download="dataStudentsByCountry.xls"   href="" class="md-icon-button"
+									   onclick="return ExcellentExport.excel(this, 'dataStudentsByCountry', 'Sheet Name Here');" aria-label="Администрирование">
+								<md-tooltip>
+									Выгрузить в Excel
+								</md-tooltip>
+								<md-icon md-svg-icon="img/icons/file-excel.svg" style="color: #3949ab;"></md-icon>
+							</md-button>
+						</div>
+					</div>
+					<md-content layout-padding class="data-context">
+						<solo-table items-on-page = "15" make-sortable>
+							<table id="dataStudentsByCountry" class="table table-striped table-bordered" >
+								<thead>
+								<tr>
+									<th sort-by='lastName'>Фамилия Имя Отчество</th>
+									<th sort-by='group.course.courseName'>Курс</th>
+									<th sort-by='group.speciality.specialityName'>Специальность</th>
+									<th sort-by='orderNumber'>Номер приказа</th>
+									<th sort-by='pasportNumber'>Паспортные данные</th>
+									<th sort-by='registrationAddress'>Адресс регистрации</th>
+									<th sort-by='birthPlace'>Место рождения</th>
+									<th sort-by='incomingRbDate'>Дата въезда в РБ</th>
+									<th></th>
+								</tr>
+								</thead>
+								<tr ng-repeat="item in filtered = (original | filter:queryCountry | filterByFields:filterModel:['lastName', 'firstName'])" >
+									<td>{{item.lastName}} {{item.firstName}} {{item.middleName}}</td>
+									<td>{{item.group.course.courseName}}</td>
+									<td>{{item.group.speciality.specialityName}}</td>
+									<td>{{item.orderNumber}}</td>
+									<td>{{item.pasportNumber}}</td>
+									<td>{{item.registrationAddress}}</td>
+									<td>{{item.birthPlace}}</td>
+									<td>{{item.incomingRbDate}}</td>
+									<td>
+										<md-button ng-click="showAdvanced($event)">
+											<span class="glyphicon glyphicon-pencil"></span>
+										</md-button>
+										<a href="#!/edit/{{item.id}}" class="btn btn-xs btn-default" ng-show="hasRole('admin')" title="edit"><span class="glyphicon glyphicon-pencil"></span></a>
+									</td>
+								</tr>
+
+							</table>
+						</solo-table>
+					</md-content>
+					<!--Здесь реализован переход по страницам-->
+					<div layout="row" layout-align="center" style="padding: 20px 0">
+						<div flex="50">
+							<label style="padding-top: 5px"> Студентов на странице </label>
+							<input type="number" min="1" min="999999" placeholder="число" type="text" name="onpage" ng-model="len" ng-change="pager.setOnPage(len)" style="width: 120px; padding: 3px; margin: 3px;" class="ng-valid ng-dirty">
+							<label style="padding-top: 5px"> или </label>
+							<select  name="op" id="op" ng-model="op" ng-change="pager.setOnPage(op)" class="ng-valid ng-dirty" style="margin: 3px;">
+								<option value="">выбрать</option>
+								<option value="10">10</option>
+								<option value="20">20</option>
+								<option value="50">50</option>
+								<option value="100">100</option>
+								<option value="500">500</option>
+								<option value="1000">1000</option>
+							</select>
+						</div>
+						<div  flex="50">
+							<a href="" ng-click="gotoFirstPage()">Первая страница | </a>
+							<a href="" ng-click="gotoPrevPage()"> &larr;назад | </a>
+							<a href="" ng-click="gotoNextPage()">вперед &rarr; | </a>
+							<a href="" ng-click="gotoLastPage()">Последняя страница </a>
+						</div>
+					</div>
+				</div>
+			</md-tab-body>
+		</md-tab>
+		<md-tab label="three">
+
+		</md-tab>
+	</md-tabs>
+</div>
+
+<!--<div class="app-context md-whiteframe-z1" >
 	<md-tabs role="tablist"  md-theme="indigo" class="app-context">
 		<md-tab class="md-transition-left">
 			<md-tab-label>
@@ -19,9 +218,9 @@
 							<md-option ng-value="">Все группы</md-option>
 							<md-option ng-value="group.groupName" ng-repeat="group in groups | filter:querySpeciality">{{group.groupName}}</md-option>
 						</md-select>
-						<!--<md-select ng-model="queryCourse" placeholder="Выбрать курс">
+						&lt;!&ndash;<md-select ng-model="queryCourse" placeholder="Выбрать курс">
                             <md-option ng-value="course.courseName" ng-repeat="course in courses">{{ course.courseName }}</md-option>
-                        </md-select>-->
+                        </md-select>&ndash;&gt;
 					</div>
 					<div flex="20">
 						<md-input-container >
@@ -36,7 +235,7 @@
 				</div>
 				<md-content layout-padding class="data-context">
 					<solo-table items-on-page = "15" make-sortable>
-						<!-- Эта таблица обязательно  должна присутствовать в директиве solo-table, что, в общем то, очевидно. -->
+						&lt;!&ndash; Эта таблица обязательно  должна присутствовать в директиве solo-table, что, в общем то, очевидно. &ndash;&gt;
 						<table id="dataStudentsBySpeciality" class="table table-striped table-bordered" >
 							<thead>
 							<tr>
@@ -49,7 +248,7 @@
 							</tr>
 							</thead>
 							<tr ng-repeat="item in filtered = (original | filter:querySpeciality | filter:queryFaculty | filter:queryGroup | filterByFields:filterModel:['lastName', 'firstName'])" >
-								<!--| -->
+								&lt;!&ndash;| &ndash;&gt;
 								<td>{{item.lastName}} {{item.firstName}} {{item.middleName}}</td>
 								<td>{{item.group.course.courseName}}</td>
 								<td>{{item.group.speciality.faculty.facultyName}}</td>
@@ -67,7 +266,7 @@
 						</table>
 					</solo-table>
 				</md-content>
-				<!-- Здесь реализован переход по страницам -->
+				&lt;!&ndash; Здесь реализован переход по страницам &ndash;&gt;
 				<div layout="row" layout-align="center" style="padding: 20px 0">
 					<div layout="row">
 						<div flex="50">
@@ -94,7 +293,7 @@
 					<div layout="row">
 						<div flex>
 							<div layout="row" layout-align="center">
-								<!-- Показываем данные пейджинга: сколько всего страниц, на какой находимся, сколько записей во всей таблице -->
+								&lt;!&ndash; Показываем данные пейджинга: сколько всего страниц, на какой находимся, сколько записей во всей таблице &ndash;&gt;
 								<div layout="row" layout-align="center">Страница {{pager.currentPage}} of {{pager.foundPages}}. Всего студентов:  {{pager.found}}</div>
 							</div>
 						</div>
@@ -122,9 +321,9 @@
 								<md-option ng-value="">Все группы</md-option>
 								<md-option ng-value="group.groupName" ng-repeat="group in groups | filter:querySpeciality">{{group.groupName}}</md-option>
 							</md-select>
-							<!--<md-select ng-model="queryCourse" placeholder="Выбрать курс">
+							&lt;!&ndash;<md-select ng-model="queryCourse" placeholder="Выбрать курс">
                                 <md-option ng-value="course.courseName" ng-repeat="course in courses">{{ course.courseName }}</md-option>
-                            </md-select>-->
+                            </md-select>&ndash;&gt;
 						</div>
 						<div flex="20">
 							<md-input-container >
@@ -142,4 +341,4 @@
 		</md-tab>
 	</md-tabs>
 	</md-tabs></md-tabs>
-</div>
+</div>-->
