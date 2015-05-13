@@ -89,8 +89,6 @@ create table student
    student_id           int not null,
    group_id             int not null,
    country_id           int not null,
-/*   personal_info_id     int not null,
-   education_info_id    int not null,*/
    hostel_id            int not null,
    course               char(10),
    first_name           char(60),
