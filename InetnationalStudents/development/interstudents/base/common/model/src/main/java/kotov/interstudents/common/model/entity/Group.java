@@ -1,6 +1,7 @@
 package kotov.interstudents.common.model.entity;
 
 import kotov.interstudents.common.model.AbstractEntity;
+import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 
@@ -12,7 +13,8 @@ import javax.persistence.*;
 public class Group extends AbstractEntity{
 
     @Id
-    @GeneratedValue
+    @GenericGenerator(name = "studentGen", strategy = "increment")
+    @GeneratedValue(generator = "studentGen")
     @Column(name = "group_id")
     private Integer id;
 

@@ -1,0 +1,54 @@
+<!--<md-dialog aria-label="Mango (Fruit)">
+    <form>-->
+        <md-content class="sticky-container">
+            <md-subheader class="md-sticky-no-effect">Группа</md-subheader>
+            <md-content class="md-padding">
+            <form name="groupForm">
+                <div layout layout-sm="column">
+                    <div flex="70">
+                        <md-input-container>
+                            <label>Название группы</label>
+                            <input md-maxlength="30" required name="group" ng-model="group.groupName">
+                            <div ng-messages="studentForm.student.$error">
+                                <div ng-message="required">Обязательно для заполнения</div>
+                                <div ng-message="md-maxlength">30 characters long.</div>
+                            </div>
+                        </md-input-container>
+                    </div>
+                    <div flex="30">
+                        <md-select ng-model="group.course.id" placeholder="Курс">
+                            <md-option ng-value="">Курс</md-option>
+                            <md-option ng-value="course.id" ng-repeat="course in courses">{{ course.courseName }}</md-option>
+                        </md-select>
+                    </div>
+                </div>
+                <div layout layout-sm="column">
+                    <div flex="50">
+                        <md-select ng-model="queryFaculty" placeholder="Факультет">
+                            <md-option ng-value="">Факультет</md-option>
+                            <md-option ng-value="faculty.facultyName" ng-repeat="faculty in faculties">{{ faculty.facultyName }}</md-option>
+                        </md-select>
+                    </div>
+                    <div flex="50">
+                        <md-select ng-model="group.speciality.id" placeholder="Специальность">
+                            <md-option ng-value="">Специальность</md-option>
+                            <md-option ng-value="speciality.id" ng-repeat="speciality in specialities | filter:queryFaculty">{{ speciality.specialityName }}</md-option>
+                        </md-select>
+                    </div>
+                </div>
+            </form>
+        </md-content>
+            <div class="md-actions" layout="row">
+                <span flex></span>
+                <md-button ng-click="answer('not useful')" class="md-raised md-warn">
+                    Отмена
+                </md-button>
+                <md-button ng-click="saveGroup()" class="md-raised md-primary">
+                    Сохранить
+                </md-button>
+            </div>
+        </md-content>
+
+<!--    </form>
+</md-dialog>-->
+

@@ -9,23 +9,27 @@ angular.module('myApp', ['ngRoute', 'ngMessages', 'ngCookies', 'ngMaterial', 'my
 				templateUrl: 'partials/edit.html',
 				controller: EditController
 			});
+			$routeProvider.when('/editGroup/:id', {
+				templateUrl: 'partials/group/editGroup.html',
+				controller: EditGroupController
+			});
 
 			$routeProvider.when('/statistic', {
-				templateUrl: 'partials/statistic.html',
+				templateUrl: 'partials/statistic/statistic.html',
 				controller: StatisticController
 			});
 			$routeProvider.when('/administration', {
-				templateUrl: 'partials/administration.html',
+				templateUrl: 'partials/administration/administration.html',
 				controller: AdministrationController
 			});
 
 			$routeProvider.when('/student', {
-				templateUrl: 'partials/student.html',
+				templateUrl: 'partials/student/student.html',
 				controller: StudentController
 			});
 
 			$routeProvider.when('/login', {
-				templateUrl: 'partials/login.html',
+				templateUrl: 'partials/login/login.html',
 				controller: LoginController
 			});
 
@@ -39,9 +43,6 @@ angular.module('myApp', ['ngRoute', 'ngMessages', 'ngCookies', 'ngMaterial', 'my
 				controller: IndexController
 			});
 
-
-
-
 			$locationProvider.hashPrefix('!');
 
 			/* Register error provider that shows message on failed requests or redirects to login page on
@@ -50,6 +51,7 @@ angular.module('myApp', ['ngRoute', 'ngMessages', 'ngCookies', 'ngMaterial', 'my
 			        return {
 			        	'responseError': function(rejection) {
 			        		var status = rejection.status;
+							var msg = rejection.message;
 			        		var config = rejection.config;
 			        		var method = config.method;
 			        		var url = config.url;
@@ -57,7 +59,7 @@ angular.module('myApp', ['ngRoute', 'ngMessages', 'ngCookies', 'ngMaterial', 'my
 			        		if (status == 401) {
 			        			$location.path( "/login" );
 			        		} else {
-			        			$rootScope.error = method + " on " + url + " failed with status " + status;
+			        			$rootScope.error = msg + " "+ method + " on " + url + " failed with status " + status;
 			        		}
 			        		return $q.reject(rejection);
 			        	}
@@ -97,6 +99,7 @@ angular.module('myApp', ['ngRoute', 'ngMessages', 'ngCookies', 'ngMaterial', 'my
 			delete $rootScope.error;
 		});
 
+		$rootScope.selectStudent = 1;
 		$rootScope.hasRole = function(role) {
 
 			if ($rootScope.user === undefined) {
@@ -144,7 +147,6 @@ function IndexController($scope, HostelService) {
 	};
 }
 
-
 function EditController($scope, $routeParams, $location, StudentService, CountryService,
 						FacultyService, SpecialityService, CourseService, GroupService, HostelService) {
 
@@ -165,15 +167,23 @@ function EditController($scope, $routeParams, $location, StudentService, Country
 	};
 }
 
-function AdministrationController($scope, $location, $mdDialog, StudentService, FacultyService, SpecialityService, CourseService, GroupService) {
-	$scope.student = new StudentService();
+function EditGroupController($scope, $routeParams, $location, FacultyService, SpecialityService, CourseService, GroupService) {
 
-	$scope.save = function() {
-		$scope.student.$save(function() {
+
+	$scope.group = GroupService.get({id: $routeParams.id});
+
+	$scope.faculties = FacultyService.query();
+	$scope.specialities = SpecialityService.query();
+	$scope.courses = CourseService.query();
+
+	$scope.saveGroup = function() {
+		$scope.group.$save(function() {
 			$location.path('/administration');
 		});
 	};
+}
 
+function AdministrationController($scope, EditStudentService, EditGroupService, $mdDialog, StudentService, FacultyService, SpecialityService, CourseService, GroupService) {
 	$scope.original = StudentService.query();
 
 	$scope.faculties = FacultyService.query();
@@ -181,28 +191,31 @@ function AdministrationController($scope, $location, $mdDialog, StudentService, 
 	$scope.groups = GroupService.query();
 	$scope.courses = CourseService.query();
 
-	$scope.showCreateForm = function(ev) {
-		$scope.selectStudent = (this).item;
-		if($scope.selectStudent != undefined) {
-			alert($scope.selectStudent.firstName);
-		}
+	$scope.showCreateStudentForm = function(ev) {
+		EditStudentService.editStudent = this.item;
 		$mdDialog.show({
-			controller: CreateController,
-			templateUrl: 'partials/edit.html',
+			controller: CreateStudentController,
+			templateUrl: 'partials/student/createStudent.html',
 			targetEvent: ev
-		})
-			.then(function(answer) {
-				$scope.alert = 'You said the information was "' + answer + '".';
-			}, function() {
-				$scope.alert = 'Зактыли';
-			});
+		});
+	};
+	$scope.showCreateGroupForm = function(ev) {
+		EditGroupService.editGroup = this.item;
+		$mdDialog.show({
+			controller: CreateGroupController,
+			templateUrl: 'partials/group/createGroup.html',
+			targetEvent: ev
+		});
 	};
 }
 
-function CreateController($scope, $mdDialog, $mdToast, StudentService, CountryService,
+function CreateStudentController($scope, EditStudentService, $mdDialog, $mdToast, StudentService, CountryService,
 						  FacultyService, SpecialityService, CourseService, GroupService, HostelService) {
-	if($scope.student == undefined) {
+	if(EditStudentService.editStudent == undefined) {
 		$scope.student = new StudentService();
+	}
+	else{
+		$scope.student = EditStudentService.editStudent;
 	}
 
 	$scope.countries = CountryService.query();
@@ -229,6 +242,43 @@ function CreateController($scope, $mdDialog, $mdToast, StudentService, CountrySe
 	$scope.save = function(answer) {
 		$mdDialog.hide(answer);
 		$scope.student.$save();
+		$scope.showActionToast();
+	};
+	$scope.answer = function(answer) {
+		$mdDialog.hide(answer);
+	};
+}
+function CreateGroupController($scope, EditGroupService, $mdDialog, $mdToast, FacultyService, SpecialityService, CourseService, GroupService) {
+	if(EditGroupService.editGroup == undefined) {
+		$scope.group = new GroupService();
+	}
+	else{
+		$scope.group = EditGroupService.editGroup;
+	}
+
+	alert($scope.group.groupName);
+
+	$scope.faculties = FacultyService.query();
+	$scope.specialities = SpecialityService.query();
+	$scope.courses = CourseService.query();
+
+	$scope.showActionToast = function() {
+		$mdToast.show(
+			$mdToast.simple()
+				.content('Данные сохранены')
+				.hideDelay(3000)
+		);
+	};
+
+	$scope.hide = function () {
+		$mdDialog.hide();
+	};
+	$scope.cancel = function () {
+		$mdDialog.cancel();
+	};
+	$scope.saveGroup = function(answer) {
+		$mdDialog.hide(answer);
+		$scope.group.$save();
 		$scope.showActionToast();
 	};
 
@@ -265,7 +315,6 @@ function StudentController ($scope, StudentService, FacultyService, SpecialitySe
 }
 
 function StatisticController ($scope, StatisticSpecialityService, StatisticCountryService) {
-
 	$scope.statisticBySpeciality = StatisticSpecialityService.query();
 	$scope.statisticByCountry = StatisticCountryService.query();
 }
@@ -368,4 +417,16 @@ services.factory('StatisticSpecialityService', function($resource) {
 
 services.factory('StatisticCountryService', function($resource) {
 	return $resource('rest/student/statisticByCountry/:id', {id: '@id'});
+});
+
+services.factory('EditStudentService', function(){
+	return{
+		editStudent: ''
+	}
+});
+
+services.factory('EditGroupService', function(){
+	return{
+		editGroup: ''
+	}
 });

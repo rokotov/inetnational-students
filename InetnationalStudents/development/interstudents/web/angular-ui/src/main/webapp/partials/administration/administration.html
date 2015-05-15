@@ -30,7 +30,7 @@
 									</md-input-container>
 								</div>
 								<div flex="10"layout="row" layout-align="center center">
-									<md-button class="md-fab md-mini md-primary" ng-click="showCreateForm($event)" aria-label="Comment">
+									<md-button class="md-fab md-mini md-primary" ng-click="showCreateStudentForm($event)" aria-label="Comment">
 										<md-icon md-svg-src="img/icons/plus.svg"></md-icon>
 									</md-button>
 								</div>
@@ -42,7 +42,6 @@
 					<md-whiteframe class="md-whiteframe-z2 table-context">
 						<md-content layout-padding class="data-context">
 							<solo-table items-on-page = "15" make-sortable>
-								<!-- Эта таблица обязательно  должна присутствовать в директиве solo-table, что, в общем то, очевидно. -->
 								<table id="dataStudentsBySpeciality" class="table table-striped table-bordered" >
 									<thead>
 									<tr>
@@ -62,17 +61,20 @@
 										<td>{{item.group.speciality.specialityName}}</td>
 										<td>{{item.group.groupName}}</td>
 										<td>
-											<!--<div flex="10">
-												<md-button class="md-fab md-mini md-primary" ng-click="showCreateForm($event)" aria-label="Comment">
-													<md-icon md-svg-src="img/icons/plus.svg"></md-icon>
+											<div flex="10" ng-show="hasRole('admin')">
+												<md-button class="md-icon-button" ng-click="showCreateStudentForm($event)" aria-label="Comment">
+													<md-icon md-svg-src="img/icons/pencil.svg"></md-icon>
+													<md-tooltip md-direction="right">
+														Изменить данные {{item.lastName}}
+													</md-tooltip>
 												</md-button>
-											</div>-->
-											<a href="#!/edit/{{item.id}}" class="btn btn-xs btn-default" ng-show="hasRole('admin')">
+											</div>
+										<!--	<a href="#!/edit/{{item.id}}" class="btn btn-xs btn-default" ng-show="hasRole('admin')">
 												<md-icon style="color: gray" md-svg-icon="img/icons/pencil.svg"></md-icon>
 												<md-tooltip md-direction="right">
 													Изменить данные {{item.lastName}}
 												</md-tooltip>
-											</a>
+											</a>-->
 										</td>
 									</tr>
 								</table>
@@ -80,7 +82,6 @@
 						</md-content>
 					</md-whiteframe>
 				</div>
-				<!-- Здесь реализован переход по страницам -->
 				<div layout="row" layout-align="center" style="padding: 20px 0">
 					<div flex="50">
 						<label style="padding-top: 5px"> Студентов на странице </label>
@@ -106,6 +107,72 @@
 			</md-tab-body>
 		</md-tab>
 		<md-tab label="Группы">
+			<md-tab-body>
+				<div layout="row" layout-align="center center">
+					<md-whiteframe class="md-whiteframe-z2 filter-whiteframe-context">
+						<md-context>
+							<div layout="row"  class="filter-context">
+								<div flex="70" layout="row" layout-align="center start">
+									<md-select ng-model="queryFaculty" placeholder="Выбрать факультет">
+										<md-option ng-value="">Все факультеты</md-option>
+										<md-option ng-value="faculty.facultyName" ng-repeat="faculty in faculties">{{ faculty.facultyName }}</md-option>
+									</md-select>
+									<md-select ng-model="querySpeciality" placeholder="Выбрать специальность">
+										<md-option ng-value="">Все специальности</md-option>
+										<md-option ng-value="speciality.specialityName" ng-repeat="speciality in specialities | filter:queryFaculty">{{ speciality.specialityName }}</md-option>
+									</md-select>
+									<md-select ng-model="queryCourse" placeholder="Выбрать группу">
+										<md-option ng-value="">Все курсы</md-option>
+										<md-option ng-value="course.courseName" ng-repeat="course in courses">{{course.courseName}}</md-option>
+									</md-select>
+								</div>
+								<div layout="row" layout-align="center center">
+									<md-button class="md-fab md-mini md-primary" ng-click="showCreateGroupForm($event)" aria-label="add">
+										<md-icon md-svg-src="img/icons/plus.svg"></md-icon>
+									</md-button>
+								</div>
+							</div>
+						</md-context>
+					</md-whiteframe>
+				</div>
+				<div layout="row" layout-align="center center">
+					<md-whiteframe class="md-whiteframe-z2 table-context">
+						<md-content layout-padding class="data-context">
+							<table class="table table-striped table-bordered" >
+								<thead>
+								<tr>
+									<th>Группа</th>
+									<th>Курс</th>
+									<th>Факультет</th>
+									<th>Специальность</th>
+									<th></th>
+								</tr>
+								</thead>
+								<tr ng-repeat="item in (groups | filter:querySpeciality | filter:queryCourse)" >
+									<td>{{item.groupName}}</td>
+									<td>{{item.course.courseName}}</td>
+									<td>{{item.speciality.faculty.facultyName}}</td>
+									<td>{{item.speciality.specialityName}}</td>
+									<td>
+										<md-button class="md-icon-button" ng-click="showCreateGroupForm($event)" aria-label="Comment">
+											<md-icon md-svg-src="img/icons/pencil.svg"></md-icon>
+											<md-tooltip md-direction="right">
+												Изменить группу {{item.groupName}}
+											</md-tooltip>
+										</md-button>
+										<!--<a href="#!/editGroup/{{item.id}}" class="btn btn-xs btn-default" ng-show="hasRole('admin')">
+											<md-icon style="color: gray" md-svg-icon="img/icons/pencil.svg"></md-icon>
+											<md-tooltip md-direction="right">
+												Изменить данные {{item.lastName}}
+											</md-tooltip>
+										</a>-->
+									</td>
+								</tr>
+							</table>
+						</md-content>
+					</md-whiteframe>
+				</div>
+			</md-tab-body>
 		</md-tab>
 	</md-tabs>
 </div>
