@@ -4,42 +4,32 @@
             <md-tab-body>
                 <div layout="row" layout-align="center center">
                     <md-whiteframe class="md-whiteframe-z2 filter-whiteframe-context">
-                        <md-context>
-                            <div layout="row" class="filter-context">
-                                <div flex="40" layout="row" layout-align="center start">
-                                    <md-select ng-model="queryFaculty" placeholder="Выбрать факультет">
-                                        <md-option ng-value="faculty.facultyName" ng-repeat="faculty in faculties">{{ faculty.facultyName }}</md-option>
-                                    </md-select>
-                                    <md-select ng-model="querySpeciality" placeholder="Выбрать специальность">
-                                        <md-option ng-value="speciality.specialityName" ng-repeat="speciality in specialities | filter:queryFaculty">{{ speciality.specialityName }}</md-option>
-                                    </md-select>
-                                </div>
-                                <div flex="20" layout="row" layout-align="center start">
-                                    <md-input-container >
-                                        <label>Имя или фамилия</label>
-                                        <input ng-model="filterModel">
-                                    </md-input-container>
-                                </div>
-                                <div flex="30" layout="row" layout-align="center center">
-                                    <div layout="row" layout-align="center">Страница {{pager.currentPage}} of {{pager.foundPages}}. Всего студентов:  {{pager.found}}</div>
-                                </div>
-                                <div flex="10" layout="row" layout-align="center center">
-                                    <md-button class="md-fab md-mini md-primary" download="dataStudentsBySpeciality.xls" aria-label="Выход" href="" class="md-icon-button" onclick="return ExcellentExport.excel(this, 'dataStudentsBySpeciality', 'Sheet Name Here');">
-                                        <md-icon md-svg-src="img/icons/arrow-down-bold.svg"></md-icon>
-                                        <md-tooltip md-direction="right" style="margin-left: 10px;">
-                                            Выгрузить в Excel
-                                        </md-tooltip>
-                                    </md-button>
-                                </div>
-                            </div>
+                        <md-context layout-gt-md="row" layout="column">
+                            <md-select ng-model="queryFaculty" placeholder="Выбрать факультет">
+                                <md-option ng-value="faculty.facultyName" ng-repeat="faculty in faculties">{{ faculty.facultyName }}</md-option>
+                            </md-select>
+                            <md-select ng-model="querySpeciality" placeholder="Выбрать специальность">
+                                <md-option ng-value="speciality.specialityName" ng-repeat="speciality in specialities | filter:queryFaculty">{{ speciality.specialityName }}</md-option>
+                            </md-select>
+                            <md-input-container>
+                                <label>Имя или фамилия</label>
+                                <input ng-model="filterModel">
+                            </md-input-container>
+                            <div class="pager-info">Страница {{pager.currentPage}} of {{pager.foundPages}}. Всего студентов:  {{pager.found}}</div>
+                            <md-button class="md-mini md-primary md-fab md-fab-top-right"download="dataStudentsBySpeciality.xls" aria-label="Выход" href=""  onclick="return ExcellentExport.excel(this, 'dataStudentsBySpeciality', 'Sheet Name Here');">
+                                <md-icon md-svg-src="img/icons/arrow-down-bold.svg"></md-icon>
+                                <md-tooltip md-direction="bottom" style="margin-left: 10px;">
+                                    Выгрузить в Excel
+                                </md-tooltip>
+                            </md-button>
                         </md-context>
                     </md-whiteframe>
                 </div>
                 <div layout="row" layout-align="center center">
                     <md-whiteframe class="md-whiteframe-z2 table-context">
                         <md-content layout-padding class="data-context">
+                            <!--<div ng-include="'partials/student/studentBySpeciality.html'"></div>-->
                             <solo-table items-on-page = "15" make-sortable>
-                                <!-- Эта таблица обязательно  должна присутствовать в директиве solo-table, что, в общем то, очевидно. -->
                                 <table id="dataStudentsBySpeciality"  class="table table-striped table-bordered" >
                                     <thead>
                                     <tr>
@@ -52,7 +42,6 @@
                                         <th sort-by='country.countryName'>Страна</th>
                                         <th sort-by='pasportNumber'>Паспортные данные</th>
                                         <th sort-by='registrationAddress'>Адресс регистрации</th>
-                                        <th></th>
                                     </tr>
                                     </thead>
                                     <tr ng-repeat="item in filtered = (original | filter: querySpeciality | filter:queryFaculty | filterByFields:filterModel:['lastName', 'firstName'])" >
@@ -65,15 +54,14 @@
                                         <td>{{item.country.countryName}}</td>
                                         <td>{{item.pasportNumber}}</td>
                                         <td>{{item.registrationAddress}}</td>
-                                        <!--<td><md-icon icon="img/icons/ic_border_color_24px.svg"></md-icon></td>-->
                                     </tr>
-
                                 </table>
                             </solo-table>
                         </md-content>
                     </md-whiteframe>
                 </div>
                 <div layout="row" layout-align="center" class="pager-content">
+                    <!--<div ng-include="'partials/pager.html'"></div>-->
                     <div flex="50">
                         <label style="padding-top: 5px"> Студентов на странице </label>
                         <input type="number" min="1" min="999999" placeholder="число" type="text" name="onpage" ng-model="len" ng-change="pager.setOnPage(len)" style="width: 120px; padding: 3px; margin: 3px;" class="ng-valid ng-dirty">
@@ -101,37 +89,28 @@
             <md-tab-body>
                 <div layout="row" layout-align="center center">
                     <md-whiteframe class="md-whiteframe-z2 filter-whiteframe-context">
-                        <md-content>
-                            <div layout="row">
-                                <div flex="40" layout="row" layout-align="center start">
-                                    <md-select ng-model="queryCountry" placeholder="Выбрать страну">
-                                        <md-option ng-value="country.countryName" ng-repeat="country in countries">{{ country.countryName }}</md-option>
-                                    </md-select>
-                                </div>
-                                <div flex="20" layout="row" layout-align="center center">
-                                    <md-input-container >
-                                        <label>Имя или фамилия</label>
-                                        <input ng-model="filterModel">
-                                    </md-input-container>
-                                </div>
-                                <div flex="30"layout="row" layout-align="center center">
-                                    <div layout="row" layout-align="center center">Страница {{pager.currentPage}} of {{pager.foundPages}}. Всего студентов:  {{pager.found}}</div>
-                                </div>
-                                <div flex="10" layout="row" layout-align="center center">
-                                    <md-button  class="md-fab md-mini md-primary" download="dataStudentsByCountry.xls" aria-label="Выход"  href="" class="md-icon-button" onclick="return ExcellentExport.excel(this, 'dataStudentsByCountry', 'Sheet Name Here');">
-                                        <md-icon md-svg-src="img/icons/arrow-down-bold.svg"></md-icon>
-                                        <md-tooltip md-direction="right">
-                                            Выгрузить в Excel
-                                        </md-tooltip>
-                                    </md-button>
-                                </div>
-                            </div>
+                        <md-content  layout-gt-md="row" layout="column">
+                            <md-select ng-model="queryCountry" placeholder="Выбрать страну">
+                                <md-option ng-value="country.countryName" ng-repeat="country in countries">{{ country.countryName }}</md-option>
+                            </md-select>
+                            <md-input-container >
+                                <label>Имя или фамилия</label>
+                                <input ng-model="filterModel">
+                            </md-input-container>
+                            <div class="pager-info">Страница {{pager.currentPage}} of {{pager.foundPages}}. Всего студентов:  {{pager.found}}</div>
+                            <md-button class="md-mini md-primary md-fab md-fab-top-right"download="dataStudentsByCountry.xls" aria-label="Выход" href=""  onclick="return ExcellentExport.excel(this, 'dataStudentsBySpeciality', 'Sheet Name Here');">
+                                <md-icon md-svg-src="img/icons/arrow-down-bold.svg"></md-icon>
+                                <md-tooltip md-direction="bottom" style="margin-left: 10px;">
+                                    Выгрузить в Excel
+                                </md-tooltip>
+                            </md-button>
                         </md-content>
                     </md-whiteframe>
                 </div>
                 <div layout="row" layout-align="center center">
                     <md-whiteframe class="md-whiteframe-z2 table-context">
                         <md-content layout-padding class="data-context">
+                            <!--<div ng-include="'partials/student/studentByCountry.html'"></div>-->
                             <solo-table items-on-page = "15" make-sortable>
                                 <table id="dataStudentsByCountry" class="table table-striped table-bordered" >
                                     <thead>
@@ -156,14 +135,13 @@
                                         <td>{{item.birthPlace}}</td>
                                         <td>{{item.incomingRbDate}}</td>
                                     </tr>
-
                                 </table>
                             </solo-table>
                         </md-content>
                     </md-whiteframe>
                 </div>
-                <!--Здесь реализован переход по страницам-->
                 <div layout="row" layout-align="center" class="pager-content">
+                    <!--<div ng-include="'partials/pager.html'"></div>-->
                     <div flex="50">
                         <label style="padding-top: 5px"> Студентов на странице </label>
                         <input type="number" min="1" min="999999" placeholder="число" type="text" name="onpage" ng-model="len" ng-change="pager.setOnPage(len)" style="width: 120px; padding: 3px; margin: 3px;" class="ng-valid ng-dirty">
@@ -187,11 +165,5 @@
                 </div>
             </md-tab-body>
         </md-tab>
-       <!-- <md-tab label="three">
-            <md-content class="md-padding">
-                <h1 class="md-display-2">Tab Three</h1>
-                <p>Integer turpis erat, porttitor vitae mi faucibus, laoreet interdum tellus. Curabitur posuere molestie dictum. Morbi eget congue risus, quis rhoncus quam. Suspendisse vitae hendrerit erat, at posuere mi. Cras eu fermentum nunc. Sed id ante eu orci commodo volutpat non ac est. Praesent ligula diam, congue eu enim scelerisque, finibus commodo lectus.</p>
-            </md-content>
-        </md-tab>-->
     </md-tabs>
 </div>

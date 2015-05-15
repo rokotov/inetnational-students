@@ -21,11 +21,11 @@
 }
 .filter-whiteframe-context{
     margin: 10px 5px 5px 5px;
-    padding: 0 20px;
+    padding-left: 20px;
     width: 100%;
 }
-.filter-context{
-
+.pager-info{
+    padding: 27px 0;
 }
 .table-context{
     margin: 15px 5px;

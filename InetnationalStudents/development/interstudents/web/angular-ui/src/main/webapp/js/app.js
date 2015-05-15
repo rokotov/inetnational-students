@@ -98,8 +98,6 @@ angular.module('myApp', ['ngRoute', 'ngMessages', 'ngCookies', 'ngMaterial', 'my
 		$rootScope.$on('$viewContentLoaded', function() {
 			delete $rootScope.error;
 		});
-
-		$rootScope.selectStudent = 1;
 		$rootScope.hasRole = function(role) {
 
 			if ($rootScope.user === undefined) {
@@ -255,8 +253,6 @@ function CreateGroupController($scope, EditGroupService, $mdDialog, $mdToast, Fa
 	else{
 		$scope.group = EditGroupService.editGroup;
 	}
-
-	alert($scope.group.groupName);
 
 	$scope.faculties = FacultyService.query();
 	$scope.specialities = SpecialityService.query();
