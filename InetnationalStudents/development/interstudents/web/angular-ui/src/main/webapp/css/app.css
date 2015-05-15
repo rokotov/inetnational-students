@@ -3,9 +3,8 @@
     margin-top: 10px;
 }
 .main-content{
-    margin-top: 20px;
     padding: 10px 40px;
-    /*height: 90%;*/
+    height: 90%;
 }
 
 .login-form{
@@ -18,17 +17,24 @@
     padding: 4px;
 }
 .data-context{
-    /*height: 30%;*/
+    height: 50%;
+}
+.filter-whiteframe-context{
+    margin: 10px 5px 5px 5px;
+    padding: 0 20px;
+    width: 100%;
 }
 .filter-context{
-    margin: 15px 5px;
-    padding: 7px;
-    width: 100%;
+
 }
 .table-context{
     margin: 15px 5px;
     width: 100%;
 }
+.pager-content{
+    padding-top: 20px;
+}
+
 .border{
     border: solid 1px gainsboro;
 }

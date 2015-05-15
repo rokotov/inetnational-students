@@ -1,14 +1,9 @@
-angular.module('myApp', ['ngRoute', 'ngCookies', 'ngMaterial', 'myApp.services', 'solo.table'])
+angular.module('myApp', ['ngRoute', 'ngMessages', 'ngCookies', 'ngMaterial', 'myApp.services', 'solo.table'])
 	.config(
 		[ '$routeProvider', '$locationProvider', '$httpProvider', function($routeProvider, $locationProvider, $httpProvider, $mdThemingProvider) {
 
 			/*$mdThemingProvider.theme('indigo')
 				.dark();*/
-
-			$routeProvider.when('/create', {
-				templateUrl: 'partials/create.html',
-				controller: CreateController
-			});
 
 			$routeProvider.when('/edit/:id', {
 				templateUrl: 'partials/edit.html',
@@ -156,7 +151,6 @@ function EditController($scope, $routeParams, $location, StudentService, Country
 
 	$scope.student = StudentService.get({id: $routeParams.id});
 
-
 	$scope.countries = CountryService.query();
 	$scope.hostels = HostelService.query();
 	$scope.faculties = FacultyService.query();
@@ -171,27 +165,7 @@ function EditController($scope, $routeParams, $location, StudentService, Country
 	};
 }
 
-
-function CreateController($scope, $location, StudentService, CountryService,
-						  FacultyService, SpecialityService, CourseService, GroupService, HostelService) {
-
-	$scope.student = new StudentService();
-
-	$scope.countries = CountryService.query();
-	$scope.hostels = HostelService.query();
-	$scope.faculties = FacultyService.query();
-	$scope.specialities = SpecialityService.query();
-	$scope.groups = GroupService.query();
-	$scope.courses = CourseService.query();
-
-	$scope.save = function() {
-		$scope.student.$save(function() {
-			$location.path('/administration');
-		});
-
-	};
-}
-function AdministrationController($scope, $location, StudentService, FacultyService, SpecialityService, CourseService, GroupService) {
+function AdministrationController($scope, $location, $mdDialog, StudentService, FacultyService, SpecialityService, CourseService, GroupService) {
 	$scope.student = new StudentService();
 
 	$scope.save = function() {
@@ -205,8 +179,62 @@ function AdministrationController($scope, $location, StudentService, FacultyServ
 	$scope.faculties = FacultyService.query();
 	$scope.specialities = SpecialityService.query();
 	$scope.groups = GroupService.query();
-	$scope.courses = CourseService.query();//[{ name:'0'}, {name:'1'}, {name:'2'}, {name:'3'}, {name:'4'}, {name:'5'}, {name:'II'}, {name:'III'}, {name:'K'}, {name:'A'} ];
+	$scope.courses = CourseService.query();
 
+	$scope.showCreateForm = function(ev) {
+		$scope.selectStudent = (this).item;
+		if($scope.selectStudent != undefined) {
+			alert($scope.selectStudent.firstName);
+		}
+		$mdDialog.show({
+			controller: CreateController,
+			templateUrl: 'partials/edit.html',
+			targetEvent: ev
+		})
+			.then(function(answer) {
+				$scope.alert = 'You said the information was "' + answer + '".';
+			}, function() {
+				$scope.alert = 'Зактыли';
+			});
+	};
+}
+
+function CreateController($scope, $mdDialog, $mdToast, StudentService, CountryService,
+						  FacultyService, SpecialityService, CourseService, GroupService, HostelService) {
+	if($scope.student == undefined) {
+		$scope.student = new StudentService();
+	}
+
+	$scope.countries = CountryService.query();
+	$scope.hostels = HostelService.query();
+	$scope.faculties = FacultyService.query();
+	$scope.specialities = SpecialityService.query();
+	$scope.groups = GroupService.query();
+	$scope.courses = CourseService.query();
+
+	$scope.showActionToast = function() {
+		$mdToast.show(
+			$mdToast.simple()
+				.content('Данные сохранены')
+				.hideDelay(3000)
+		);
+	};
+
+	$scope.hide = function () {
+		$mdDialog.hide();
+	};
+	$scope.cancel = function () {
+		$mdDialog.cancel();
+	};
+	$scope.save = function(answer) {
+		$mdDialog.hide(answer);
+		$scope.student.$save();
+		$scope.showActionToast();
+	};
+
+	$scope.answer = function(answer) {
+		$mdDialog.hide(answer);
+	};
 }
 
 function LoginController($scope, $rootScope, $location, $cookieStore, UserService) {
@@ -228,51 +256,18 @@ function LoginController($scope, $rootScope, $location, $cookieStore, UserServic
 	};
 }
 
-function StudentController ($scope, $mdDialog, StudentService, FacultyService, SpecialityService, CountryService/*, Group*/) {
+function StudentController ($scope, StudentService, FacultyService, SpecialityService, CountryService) {
 	$scope.original = StudentService.query();
 
 	$scope.faculties = FacultyService.query();
 	$scope.specialities = SpecialityService.query();
 	$scope.countries = CountryService.query();
-
-	$scope.showAdvanced = function(ev) {
-		/*$scope.student = StudentService.get({id:  $routeParams.id});*/
-		$mdDialog.show({
-			controller: DialogController,
-			templateUrl: 'partials/editDialog.html',
-			targetEvent: ev
-		})
-			.then(function(answer) {
-				$scope.alert = 'Вы сказали"' + answer + '".';
-			}, function() {
-				$scope.alert = 'Вы закрыли диолог.';
-			});
-	};
 }
 
 function StatisticController ($scope, StatisticSpecialityService, StatisticCountryService) {
 
 	$scope.statisticBySpeciality = StatisticSpecialityService.query();
 	$scope.statisticByCountry = StatisticCountryService.query();
-}
-
-function DialogController($scope,$routeParams, $location, StudentService, $mdDialog) {
-	$scope.student = StudentService.get({id: $routeParams.id});
-	$scope.save = function() {
-		$scope.student.$save(function() {
-			$location.path('/');
-		});
-	};
-
-	$scope.hide = function() {
-		$mdDialog.hide();
-	};
-	$scope.cancel = function() {
-		$mdDialog.cancel();
-	};
-	$scope.answer = function(answer) {
-		$mdDialog.hide(answer);
-	};
 }
 
 function HomeController($scope){
@@ -287,7 +282,7 @@ function MainCtrl($scope, $mdSidenav) {
 	$scope.menu = {};
 	$scope.menu.pages = [
 		{"url": "!/home", "discription": "Главная"},
-		{"url": "!/student", "discription": "Список студентов"},
+		{"url": "!/student", "discription": "Списки студентов"},
 		{"url": "!/statistic", "discription": "Статистика"},
 		{"url": "!/", "discription": "Общаги"}
 

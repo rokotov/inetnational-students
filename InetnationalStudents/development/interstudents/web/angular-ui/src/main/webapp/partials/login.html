@@ -1,4 +1,4 @@
-<div layout="row" layout-align="center center" >
+<div layout="column" layout-align="center center" flex>
 	<md-whiteframe class="md-whiteframe-z3 login-form">
 		<md-content layout-padding>
 			<md-input-container class="md-icon-float" >
@@ -14,7 +14,7 @@
                 <div ng-message="required">This is required.</div>
             </div>-->
 			</md-input-container>
-			<div ng-show="error">{{error}}</div>
+			<div>{{error}}</div>
 			<div layout="row" layout-sm="column" layout-align="center center">
 				<md-checkbox md-no-ink ng-model="rememberMe">
 					Запомнить
