@@ -1,0 +1,41 @@
+<md-dialog aria-label="Специальность">
+    <form>
+        <md-dialog-content class="sticky-container">
+            <md-subheader class="md-sticky-no-effect">Специальность</md-subheader>
+            <md-content class="md-padding">
+                <form name="specialityForm">
+                    <div layout layout-sm="column">
+                        <div flex>
+                            <md-input-container>
+                                <label>Название специальности</label>
+                                <input md-maxlength="30" required name="speciality" ng-model="speciality.specialityName">
+                                <div ng-messages="specialityForm.speciality.$error">
+                                    <div ng-message="required">Обязательно для заполнения</div>
+                                    <div ng-message="md-maxlength">30 characters long.</div>
+                                </div>
+                            </md-input-container>
+                        </div>
+                    </div>
+                    <div layout layout-sm="column">
+                        <div flex>
+                            <md-select ng-model="speciality.faculty.id" placeholder="Факультет">
+                                <md-option ng-value="">Факультет</md-option>
+                                <md-option ng-value="faculty.id" ng-repeat="faculty in faculties">{{ faculty.facultyName }}</md-option>
+                            </md-select>
+                        </div>
+                    </div>
+                </form>
+            </md-content>
+        </md-dialog-content>
+        <div class="md-actions" layout="row">
+            <span flex></span>
+            <md-button ng-click="cancel()" class="md-raised md-warn">
+                Отмена
+            </md-button>
+            <md-button ng-click="saveSpeciality()" class="md-raised md-primary">
+                Сохранить
+            </md-button>
+        </div>
+    </form>
+</md-dialog>
+

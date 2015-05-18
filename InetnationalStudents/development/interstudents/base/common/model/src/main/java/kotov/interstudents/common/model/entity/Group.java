@@ -13,8 +13,8 @@ import javax.persistence.*;
 public class Group extends AbstractEntity{
 
     @Id
-    @GenericGenerator(name = "studentGen", strategy = "increment")
-    @GeneratedValue(generator = "studentGen")
+    @GenericGenerator(name = "groupGen", strategy = "increment")
+    @GeneratedValue(generator = "groupGen")
     @Column(name = "group_id")
     private Integer id;
 
