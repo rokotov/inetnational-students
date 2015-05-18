@@ -22,6 +22,7 @@
 .filter-whiteframe-context{
     margin: 10px 5px 5px 5px;
     padding-left: 20px;
+    padding-right: 80px;
     width: 100%;
 }
 .pager-info{
@@ -40,6 +41,11 @@
 }
 .filter-item{
     margin-top: 20px;
+}
+
+.md-subheader {
+    background-color: #dcedc8;
+    margin: 0;
 }
 
  .menu-item {

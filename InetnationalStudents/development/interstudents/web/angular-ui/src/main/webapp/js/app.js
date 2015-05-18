@@ -1,9 +1,8 @@
 angular.module('myApp', ['ngRoute', 'ngMessages', 'ngCookies', 'ngMaterial', 'myApp.services', 'solo.table'])
 	.config(
-		[ '$routeProvider', '$locationProvider', '$httpProvider', function($routeProvider, $locationProvider, $httpProvider, $mdThemingProvider) {
+		[ '$routeProvider', '$locationProvider', '$httpProvider', '$mdThemingProvider', function($routeProvider, $locationProvider, $httpProvider, $mdThemingProvider) {
 
-			/*$mdThemingProvider.theme('indigo')
-				.dark();*/
+			$mdThemingProvider.theme('indigo').dark();
 
 			$routeProvider.when('/edit/:id', {
 				templateUrl: 'partials/edit.html',
@@ -312,6 +311,7 @@ function CreateSpecialityController($scope, EditSpecialityService, $mdDialog, $m
 	$scope.saveSpeciality = function(answer) {
 		$mdDialog.hide(answer);
 		$scope.speciality.$save();
+		$scope.specialities.add(speciality);
 		$scope.showActionToast();
 	};
 }

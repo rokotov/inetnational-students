@@ -143,9 +143,9 @@ md-slider.md-indigo-theme[disabled] .md-thumb:after {
 md-slider.md-indigo-theme[disabled]:not(.md-min) .md-thumb:after {
   background-color: #bdbdbd; }
 
-.md-subheader.md-indigo-theme {
+/*.md-subheader.md-indigo-theme {
   color: rgba(0, 0, 0, 0.54);
-  background-color: #ffffff; }
+  background-color: #ffffff; }*/
   .md-subheader.md-indigo-theme.md-primary {
     color: #3f51b5; }
 

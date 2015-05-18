@@ -74,18 +74,24 @@
 				<div layout="row" layout-align="center center">
 					<md-whiteframe class="md-whiteframe-z2 filter-whiteframe-context">
 						<md-context layout-gt-md="row" layout="column">
-							<md-select ng-model="queryFaculty" placeholder="Выбрать факультет">
-								<md-option ng-value="">Все факультеты</md-option>
-								<md-option ng-value="faculty.facultyName" ng-repeat="faculty in faculties">{{ faculty.facultyName }}</md-option>
-							</md-select>
-							<md-select ng-model="querySpeciality" placeholder="Выбрать специальность">
-								<md-option ng-value="">Все специальности</md-option>
-								<md-option ng-value="speciality.specialityName" ng-repeat="speciality in specialities | filter:queryFaculty ">{{ speciality.specialityName }}</md-option>
-							</md-select>
-							<md-select ng-model="queryCourse" placeholder="Выбрать группу">
-								<md-option ng-value="">Все курсы</md-option>
-								<md-option ng-value="course.courseName" ng-repeat="course in courses">{{course.courseName}}</md-option>
-							</md-select>
+							<md-input-container>
+								<md-select ng-model="queryFaculty" placeholder="Выбрать факультет">
+									<md-option ng-value="">Все факультеты</md-option>
+									<md-option ng-value="faculty.facultyName" ng-repeat="faculty in faculties">{{ faculty.facultyName }}</md-option>
+								</md-select>
+							</md-input-container>
+							<md-input-container>
+								<md-select ng-model="querySpeciality" placeholder="Выбрать специальность">
+									<md-option ng-value="">Все специальности</md-option>
+									<md-option ng-value="speciality.specialityName" ng-repeat="speciality in specialities | filter:queryFaculty ">{{ speciality.specialityName }}</md-option>
+								</md-select>
+							</md-input-container>
+							<md-input-container>
+								<md-select ng-model="queryCourse" placeholder="Выбрать группу">
+									<md-option ng-value="">Все курсы</md-option>
+									<md-option ng-value="course.courseName" ng-repeat="course in courses">{{course.courseName}}</md-option>
+								</md-select>
+							</md-input-container>
 							<md-input-container>
 								<label>Группа</label>
 								<input ng-model="filterGroupName">
@@ -168,7 +174,7 @@
 										<md-button ng-show="hasRole('admin')" class="md-icon-button" ng-click="showCreateSpecialityForm($event)" aria-label="Comment">
 											<md-icon md-svg-src="img/icons/pencil.svg"></md-icon>
 											<md-tooltip md-direction="right">
-												Изменить специальность {{item.groupName}}
+												Изменить специальность {{item.specialityName}}
 											</md-tooltip>
 										</md-button>
 									</td>

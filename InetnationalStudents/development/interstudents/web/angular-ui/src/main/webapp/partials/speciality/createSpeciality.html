@@ -1,30 +1,27 @@
 <md-dialog aria-label="Специальность">
-    <form>
+    <form name="specialityForm">
         <md-dialog-content class="sticky-container">
-            <md-subheader class="md-sticky-no-effect">Специальность</md-subheader>
+            <md-subheader md-theme="indigo" class="md-sticky-no-effect">Специальность</md-subheader>
             <md-content class="md-padding">
-                <form name="specialityForm">
-                    <div layout layout-sm="column">
-                        <div flex>
-                            <md-input-container>
-                                <label>Название специальности</label>
-                                <input md-maxlength="30" required name="speciality" ng-model="speciality.specialityName">
-                                <div ng-messages="specialityForm.speciality.$error">
-                                    <div ng-message="required">Обязательно для заполнения</div>
-                                    <div ng-message="md-maxlength">30 characters long.</div>
-                                </div>
-                            </md-input-container>
+                <div layout="column">
+                    <md-input-container>
+                        <label>Название специальности</label>
+                        <input md-maxlength="30" required name="speciality" ng-model="speciality.specialityName">
+                        <div class="errors" ng-messages="specialityForm.speciality.$error">
+                            <div ng-message="required">Обязательно для заполнения</div>
+                            <div ng-message="md-maxlength">Мах 30 символов</div>
                         </div>
-                    </div>
-                    <div layout layout-sm="column">
-                        <div flex>
-                            <md-select ng-model="speciality.faculty.id" placeholder="Факультет">
-                                <md-option ng-value="">Факультет</md-option>
-                                <md-option ng-value="faculty.id" ng-repeat="faculty in faculties">{{ faculty.facultyName }}</md-option>
-                            </md-select>
+                    </md-input-container>
+                    <md-input-container>
+                        <md-select  name="faculty" ng-model="speciality.faculty.id" required>
+                            <md-option ng-value="">Факультет</md-option>
+                            <md-option ng-value="faculty.id" ng-repeat="faculty in faculties">{{ faculty.facultyName }}</md-option>
+                        </md-select>
+                        <div class="errors" ng-messages="specialityForm.faculty.$error" ng-if="specialityForm.$dirty">
+                            <div ng-message="required">Необходимо выбрать</div>
                         </div>
-                    </div>
-                </form>
+                    </md-input-container>
+                </div>
             </md-content>
         </md-dialog-content>
         <div class="md-actions" layout="row">
@@ -32,7 +29,7 @@
             <md-button ng-click="cancel()" class="md-raised md-warn">
                 Отмена
             </md-button>
-            <md-button ng-click="saveSpeciality()" class="md-raised md-primary">
+            <md-button ng-click="saveSpeciality()" ng-disabled="specialityForm.$invalid" class="md-raised md-primary">
                 Сохранить
             </md-button>
         </div>
