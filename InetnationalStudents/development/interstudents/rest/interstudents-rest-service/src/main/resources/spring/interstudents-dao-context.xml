@@ -15,6 +15,14 @@
 
     <bean id="kotov.interstudents.sessionFactory" parent="commonHibernateSessionFactory">
         <property name="dataSource" ref="kotov.interstudents.dataSource"/>
+        <property name="hibernateProperties">
+            <props merge="true">
+                <prop key="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</prop>
+                <prop key="hibernate.connection.Useunicode">true</prop>
+                <prop key="hibernate.connection.charSet">UTF-8</prop>
+                <prop key="connection.characterEncoding">UTF-8</prop>
+            </props>
+        </property>
     </bean>
 
     <bean id="kotov.interstudents.dataSource" class="org.springframework.jndi.JndiObjectFactoryBean">
