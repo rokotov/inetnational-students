@@ -1,11 +1,11 @@
-<md-dialog aria-label="Специальность">
+<md-dialog aria-label="Факультет">
     <form name="facultyForm">
         <md-dialog-content class="sticky-container">
             <md-subheader md-theme="indigo" class="md-sticky-no-effect">Факультет</md-subheader>
             <md-content class="md-padding">
                 <div layout="column">
                     <md-input-container>
-                        <label>Название специальности</label>
+                        <label>Название факультета</label>
                         <input md-maxlength="30" required name="faculty" ng-model="faculty.facultyName">
                         <div class="errors" ng-messages="facultyForm.faculty.$error">
                             <div ng-message="required">Обязательно для заполнения</div>
