@@ -180,7 +180,7 @@ function EditGroupController($scope, $routeParams, $location, FacultyService, Sp
 	};
 }
 
-function AdministrationController($scope, EditStudentService, EditGroupService, EditSpecialityService, $mdDialog, StudentService, FacultyService, SpecialityService, CourseService, GroupService) {
+function AdministrationController($scope, EditStudentService, EditGroupService, EditSpecialityService, EditFacultyService, $mdDialog, StudentService, FacultyService, SpecialityService, CourseService, GroupService) {
 	$scope.original = StudentService.query();
 
 	$scope.faculties = FacultyService.query();
@@ -209,6 +209,14 @@ function AdministrationController($scope, EditStudentService, EditGroupService, 
 		$mdDialog.show({
 			controller: CreateSpecialityController,
 			templateUrl: 'partials/speciality/createSpeciality.html',
+			targetEvent: ev
+		});
+	};
+	$scope.showCreateFacultyForm = function(ev) {
+		EditFacultyService.editFaculty = this.item;
+		$mdDialog.show({
+			controller: CreateFacultyController,
+			templateUrl: 'partials/faculty/createFaculty.html',
 			targetEvent: ev
 		});
 	};
@@ -311,7 +319,37 @@ function CreateSpecialityController($scope, EditSpecialityService, $mdDialog, $m
 	$scope.saveSpeciality = function(answer) {
 		$mdDialog.hide(answer);
 		$scope.speciality.$save();
-		$scope.specialities.add(speciality);
+		$scope.showActionToast();
+	};
+}
+
+function CreateFacultyController($scope, EditFacultyService, $mdDialog, $mdToast, FacultyService) {
+	if(EditFacultyService.editFaculty == undefined) {
+		$scope.faculty = new FacultyService();
+	}
+	else{
+		$scope.faculty = EditFacultyService.editFaculty;
+	}
+
+	$scope.faculties = FacultyService.query();
+
+	$scope.showActionToast = function() {
+		$mdToast.show(
+			$mdToast.simple()
+				.content('Данные сохранены')
+				.hideDelay(3000)
+		);
+	};
+
+	$scope.hide = function () {
+		$mdDialog.hide();
+	};
+	$scope.cancel = function () {
+		$mdDialog.cancel();
+	};
+	$scope.saveFaculty = function(answer) {
+		$mdDialog.hide(answer);
+		$scope.faculty.$save();
 		$scope.showActionToast();
 	};
 }
@@ -463,5 +501,11 @@ services.factory('EditGroupService', function(){
 services.factory('EditSpecialityService', function(){
 	return{
 		editSpeciality: ''
+	}
+});
+
+services.factory('EditFacultyService', function(){
+	return{
+		editFaculty: ''
 	}
 });

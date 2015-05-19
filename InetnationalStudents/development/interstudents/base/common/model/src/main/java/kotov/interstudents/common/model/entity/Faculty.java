@@ -3,6 +3,7 @@ package kotov.interstudents.common.model.entity;
 
 
 import kotov.interstudents.common.model.AbstractEntity;
+import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlAccessType;
@@ -19,7 +20,8 @@ import java.util.List;
 public class Faculty extends AbstractEntity{
 
     @Id
-    @GeneratedValue
+    @GenericGenerator(name = "facultyGen", strategy = "increment")
+    @GeneratedValue(generator = "facultyGen")
     @Column(name = "faculty_id")
     private Integer id;
 

@@ -185,5 +185,47 @@
 				</div>
 			</md-tab-body>
 		</md-tab>
+		<md-tab label="Факультеты">
+			<md-tab-body>
+				<div layout="row" layout-align="center center">
+					<md-whiteframe class="md-whiteframe-z2 filter-whiteframe-context">
+						<md-context layout-gt-md="row" layout="column">
+							<md-input-container>
+								<label>Факультет</label>
+								<input ng-model="filterFacultyName">
+							</md-input-container>
+							<md-button ng-show="hasRole('admin')" class="md-fab md-mini md-primary md-fab-top-right" ng-click="showCreateFacultyForm($event)" aria-label="add">
+								<md-icon md-svg-src="img/icons/plus.svg"></md-icon>
+							</md-button>
+						</md-context>
+					</md-whiteframe>
+				</div>
+				<div layout="row" layout-align="center center">
+					<md-whiteframe class="md-whiteframe-z2 table-context">
+						<md-content layout-padding class="data-context">
+							<table class="table table-striped table-bordered" >
+								<thead>
+								<tr>
+									<th>Факультет</th>
+									<th></th>
+								</tr>
+								</thead>
+								<tr ng-repeat="item in (faculties | filterByFields:filterFacultyName:['facultyName'])" >
+									<td>{{item.facultyName}}</td>
+									<td>
+										<md-button ng-show="hasRole('admin')" class="md-icon-button" ng-click="showCreateFacultyForm($event)" aria-label="Comment">
+											<md-icon md-svg-src="img/icons/pencil.svg"></md-icon>
+											<md-tooltip md-direction="right">
+												Изменить Факультет {{item.facultyName}}
+											</md-tooltip>
+										</md-button>
+									</td>
+								</tr>
+							</table>
+						</md-content>
+					</md-whiteframe>
+				</div>
+			</md-tab-body>
+		</md-tab>
 	</md-tabs>
 </div>
