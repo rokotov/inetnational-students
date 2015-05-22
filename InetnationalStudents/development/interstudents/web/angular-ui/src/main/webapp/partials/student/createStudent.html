@@ -154,9 +154,24 @@
 							<label>Адрес регистрации</label>
 							<input ng-model="student.registrationAddress">
 						</md-input-container>
-						<md-input-container>
+						<!--<md-input-container>
 							<label>Дата окончания регистрации</label>
-							<input ng-model="student.registrationEndDate">
+							<input type="text" pick-a-date="date" placeholder="Select Date" />
+							<input type="text" pick-a-date="date" pick-a-date-options="{ format: 'yyyy-mm-dd' }" ng-model="student.registrationEndDate"/>
+						</md-input-container>-->
+						<!--<md-input-container>
+							<datepicker date-format="yyyy-MM-dd" selector="form-control">
+								<div class="input-group">
+									<input placeholder="Choose a date"/>
+									<span class="input-group-addon" style="cursor: pointer"><i class="fa fa-lg fa-calendar"></i></span>
+								</div>
+							</datepicker>
+						</md-input-container>-->
+						<md-input-container>
+							<!--<label>Дата окончания регистрации</label>-->
+							<datepicker date-format="yyyy-MM-dd" date-set="{{student.registrationEndDate}}">
+								<input ng-model="student.registrationEndDate" type="text"/>
+							</datepicker>
 						</md-input-container>
 					</div>
 					<div layout layout-sm="column">

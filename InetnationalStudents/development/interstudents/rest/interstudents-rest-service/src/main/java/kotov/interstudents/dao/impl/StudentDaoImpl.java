@@ -49,7 +49,7 @@ public class StudentDaoImpl extends AbstractDaoImpl<Student> implements StudentD
             List<Student> studentList = criteria.add(Restrictions.eq("group.speciality", speciality)).list();
 
             for(Student student : studentList){
-                switch (student.getCourse()){
+                /*switch (student.getCourse()){
                     case "0": statisticBySpeciality.addCount0();
                         break;
                     case "1": statisticBySpeciality.addCount1();
@@ -72,7 +72,7 @@ public class StudentDaoImpl extends AbstractDaoImpl<Student> implements StudentD
                         break;
                     default:
                         break;
-                }
+                }*/
             }
             list.add(statisticBySpeciality);
         }
@@ -94,7 +94,7 @@ public class StudentDaoImpl extends AbstractDaoImpl<Student> implements StudentD
             List<Student> studentList = criteria.add(Restrictions.eq("country", country)).list();
 
             for(Student student : studentList){
-                switch (student.getCourse()){
+                /*switch (student.getCourse()){
                     case "0": statisticByCountry.addCount0();
                         break;
                     case "1": statisticByCountry.addCount1();
@@ -117,7 +117,7 @@ public class StudentDaoImpl extends AbstractDaoImpl<Student> implements StudentD
                         break;
                     default:
                         break;
-                }
+                }*/
             }
             list.add(statisticByCountry);
         }

@@ -35,9 +35,6 @@ public class Student extends AbstractEntity{
     @JoinColumn(name = "hostel_id")
     private Hostel hostel;
 
-    @Column(name = "course")
-    private String course;
-
     @Column(name = "first_name")
     private String firstName;
 
@@ -126,6 +123,9 @@ public class Student extends AbstractEntity{
     @Column(name = "order_number")
     private String orderNumber;
 
+    @Column(name = "order_date")
+    private Date orderDate;
+
     @Column(name = "study_form")
     private String studyForm;
 
@@ -145,6 +145,9 @@ public class Student extends AbstractEntity{
     @Column(name = "incoming_rb_date")
     @JsonSerialize(using = JsonStdDateSerializer.class)
     private Date incomingRbDate;
+
+    @Column(name = "recovery")
+    private String recovery;
 
     @Override
     public Integer getId() {
@@ -177,14 +180,6 @@ public class Student extends AbstractEntity{
 
     public void setHostel(Hostel hostel) {
         this.hostel = hostel;
-    }
-
-    public String getCourse() {
-        return course;
-    }
-
-    public void setCourse(String course) {
-        this.course = course;
     }
 
     public String getFirstName() {
@@ -433,5 +428,21 @@ public class Student extends AbstractEntity{
 
     public void setIncomingRbDate(Date incomingRbDate) {
         this.incomingRbDate = incomingRbDate;
+    }
+
+    public Date getOrderDate() {
+        return orderDate;
+    }
+
+    public void setOrderDate(Date orderDate) {
+        this.orderDate = orderDate;
+    }
+
+    public String getRecovery() {
+        return recovery;
+    }
+
+    public void setRecovery(String recovery) {
+        this.recovery = recovery;
     }
 }
