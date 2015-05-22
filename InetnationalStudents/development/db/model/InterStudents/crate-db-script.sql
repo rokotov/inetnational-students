@@ -1,8 +1,6 @@
-drop table if exists Course;
-
 drop table if exists country;
 
-drop table if exists education_info;
+drop table if exists course;
 
 drop table if exists faculty;
 
@@ -10,23 +8,11 @@ drop table if exists groupe;
 
 drop table if exists hostel;
 
-drop table if exists personal_info;
-
 drop table if exists speciality;
 
 drop table if exists student;
 
 drop table if exists user;
-
-/*==============================================================*/
-/* Table: Course                                                */
-/*==============================================================*/
-create table Course
-(
-   course_id            int not null,
-   course_name          char(20),
-   primary key (course_id)
-);
 
 /*==============================================================*/
 /* Table: country                                               */
@@ -40,23 +26,13 @@ create table country
 );
 
 /*==============================================================*/
-/* Table: education_info                                        */
+/* Table: course                                                */
 /*==============================================================*/
-create table education_info
+create table course
 (
-   education_info_id    int not null,
-   incoming_date        date,
-   graduated_date       date,
-   dismis_date          date,
-   order_number         char(10),
-   study_form           char(60),
-   study_type           char(60),
-   reason_dismis        char(60),
-   income_type          char(60),
-   inviting_part        char(60),
-   invite_date          date,
-   incoming_rb_date     date,
-   primary key (education_info_id)
+   course_id            int not null,
+   course_name          char(20),
+   primary key (course_id)
 );
 
 /*==============================================================*/
@@ -65,7 +41,7 @@ create table education_info
 create table faculty
 (
    faculty_id           int not null,
-   faculty_name         char(60),
+   faculty_name         char(255),
    primary key (faculty_id)
 );
 
@@ -93,31 +69,13 @@ create table hostel
 );
 
 /*==============================================================*/
-/* Table: personal_info                                         */
-/*==============================================================*/
-create table personal_info
-(
-   personal_info_id     int not null,
-   birth_date           date,
-   birth_place          char(255),
-   pasport_number       char(60),
-   pasport_validity     date,
-   gender               char(10),
-   visa_number          char(60),
-   visa_end_date        date,
-   insurance_number     char(60),
-   insurance_end_date   date,
-   primary key (personal_info_id)
-);
-
-/*==============================================================*/
 /* Table: speciality                                            */
 /*==============================================================*/
 create table speciality
 (
    speciality_id        int not null,
    faculty_id           int,
-   speciality_name      char(60),
+   speciality_name      char(255),
    primary key (speciality_id)
 );
 
@@ -129,22 +87,41 @@ create table student
    student_id           int not null,
    group_id             int,
    country_id           int,
-   personal_info_id     int not null,
-   education_info_id    int not null,
    hostel_id            int,
-   course               char(10),
-   first_name           char(60),
-   last_name            char(60),
-   middle_name          char(60),
+   first_name           char(100),
+   last_name            char(100),
+   middle_name          char(100),
    fio_latin            char(255),
    registration_address char(255),
    registration_end_date date,
-   graduated            char(60),
+   graduated            char(255),
    receipt_date         date,
-   vacation             char(10),
+   vacation             char(255),
    vacation_start_date  date,
    vacation_end_date    date,
-   line                 char(60),
+   line                 char(255),
+   birth_date           date,
+   birth_place          char(255),
+   pasport_number       char(60),
+   pasport_validity     date,
+   gender               char(10),
+   visa_number          char(60),
+   visa_end_date        date,
+   insurance_number     char(60),
+   insurance_end_date   date,
+   incoming_date        date,
+   graduated_date       date,
+   dismis_date          date,
+   order_number         char(60),
+   order_date           date,
+   study_form           char(60),
+   study_type           char(60),
+   reason_dismis        char(255),
+   income_type          char(60),
+   inviting_part        char(60),
+   invite_date          date,
+   incoming_rb_date     date,
+   recovery             char(60),
    primary key (student_id)
 );
 
@@ -161,7 +138,7 @@ create table user
 );
 
 alter table groupe add constraint FK_group_course foreign key (course_id)
-      references Course (course_id) on delete restrict on update restrict;
+      references course (course_id) on delete restrict on update restrict;
 
 alter table groupe add constraint FK_group_speciality foreign key (speciality_id)
       references speciality (speciality_id) on delete restrict on update restrict;
@@ -172,14 +149,8 @@ alter table speciality add constraint FK_speciality_faculty foreign key (faculty
 alter table student add constraint FK_student_counrty foreign key (country_id)
       references country (country_id) on delete restrict on update restrict;
 
-alter table student add constraint FK_student_education_info foreign key (education_info_id)
-      references education_info (education_info_id) on delete restrict on update restrict;
-
 alter table student add constraint FK_student_group foreign key (group_id)
       references groupe (group_id) on delete restrict on update restrict;
 
 alter table student add constraint FK_student_hostel foreign key (hostel_id)
       references hostel (hostel_id) on delete restrict on update restrict;
-
-alter table student add constraint FK_student_personal_info foreign key (personal_info_id)
-      references personal_info (personal_info_id) on delete restrict on update restrict;
