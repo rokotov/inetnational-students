@@ -1,16 +1,16 @@
+drop table if exists student;
+
+drop table if exists groupe;
+
 drop table if exists country;
+
+drop table if exists speciality;
 
 drop table if exists course;
 
 drop table if exists faculty;
 
-drop table if exists groupe;
-
 drop table if exists hostel;
-
-drop table if exists speciality;
-
-drop table if exists student;
 
 drop table if exists user;
 
