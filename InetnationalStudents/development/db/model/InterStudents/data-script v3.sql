@@ -1,4 +1,3 @@
-delete from `student` where student_id>0;
 delete from `hostel` where hostel_id>0;
 delete from `groupe` where group_id>0;
 delete from `course` where course_id>0;

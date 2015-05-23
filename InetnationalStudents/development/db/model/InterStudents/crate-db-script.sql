@@ -84,7 +84,7 @@ create table speciality
 /*==============================================================*/
 create table student
 (
-   student_id           int not null,
+   student_id           int not null AUTO_INCREMENT,
    group_id             int,
    country_id           int,
    hostel_id            int,
