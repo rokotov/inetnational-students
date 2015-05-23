@@ -6,10 +6,10 @@
                 <div layout="column">
                     <md-input-container>
                         <label>Название факультета</label>
-                        <input md-maxlength="30" required name="faculty" ng-model="faculty.facultyName">
+                        <input md-maxlength="255" required name="faculty" ng-model="faculty.facultyName">
                         <div class="errors" ng-messages="facultyForm.faculty.$error">
                             <div ng-message="required">Обязательно для заполнения</div>
-                            <div ng-message="md-maxlength">Мах 30 символов</div>
+                            <div ng-message="md-maxlength">Мах 255 символов</div>
                         </div>
                     </md-input-container>
                 </div>

@@ -6,10 +6,10 @@
                 <div layout-md="column">
                     <md-input-container>
                         <label>Название группы</label>
-                        <input md-maxlength="30" required name="group" ng-model="group.groupName">
+                        <input md-maxlength="60" required name="group" ng-model="group.groupName">
                         <div class="errors" ng-messages="groupForm.group.$error">
                             <div ng-message="required">Обязательно для заполнения</div>
-                            <div ng-message="md-maxlength">Мах 30 символов</div>
+                            <div ng-message="md-maxlength">Мах 60 символов</div>
                         </div>
                     </md-input-container>
                     <md-input-container>

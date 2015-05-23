@@ -1,4 +1,4 @@
-angular.module('myApp', ['ngRoute', 'ngMessages', 'ngCookies', 'ngMaterial', 'myApp.services', 'solo.table', '720kb.datepicker'])
+angular.module('myApp', ['ngRoute', 'ngMessages', 'ngCookies', 'ngMaterial', 'myApp.services', 'solo.table'])
 	.config(
 		[ '$routeProvider', '$locationProvider', '$httpProvider', '$mdThemingProvider', function($routeProvider, $locationProvider, $httpProvider, $mdThemingProvider) {
 

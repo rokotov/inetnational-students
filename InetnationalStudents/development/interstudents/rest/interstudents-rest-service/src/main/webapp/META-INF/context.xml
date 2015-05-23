@@ -10,6 +10,7 @@
 
             />
     <!--
+
               url="jdbc:mysql://localhost:3306/interstudents?useUnicode=true&amp;characterEncoding=UTF-8"
               username="root"
               password="admin"
