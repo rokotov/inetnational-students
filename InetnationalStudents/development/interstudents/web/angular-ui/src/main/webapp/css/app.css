@@ -13,9 +13,12 @@
 .tab-content{
     padding: 10px;
 }
-.data-context th{
+/*.data-context th{
     padding: 4px;
-}
+}*/
+/*.big-table{
+    width: 90%;
+}*/
 .data-context{
     height: 50%;
 }
