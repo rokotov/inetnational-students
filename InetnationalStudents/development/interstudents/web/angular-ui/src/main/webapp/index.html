@@ -19,6 +19,8 @@
 	<link rel="stylesheet" href="css/app.css"/>
 </head>
 	<div class="loader" ng-hide="initialized">
+		<md-progress-linear md-mode="indeterminate"></md-progress-linear>
+		<md-progress-linear class="md-warn" md-mode="buffer" value="{{determinateValue}}" md-buffer-value="{{determinateValue2}}"></md-progress-linear>
 		Loading...
 	</div>
 	<body ng-controller="MainCtrl" flex>

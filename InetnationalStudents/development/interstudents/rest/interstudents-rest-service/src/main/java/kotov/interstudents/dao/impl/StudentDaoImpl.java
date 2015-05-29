@@ -7,6 +7,7 @@ import kotov.interstudents.common.rest.client.SpecialityRestClient;
 import kotov.interstudents.dao.SpecialityDao;
 import kotov.interstudents.dao.StudentDao;
 import kotov.interstudents.service.CountryService;
+import kotov.interstudents.service.HostelService;
 import kotov.interstudents.service.SpecialityService;
 import org.hibernate.Criteria;
 import org.hibernate.criterion.Restrictions;
@@ -32,6 +33,8 @@ public class StudentDaoImpl extends AbstractDaoImpl<Student> implements StudentD
     @Autowired
     private SpecialityService specialityService;
 
+    @Autowired
+    private HostelService hostelService;
 
     @Override
     public List<CourseStatisticBySpeciality> getCourseStatisticBySpeciality() {
@@ -150,6 +153,28 @@ public class StudentDaoImpl extends AbstractDaoImpl<Student> implements StudentD
                 }
             }
             list.add(statisticByCountry);
+        }
+
+        return list;
+    }
+
+    @Override
+    public List<HostelStatistic> getHostelStatistic() {
+        List<Hostel> hostelList = hostelService.getAllEntities();
+        List<HostelStatistic> list = new ArrayList<>();
+
+
+        for(Hostel hostel : hostelList) {
+            HostelStatistic hostelStatistic = new HostelStatistic();
+            hostelStatistic.setHostel(hostel);
+
+            Criteria criteria = getSession().createCriteria(Student.class);
+            List<Student> studentList = criteria.add(Restrictions.eq("hostel", hostel)).list();
+
+            hostelStatistic.setHostel(hostel);
+            hostelStatistic.setCount(studentList.size());
+
+            list.add(hostelStatistic);
         }
 
         return list;

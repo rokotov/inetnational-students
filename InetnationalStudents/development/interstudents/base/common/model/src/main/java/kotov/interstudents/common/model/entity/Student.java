@@ -124,6 +124,7 @@ public class Student extends AbstractEntity{
     private String orderNumber;
 
     @Column(name = "order_date")
+    @JsonSerialize(using = JsonStdDateSerializer.class)
     private Date orderDate;
 
     @Column(name = "study_form")

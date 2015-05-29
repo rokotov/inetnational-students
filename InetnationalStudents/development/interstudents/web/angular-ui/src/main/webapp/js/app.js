@@ -373,17 +373,20 @@ function LoginController($scope, $rootScope, $location, $cookieStore, UserServic
 	};
 }
 
-function StudentController ($scope, StudentService, FacultyService, SpecialityService, CountryService) {
+function StudentController ($scope, StudentService, FacultyService, SpecialityService, CountryService, HostelService) {
 	$scope.original = StudentService.query();
 
 	$scope.faculties = FacultyService.query();
 	$scope.specialities = SpecialityService.query();
 	$scope.countries = CountryService.query();
+	$scope.hostels = HostelService.query();
+
 }
 
-function StatisticController ($scope, StatisticSpecialityService, StatisticCountryService) {
+function StatisticController ($scope, StatisticSpecialityService, StatisticCountryService, StatisticHostelService) {
 	$scope.statisticBySpeciality = StatisticSpecialityService.query();
 	$scope.statisticByCountry = StatisticCountryService.query();
+	$scope.statisticByHostel = StatisticHostelService.query();
 }
 
 function HomeController($scope){
@@ -400,7 +403,8 @@ function MainCtrl($scope, $mdSidenav) {
 		{"url": "!/home", "discription": "Главная"},
 		{"url": "!/student", "discription": "Списки студентов"},
 		{"url": "!/statistic", "discription": "Статистика"},
-		{"url": "!/", "discription": "Общаги"}
+		//{"url": "!/control", "discription": "Статистика"},
+		//{"url": "!/", "discription": "Общаги"}
 
 	];
 
@@ -484,6 +488,10 @@ services.factory('StatisticSpecialityService', function($resource) {
 
 services.factory('StatisticCountryService', function($resource) {
 	return $resource('rest/student/statisticByCountry/:id', {id: '@id'});
+});
+
+services.factory('StatisticHostelService', function($resource) {
+	return $resource('rest/student/statisticByHostel/:id', {id: '@id'});
 });
 
 services.factory('EditStudentService', function(){

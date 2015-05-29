@@ -49,4 +49,16 @@ public class StudentRestService extends AbstractRestServiceImpl<Student> {
             return  Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(e.getMessage()).build();
         }
     }
+
+    @GET
+    @Path("/statisticByHostel")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getHostelStatistic() {
+        try {
+            return returnEntityCheck(studentService.getHostelStatistic());
+        }
+        catch (CannotCreateTransactionException e){
+            return  Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(e.getMessage()).build();
+        }
+    }
 }

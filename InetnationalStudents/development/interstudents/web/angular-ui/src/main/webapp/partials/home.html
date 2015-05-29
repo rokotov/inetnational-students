@@ -1,15 +1,17 @@
-<div layout="column" layout-align="center center" class="md-whiteframe-z4">
-      <p>Приложение International Students в стиле Material Design + AngularJS</p>
-<br/>
-<br/>
-<br/>
-      <br/>
-      <br/>
-      <br/>
-<br/>
-      <p>Готов список студентов</p>
-      <md-icon icon="img/icons/ic_border_color_24px.svg"></md-icon>
-      <md-icon icon="img/icons/ic_chevron_right_24px.svg"></md-icon>
-
-
+<div layout="column" layout-align="center center" flex>
+      <md-whiteframe class="md-whiteframe-z3 login-form">
+            <md-content layout-padding >
+                  <h2>Приложение "Иностранные студенты"</h2>
+                  <h4>Возможности приложения</h4>
+                  <ul>
+                        <li>Автоматизированный учет</li>
+                        <li>Составление отчетов</li>
+                        <li>Подсчет статистики</li>
+                        <li>Экспорт в Microsoft Excel</li>
+                  </ul>
+                  <md-progress-linear md-mode="indeterminate"></md-progress-linear>
+                  <md-progress-linear class="md-warn" md-mode="buffer" value="{{determinateValue}}" md-buffer-value="{{determinateValue2}}"></md-progress-linear>
+            </md-content>
+      </md-whiteframe>
 </div>
+
