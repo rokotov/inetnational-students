@@ -104,7 +104,7 @@
                                 <input ng-model="filterModel">
                             </md-input-container>
                             <div class="pager-info">Страница {{pager.currentPage}} of {{pager.foundPages}}. Всего студентов:  {{pager.found}}</div>
-                            <md-button class="md-mini md-primary md-fab md-fab-top-right" download="dataStudentsByCountry.xls" aria-label="Выход" href=""  onclick="return ExcellentExport.excel(this, 'dataStudentsBySpeciality', 'Sheet Name Here');">
+                            <md-button class="md-mini md-primary md-fab md-fab-top-right" download="dataStudentsByCountry.xls" aria-label="Выход" href=""  onclick="return ExcellentExport.excel(this, 'dataStudentsByCountry', 'Sheet Name Here');">
                                 <md-icon md-svg-src="img/icons/arrow-down-bold.svg"></md-icon>
                                 <md-tooltip md-direction="left" style="margin-left: 10px;">
                                     Выгрузить в Excel

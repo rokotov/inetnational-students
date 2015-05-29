@@ -11,10 +11,11 @@ public class CourseStatisticBySpeciality {
     private int count3 = 0;
     private int count4 = 0;
     private int count5 = 0;
+    private int countM = 0;
     private int countII = 0;
     private int countIII = 0;
     private int countA = 0;
-    private int countK = 0;
+    private int countPO = 0;
     private int countAll = 0;
 
     public Speciality getSpeciality() {
@@ -97,12 +98,20 @@ public class CourseStatisticBySpeciality {
         this.countA = countA;
     }
 
-    public int getCountK() {
-        return countK;
+    public int getCountPO() {
+        return countPO;
     }
 
-    public void setCountK(int countK) {
-        this.countK = countK;
+    public void setCountPO(int countPO) {
+        this.countPO = countPO;
+    }
+
+    public int getCountM() {
+        return countM;
+    }
+
+    public void setCountM(int countM) {
+        this.countM = countM;
     }
 
     public int getCountAll() {
@@ -143,6 +152,11 @@ public class CourseStatisticBySpeciality {
         this.countAll++;
     }
 
+    public void addCountM(){
+        this.countM++;
+        this.countAll++;
+    }
+
     public void addCountII(){
         this.countII++;
         this.countAll++;
@@ -153,8 +167,8 @@ public class CourseStatisticBySpeciality {
         this.countAll++;
     }
 
-    public void addCountK(){
-        this.countK++;
+    public void addCountPO(){
+        this.countPO++;
         this.countAll++;
     }
 

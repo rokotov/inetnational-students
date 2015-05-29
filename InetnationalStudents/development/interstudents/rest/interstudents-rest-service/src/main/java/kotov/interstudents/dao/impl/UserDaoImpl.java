@@ -30,7 +30,7 @@ public class UserDaoImpl extends AbstractDaoImpl<User> implements UserDao {
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
         User user = (User) getSession().createCriteria(User.class).add(Restrictions.eq("name", s)).uniqueResult();
 
-       /* System.out.println(passwordEncoder.encode("admin"));*/
+//        System.out.println(passwordEncoder.encode("qwertyu_1"));
 
         if (null == user) {
             throw new UsernameNotFoundException("The user with name " + s + " was not found");

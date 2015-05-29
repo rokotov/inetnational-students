@@ -49,30 +49,45 @@ public class StudentDaoImpl extends AbstractDaoImpl<Student> implements StudentD
             List<Student> studentList = criteria.add(Restrictions.eq("group.speciality", speciality)).list();
 
             for(Student student : studentList){
-                /*switch (student.getCourse()){
-                    case "0": statisticBySpeciality.addCount0();
-                        break;
-                    case "1": statisticBySpeciality.addCount1();
-                        break;
-                    case "2": statisticBySpeciality.addCount2();
-                        break;
-                    case "3": statisticBySpeciality.addCount3();
-                        break;
-                    case "4": statisticBySpeciality.addCount4();
-                        break;
-                    case "5": statisticBySpeciality.addCount5();
-                        break;
-                    case "II": statisticBySpeciality.addCountII();
-                        break;
-                    case "III": statisticBySpeciality.addCountIII();
-                        break;
-                    case "K": statisticBySpeciality.addCountK();
-                        break;
-                    case "A": statisticBySpeciality.addCountA();
-                        break;
-                    default:
-                        break;
-                }*/
+                if(student.getGroup() != null) {
+                    switch (student.getGroup().getCourse().getId()) {
+                        case 1:
+                            statisticBySpeciality.addCount0();
+                            break;
+                        case 2:
+                            statisticBySpeciality.addCount1();
+                            break;
+                        case 3:
+                            statisticBySpeciality.addCount2();
+                            break;
+                        case 4:
+                            statisticBySpeciality.addCount3();
+                            break;
+                        case 5:
+                            statisticBySpeciality.addCount4();
+                            break;
+                        case 6:
+                            statisticBySpeciality.addCount5();
+                            break;
+                        case 7:
+                            statisticBySpeciality.addCountM();
+                            break;
+                        case 8:
+                            statisticBySpeciality.addCountII();
+                            break;
+                        case 9:
+                            statisticBySpeciality.addCountIII();
+                            break;
+                        case 10:
+                            statisticBySpeciality.addCountA();
+                            break;
+                        case 11:
+                            statisticBySpeciality.addCountPO();
+                            break;
+                        default:
+                            break;
+                    }
+                }
             }
             list.add(statisticBySpeciality);
         }
@@ -94,30 +109,45 @@ public class StudentDaoImpl extends AbstractDaoImpl<Student> implements StudentD
             List<Student> studentList = criteria.add(Restrictions.eq("country", country)).list();
 
             for(Student student : studentList){
-                /*switch (student.getCourse()){
-                    case "0": statisticByCountry.addCount0();
-                        break;
-                    case "1": statisticByCountry.addCount1();
-                        break;
-                    case "2": statisticByCountry.addCount2();
-                        break;
-                    case "3": statisticByCountry.addCount3();
-                        break;
-                    case "4": statisticByCountry.addCount4();
-                        break;
-                    case "5": statisticByCountry.addCount5();
-                        break;
-                    case "II": statisticByCountry.addCountII();
-                        break;
-                    case "III": statisticByCountry.addCountIII();
-                        break;
-                    case "K": statisticByCountry.addCountK();
-                        break;
-                    case "A": statisticByCountry.addCountA();
-                        break;
-                    default:
-                        break;
-                }*/
+                if(student.getGroup() != null) {
+                    switch (student.getGroup().getCourse().getId()) {
+                        case 1:
+                            statisticByCountry.addCount0();
+                            break;
+                        case 2:
+                            statisticByCountry.addCount1();
+                            break;
+                        case 3:
+                            statisticByCountry.addCount2();
+                            break;
+                        case 4:
+                            statisticByCountry.addCount3();
+                            break;
+                        case 5:
+                            statisticByCountry.addCount4();
+                            break;
+                        case 6:
+                            statisticByCountry.addCount5();
+                            break;
+                        case 7:
+                            statisticByCountry.addCountM();
+                            break;
+                        case 8:
+                            statisticByCountry.addCountII();
+                            break;
+                        case 9:
+                            statisticByCountry.addCountIII();
+                            break;
+                        case 10:
+                            statisticByCountry.addCountA();
+                            break;
+                        case 11:
+                            statisticByCountry.addCountPO();
+                            break;
+                        default:
+                            break;
+                    }
+                }
             }
             list.add(statisticByCountry);
         }

@@ -15,9 +15,9 @@
               username="root"
               password="admin"
 
-              url="jdbc:mysql://mysql22657-inters.mycloud.by:3306/interstudents?useUnicode=true&amp;characterEncoding=UTF-8"
+              url="jdbc:mysql://mysql22824-student.mycloud.by:3306/interstudents?useUnicode=true&amp;characterEncoding=UTF-8"
               username="root"
-              password="AYXmpe51106"
+              password="IXQdll23759"
 
         -->
 </Context>
