@@ -1,0 +1,38 @@
+<md-dialog aria-label="Специальность">
+    <form name="specialityForm">
+        <md-dialog-content class="sticky-container">
+            <md-subheader md-theme="indigo" class="md-sticky-no-effect">Специальность</md-subheader>
+            <md-content class="md-padding">
+                <div layout="column">
+                    <md-input-container>
+                        <label>Название специальности</label>
+                        <input md-maxlength="255" required name="speciality" ng-model="speciality.specialityName">
+                        <div class="errors" ng-messages="specialityForm.speciality.$error">
+                            <div ng-message="required">Обязательно для заполнения</div>
+                            <div ng-message="md-maxlength">Мах 255 символов</div>
+                        </div>
+                    </md-input-container>
+                    <md-input-container>
+                        <md-select  name="faculty" ng-model="speciality.faculty.id" required>
+                            <md-option ng-value="">Факультет</md-option>
+                            <md-option ng-value="faculty.id" ng-repeat="faculty in faculties">{{ faculty.facultyName }}</md-option>
+                        </md-select>
+                        <div class="errors" ng-messages="specialityForm.faculty.$error" ng-if="specialityForm.$dirty">
+                            <div ng-message="required">Необходимо выбрать</div>
+                        </div>
+                    </md-input-container>
+                </div>
+            </md-content>
+        </md-dialog-content>
+        <div class="md-actions" layout="row">
+            <span flex></span>
+            <md-button ng-click="cancel()" class="md-raised md-warn">
+                Отмена
+            </md-button>
+            <md-button ng-click="saveSpeciality()" ng-disabled="specialityForm.$invalid" class="md-raised md-primary">
+                Сохранить
+            </md-button>
+        </div>
+    </form>
+</md-dialog>
+

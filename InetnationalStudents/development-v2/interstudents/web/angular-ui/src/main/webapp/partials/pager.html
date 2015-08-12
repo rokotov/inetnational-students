@@ -1,0 +1,20 @@
+<div flex="50">
+    <label style="padding-top: 5px"> Студентов на странице </label>
+    <input type="number" min="1" min="999999" placeholder="число" type="text" name="onpage" ng-model="len" ng-change="pager.setOnPage(len)" style="width: 120px; padding: 3px; margin: 3px;" class="ng-valid ng-dirty">
+    <label style="padding-top: 5px"> или </label>
+    <select  name="op" id="op" ng-model="op" ng-change="pager.setOnPage(op)" class="ng-valid ng-dirty" style="margin: 3px;">
+        <option value="">выбрать</option>
+        <option value="10">10</option>
+        <option value="20">20</option>
+        <option value="50">50</option>
+        <option value="100">100</option>
+        <option value="500">500</option>
+        <option value="1000">1000</option>
+    </select>
+</div>
+<div  flex="50">
+    <a href="" ng-click="gotoFirstPage()">Первая страница | </a>
+    <a href="" ng-click="gotoPrevPage()"> &larr;назад | </a>
+    <a href="" ng-click="gotoNextPage()">вперед &rarr; | </a>
+    <a href="" ng-click="gotoLastPage()">Последняя страница </a>
+</div>

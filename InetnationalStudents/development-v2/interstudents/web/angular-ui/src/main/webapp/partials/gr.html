@@ -1,0 +1,16 @@
+<md-bottom-sheet class="md-grid">
+    <md-list>
+       <!-- <md-list-item ng-repeat="item in items">
+            <md-button class="md-grid-item-content" ng-click="listItemClick($index)">
+                <md-icon md-svg-src="{{item.icon}}"></md-icon>
+                <div class="md-grid-text"> {{ item.name }} </div>
+            </md-button>
+        </md-list-item>-->
+        <md-button class="md-fab md-mini md-primary" ownload="students.xls"   href="" class="md-icon-button" onclick="return ExcellentExport.excel(this, 'dataStudentsBySpeciality', 'Sheet Name Here');">
+            <md-icon md-svg-src="img/icons/arrow-down-bold.svg"></md-icon>
+            <md-tooltip>
+                Выгрузить в Excel
+            </md-tooltip>
+        </md-button>
+    </md-list>
+</md-bottom-sheet>

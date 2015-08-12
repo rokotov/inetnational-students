@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context path="/interstudents" crossContext="true" reloadable="true">
+
+    <Resource auth="Container" driverClassName="com.mysql.jdbc.Driver" maxActive="2" maxIdle="2" maxWait="10000" type="javax.sql.DataSource"
+              name="jdbc/interstudentsDataSource"
+
+
+              url="jdbc:mysql://localhost:3306/interstudents?useUnicode=true&amp;characterEncoding=UTF-8"
+              username="root"
+              password="admin"
+
+            />
+    <!--
+            //univer
+              url="jdbc:mysql://192.168.0.2:3306/interstudents?useUnicode=true&amp;characterEncoding=UTF-8"
+              username="interstud_user"
+              password="User_1234"
+
+            //local
+              url="jdbc:mysql://localhost:3306/interstudents?useUnicode=true&amp;characterEncoding=UTF-8"
+              username="root"
+              password="admin"
+            //other
+              url="jdbc:mysql://mysql23223-kotov.mycloud.by:3306/interstudents?useUnicode=true&amp;characterEncoding=UTF-8"
+              username="root"
+              password="TDTnnm82437"
+
+        -->
+</Context>
