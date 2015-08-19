@@ -10,6 +10,7 @@
         <relativePath>../base</relativePath>
         <version>1.0.0</version>
     </parent>
+    <packaging>war</packaging>
 
     <artifactId>rest</artifactId>
     <version>1.0.0</version>
