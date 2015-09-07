@@ -149,7 +149,6 @@ function IndexController($scope, HostelService) {
 function EditController($scope, $routeParams, $location, StudentService, CountryService,
 						FacultyService, SpecialityService, CourseService, GroupService, HostelService) {
 
-
 	$scope.student = StudentService.get({id: $routeParams.id});
 
 	$scope.countries = CountryService.query();
@@ -162,6 +161,7 @@ function EditController($scope, $routeParams, $location, StudentService, Country
 	$scope.save = function() {
 		$scope.student.$save(function() {
 			$location.path('/administration');
+
 		});
 	};
 }
@@ -371,6 +371,9 @@ function LoginController($scope, $rootScope, $location, $cookieStore, UserServic
 				$rootScope.user = user;
 				$location.path("/home");
 			});
+		},
+		function(){
+			$scope.error = "Неверный логин или пароль.";
 		});
 	};
 }
@@ -404,10 +407,7 @@ function MainCtrl($scope, $mdSidenav) {
 	$scope.menu.pages = [
 		{"url": "!/home", "discription": "Главная"},
 		{"url": "!/student", "discription": "Списки студентов"},
-		{"url": "!/statistic", "discription": "Статистика"},
-		//{"url": "!/control", "discription": "Статистика"},
-		//{"url": "!/", "discription": "Общаги"}
-
+		{"url": "!/statistic", "discription": "Статистика"}
 	];
 
 	$scope.menu.isPageSelected = function (page) {

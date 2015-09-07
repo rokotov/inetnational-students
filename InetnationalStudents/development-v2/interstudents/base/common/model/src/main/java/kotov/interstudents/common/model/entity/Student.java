@@ -150,6 +150,9 @@ public class Student extends AbstractEntity{
     @Column(name = "recovery")
     private String recovery;
 
+    @Column(name = "note")
+    private String node;
+
     @Override
     public Integer getId() {
         return id;
@@ -445,5 +448,13 @@ public class Student extends AbstractEntity{
 
     public void setRecovery(String recovery) {
         this.recovery = recovery;
+    }
+
+    public String getNode() {
+        return node;
+    }
+
+    public void setNode(String node) {
+        this.node = node;
     }
 }

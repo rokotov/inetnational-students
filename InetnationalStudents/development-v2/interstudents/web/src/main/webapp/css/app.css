@@ -19,6 +19,10 @@
 /*.big-table{
     width: 90%;
 }*/
+.login-error{
+    margin: 5px;
+    color: red;
+}
 .data-context{
     height: 50%;
 }
