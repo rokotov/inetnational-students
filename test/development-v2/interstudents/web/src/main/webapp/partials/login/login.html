@@ -1,0 +1,31 @@
+<div layout="column" layout-align="center center" flex>
+	<md-whiteframe class="md-whiteframe-z3 login-form">
+		<md-content layout-padding>
+			<form name="loginForm">
+				<md-input-container class="md-icon-float" >
+					<label>Логин</label>
+					<md-icon style="color: dodgerblue;" md-svg-src="img/icons/account.svg"></md-icon>
+					<input name="username" ng-model="username" type="text" required>
+					<div ng-messages="loginForm.username.$error">
+						<div ng-message="required">Введите логин</div>
+					</div>
+				</md-input-container>
+				<md-input-container class="md-icon-float" >
+					<label>Пароль</label>
+					<md-icon md-svg-src="img/icons/lock-open-outline.svg"></md-icon>
+					<input name="password" ng-model="password" type="password" required>
+					<div ng-messages="loginForm.password.$error">
+						<div ng-message="required">Введите пароль</div>
+					</div>
+				</md-input-container>
+				<div class="login-error">{{error}}</div>
+				<div layout="row" layout-sm="column" layout-align="center center">
+					<md-checkbox md-no-ink ng-model="rememberMe">
+						Запомнить
+					</md-checkbox>
+					<md-button ng-disabled="loginForm.$invalid" ng-click="login()" class="md-raised md-primary">Войти</md-button>
+				</div>
+			</form>
+		</md-content>
+	</md-whiteframe>
+</div>
